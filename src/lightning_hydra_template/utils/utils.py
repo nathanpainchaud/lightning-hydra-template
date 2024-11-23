@@ -1,12 +1,62 @@
+import builtins
+import operator
 import warnings
 from importlib.util import find_spec
 from typing import Any, Callable, Dict, Optional, Tuple
 
-from omegaconf import DictConfig
+import rootutils
+from omegaconf import DictConfig, OmegaConf
+from sympy.categories import Object
 
-from src.utils import pylogger, rich_utils
+from lightning_hydra_template.utils import pylogger, rich_utils
 
 log = pylogger.RankedLogger(__name__, rank_zero_only=True)
+
+
+def register_omegaconf_resolvers() -> None:
+    """Registers custom OmegaConf resolvers."""
+
+    def _raise(ex_name: str, op_name: str, *args) -> bool:
+        """Raises error if condition defined by operator and arguments is not `True`."""
+        op = getattr(operator, op_name)
+        if not (condition_res := op(*args)):
+            raise getattr(builtins, ex_name)(
+                f"Assertion of Hydra configuration failed: {op.__name__}({args})"
+            )
+        return condition_res
+
+    OmegaConf.register_new_resolver(
+        "raise", lambda ex, op, *args: _raise(ex, op, *args)
+    )
+
+    def _cast(obj: Object, cast_type: str = None) -> Any:
+        """Defines a wrapper for basic operators, with the option to cast result to a type."""
+        if cast_type is not None:
+            obj = getattr(builtins, cast_type)(obj)
+        return obj
+
+    OmegaConf.register_new_resolver("op", lambda op, res_type=None, *args: _cast(getattr(operator, op)(*args)))
+    OmegaConf.register_new_resolver(
+        "attr.__call__", lambda obj, attr, *args: getattr(obj, attr)(*args)
+    )
+
+
+def pre_hydra_routine() -> None:
+    """Configure environment and variables that must be set before running Hydra."""
+    rootutils.setup_root(__file__, indicator=".project-root")
+    # the setup_root above is equivalent to:
+    # - setting up PROJECT_ROOT environment variable
+    #       (which is used as a base for paths in "configs/paths/default.yaml")
+    #       (this way all filepaths are the same no matter where you run the code)
+    # - loading environment variables from ".env" in root dir
+    #
+    # you can remove it if you:
+    # 1. set `root_dir` to "." in "configs/paths/default.yaml"
+    #
+    # more info: https://github.com/ashleve/rootutils
+
+    # Register custom OmegaConf resolvers
+    register_omegaconf_resolvers()
 
 
 def extras(cfg: DictConfig) -> None:

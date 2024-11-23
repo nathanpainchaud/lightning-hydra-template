@@ -1,7 +1,6 @@
 # @package _global_
 
 defaults:
-  - _self_
   - data: mnist # choose datamodule with `test_dataloader()` for evaluation
   - model: mnist
   - logger: null
@@ -9,6 +8,7 @@ defaults:
   - paths: default
   - extras: default
   - hydra: default
+  - _self_
 
 task_name: "eval"
 

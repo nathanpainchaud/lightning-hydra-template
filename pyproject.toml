@@ -1,25 +1,68 @@
-[tool.pytest.ini_options]
-addopts = [
-  "--color=yes",
-  "--durations=0",
-  "--strict-markers",
-  "--doctest-modules",
+[project]
+name = "lightning-hydra-template"
+version = "0.1.0"
+description = "PyTorch Lightning + Hydra. A very user-friendly template for ML experimentation."
+readme = "README.md"
+repository = "https://github.com/nathanpainchaud/lighting-hydra-template"
+requires-python = ">=3.12,<4"
+dependencies = [
+    "hydra-colorlog>=1.2.0,<2",
+    "hydra-core>=1.3.2,<2",
+    "hydra-optuna-sweeper>=1.2.0,<2",
+    "lightning>=2.4.0,<3",
+    "rich>=13.9.4,<14",
+    "rootutils>=1.0.7,<2",
+    "torch>=2.5.1,<3",
+    "torchmetrics>=1.6.0,<2",
 ]
-filterwarnings = [
-  "ignore::DeprecationWarning",
-  "ignore::UserWarning",
+[project.optional-dependencies]
+wandb = [
+    "wandb>=0.18.7,<0.19",
 ]
-log_cli = "True"
-markers = [
-  "slow: slow tests",
-]
-minversion = "6.0"
-testpaths = "tests/"
 
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: nocover",
-    "raise NotImplementedError",
-    "raise NotImplementedError()",
-    "if __name__ == .__main__.:",
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1,<5",
+]
+lint = [
+    "ruff>=0.8.0,<0.9",
+]
+
+[project.scripts]
+template-train = "lightning_hydra_template.train:main"
+template-eval = "lightning_hydra_template.eval:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+default-groups = [ "dev", "lint" ]
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bandit
+    "S",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # pep8-naming
+    "N",
+    # Pylint (except Refactor (R))
+    "PLC",
+    "PLE",
+    "PLW",
 ]
