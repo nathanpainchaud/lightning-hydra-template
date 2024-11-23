@@ -25,6 +25,7 @@ dev = [
     "pre-commit>=4.0.1,<5",
 ]
 lint = [
+    "docformatter>=1.7.5,<2",
     "ruff>=0.8.0,<0.9",
 ]
 
@@ -49,6 +50,8 @@ select = [
     "W",
     # Pyflakes
     "F",
+    # pydocstyle
+    "D",
     # pyupgrade
     "UP",
     # flake8-bandit
@@ -68,5 +71,16 @@ select = [
 ]
 ignore = [
     # Allow use of assert
-    "S101"
+    "S101",
+    # Do not require docstrings in __init__ and modules
+    "D100",
+    "D104",
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.docformatter]
+recursive = true
+wrap-summaries=120
+wrap-descriptions=120

@@ -5,7 +5,7 @@ from lightning_utilities.core.rank_zero import rank_prefixed_message, rank_zero_
 
 
 class RankedLogger(logging.LoggerAdapter):
-    """A multi-GPU-friendly python command line logger."""
+    """A multi-GPU-friendly python logger."""
 
     def __init__(
         self,
@@ -13,8 +13,7 @@ class RankedLogger(logging.LoggerAdapter):
         rank_zero_only: bool = False,
         extra: Mapping[str, object] | None = None,
     ) -> None:
-        """Initializes a multi-GPU-friendly python command line logger that logs on all processes
-        with their rank prefixed in the log message.
+        """Initializes a multi-GPU-friendly logger that logs on all processes with the rank prefixed in the log message.
 
         :param name: The name of the logger. Default is ``__name__``.
         :param rank_zero_only: Whether to force all logs to only occur on the rank zero process. Default is `False`.
@@ -25,9 +24,9 @@ class RankedLogger(logging.LoggerAdapter):
         self.rank_zero_only = rank_zero_only
 
     def log(self, level: int, msg: str, rank: int | None = None, *args, **kwargs) -> None:
-        """Delegate a log call to the underlying logger, after prefixing its message with the rank
-        of the process it's being logged from. If `'rank'` is provided, then the log will only
-        occur on that rank/process.
+        """Prefixes the log message with the rank of the process before delegating to the underlying logger.
+
+        If `'rank'` is provided, then the log will only occur on that rank/process.
 
         :param level: The level to log at. Look at `logging.__init__.py` for more information.
         :param msg: The message to log.

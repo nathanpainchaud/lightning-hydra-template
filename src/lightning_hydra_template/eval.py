@@ -21,8 +21,8 @@ log = RankedLogger(__name__, rank_zero_only=True)
 def evaluate(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
     """Evaluates given checkpoint on a datamodule testset.
 
-    This method is wrapped in optional @task_wrapper decorator, that controls the behavior during
-    failure. Useful for multiruns, saving info about the crash, etc.
+    This method is wrapped in optional @task_wrapper decorator, that controls the behavior during failure. Useful for
+    multiruns, saving info about the crash, etc.
 
     :param cfg: DictConfig configuration composed by Hydra.
     :return: Tuple[dict, dict] with metrics and dict with all instantiated objects.
