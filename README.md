@@ -137,7 +137,7 @@ cd lightning-hydra-template
 uv sync
 
 # install pytorch according to instructions
-# if repo versions is not compatible with your system 
+# if repo versions is not compatible with your system
 # https://pytorch.org/get-started/
 ```
 

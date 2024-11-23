@@ -40,7 +40,7 @@ build-backend = "hatchling.build"
 default-groups = [ "dev", "lint" ]
 
 [tool.ruff]
-line-length = 99
+line-length = 120
 
 [tool.ruff.lint]
 select = [
@@ -65,4 +65,8 @@ select = [
     "PLC",
     "PLE",
     "PLW",
+]
+ignore = [
+    # Allow use of assert
+    "S101"
 ]

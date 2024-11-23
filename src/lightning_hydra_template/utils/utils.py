@@ -1,8 +1,9 @@
 import builtins
 import operator
 import warnings
+from collections.abc import Callable
 from importlib.util import find_spec
-from typing import Any, Callable, Dict, Optional, Tuple
+from typing import Any
 
 import rootutils
 from omegaconf import DictConfig, OmegaConf
@@ -20,14 +21,10 @@ def register_omegaconf_resolvers() -> None:
         """Raises error if condition defined by operator and arguments is not `True`."""
         op = getattr(operator, op_name)
         if not (condition_res := op(*args)):
-            raise getattr(builtins, ex_name)(
-                f"Assertion of Hydra configuration failed: {op.__name__}({args})"
-            )
+            raise getattr(builtins, ex_name)(f"Assertion of Hydra configuration failed: {op.__name__}({args})")
         return condition_res
 
-    OmegaConf.register_new_resolver(
-        "raise", lambda ex, op, *args: _raise(ex, op, *args)
-    )
+    OmegaConf.register_new_resolver("raise", lambda ex, op, *args: _raise(ex, op, *args))
 
     def _cast(obj: Object, cast_type: str = None) -> Any:
         """Defines a wrapper for basic operators, with the option to cast result to a type."""
@@ -36,9 +33,7 @@ def register_omegaconf_resolvers() -> None:
         return obj
 
     OmegaConf.register_new_resolver("op", lambda op, res_type=None, *args: _cast(getattr(operator, op)(*args)))
-    OmegaConf.register_new_resolver(
-        "attr.__call__", lambda obj, attr, *args: getattr(obj, attr)(*args)
-    )
+    OmegaConf.register_new_resolver("attr.__call__", lambda obj, attr, *args: getattr(obj, attr)(*args))
 
 
 def pre_hydra_routine() -> None:
@@ -112,7 +107,7 @@ def task_wrapper(task_func: Callable) -> Callable:
     :return: The wrapped task function.
     """
 
-    def wrap(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    def wrap(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
         # execute the task
         try:
             metric_dict, object_dict = task_func(cfg=cfg)
@@ -145,7 +140,7 @@ def task_wrapper(task_func: Callable) -> Callable:
     return wrap
 
 
-def get_metric_value(metric_dict: Dict[str, Any], metric_name: Optional[str]) -> Optional[float]:
+def get_metric_value(metric_dict: dict[str, Any], metric_name: str | None) -> float | None:
     """Safely retrieves value of the metric logged in LightningModule.
 
     :param metric_dict: A dict containing metric values.
