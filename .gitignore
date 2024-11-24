@@ -34,7 +34,7 @@ wheels/
 *.tar.gz
 
 # Lightning-Hydra-Template
-configs/local/default.yaml
+src/lightning_hydra_template/configs/local/default.yaml
 /data/
 /logs/
 .env

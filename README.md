@@ -78,24 +78,7 @@ For example, you can't resume hydra-based multirun or hyperparameter search.
 The directory structure of new project looks like this:
 
 ```
-├── .github                   <- Github Actions workflows
-│
-├── configs                   <- Hydra configs
-│   ├── callbacks                <- Callbacks configs
-│   ├── data                     <- Data configs
-│   ├── debug                    <- Debugging configs
-│   ├── experiment               <- Experiment configs
-│   ├── extras                   <- Extra utilities configs
-│   ├── hparams_search           <- Hyperparameter search configs
-│   ├── hydra                    <- Hydra configs
-│   ├── local                    <- Local configs
-│   ├── logger                   <- Logger configs
-│   ├── model                    <- Model configs
-│   ├── paths                    <- Project paths configs
-│   ├── trainer                  <- Trainer configs
-│   │
-│   ├── eval.yaml             <- Main config for evaluation
-│   └── train.yaml            <- Main config for training
+├── .github                <- Github Actions workflows
 │
 ├── data                   <- Project data
 │
@@ -109,6 +92,24 @@ The directory structure of new project looks like this:
 │
 ├── src                    <- Source code
 │   └── lightning_hydra_template  <- Package directory
+│       │
+│       ├── configs                 <- Hydra configs
+│       │   ├── callbacks              <- Callbacks configs
+│       │   ├── data                   <- Data configs
+│       │   ├── debug                  <- Debugging configs
+│       │   ├── experiment             <- Experiment configs
+│       │   ├── extras                 <- Extra utilities configs
+│       │   ├── hparams_search         <- Hyperparameter search configs
+│       │   ├── hydra                  <- Hydra configs
+│       │   ├── local                  <- Local configs
+│       │   ├── logger                 <- Logger configs
+│       │   ├── model                  <- Model configs
+│       │   ├── paths                  <- Project paths configs
+│       │   ├── trainer                <- Trainer configs
+│       │   │
+│       │   ├── eval.yaml              <- Main config for evaluation
+│       │   └── train.yaml             <- Main config for training
+│       │
 │       ├── data                     <- Data scripts
 │       ├── models                   <- Model scripts
 │       ├── utils                    <- Utility scripts
@@ -121,7 +122,8 @@ The directory structure of new project looks like this:
 ├── .pre-commit-config.yaml   <- Configuration of pre-commit hooks for code formatting
 ├── .project-root             <- File for inferring the position of project root directory
 ├── pyproject.toml            <- Project management and tools configuration
-└── README.md
+├── README.md
+└── uv.lock                   <- Lock file specifying the exact versions of dependencies in uv environment
 ```
 
 <br>
@@ -226,7 +228,7 @@ python src/lightning_hydra_template/train.py logger=wandb
 python src/lightning_hydra_template/train.py experiment=example
 ```
 
-> **Note**: Experiment configs are placed in [configs/experiment/](configs/experiment/).
+> **Note**: Experiment configs are placed in [configs/experiment/](src/lightning_hydra_template/configs/experiment/).
 
 </details>
 
@@ -239,7 +241,7 @@ python src/lightning_hydra_template/train.py callbacks=default
 
 > **Note**: Callbacks can be used for things such as as model checkpointing, early stopping and [many more](https://lightning.ai/docs/pytorch/latest/extensions/callbacks.html#built-in-callbacks).
 
-> **Note**: Callbacks configs are placed in [configs/callbacks/](configs/callbacks/).
+> **Note**: Callbacks configs are placed in [configs/callbacks/](src/lightning_hydra_template/configs/callbacks/).
 
 </details>
 
@@ -288,7 +290,7 @@ python src/lightning_hydra_template/train.py +trainer.limit_train_batches=0.2 \
 +trainer.limit_val_batches=0.2 +trainer.limit_test_batches=0.2
 ```
 
-> **Note**: Visit [configs/debug/](configs/debug/) for different debugging configs.
+> **Note**: Visit [configs/debug/](src/lightning_hydra_template/configs/debug/) for different debugging configs.
 
 </details>
 
@@ -338,7 +340,7 @@ python src/lightning_hydra_template/train.py -m data.batch_size=32,64,128 model.
 python src/lightning_hydra_template/train.py -m hparams_search=mnist_optuna experiment=example
 ```
 
-> **Note**: Using [Optuna Sweeper](https://hydra.cc/docs/next/plugins/optuna_sweeper) doesn't require you to add any boilerplate to your code, everything is defined in a [single config file](configs/hparams_search/mnist_optuna.yaml).
+> **Note**: Using [Optuna Sweeper](https://hydra.cc/docs/next/plugins/optuna_sweeper) doesn't require you to add any boilerplate to your code, everything is defined in a [single config file](src/lightning_hydra_template/configs/hparams_search/mnist_optuna.yaml).
 
 > **Warning**: Optuna sweeps are not failure-resistant (if one job crashes then the whole sweep crashes).
 
@@ -351,7 +353,7 @@ python src/lightning_hydra_template/train.py -m hparams_search=mnist_optuna expe
 python src/lightning_hydra_template/train.py -m 'experiment=glob(*)'
 ```
 
-> **Note**: Hydra provides special syntax for controlling behavior of multiruns. Learn more [here](https://hydra.cc/docs/next/tutorials/basic/running_your_app/multi-run). The command above executes all experiments from [configs/experiment/](configs/experiment/).
+> **Note**: Hydra provides special syntax for controlling behavior of multiruns. Learn more [here](https://hydra.cc/docs/next/tutorials/basic/running_your_app/multi-run). The command above executes all experiments from [configs/experiment/](src/lightning_hydra_template/configs/experiment/).
 
 </details>
 
@@ -481,7 +483,7 @@ Example pipeline managing the instantiation logic: [src/train.py](src/lightning_
 
 ## Main Config
 
-Location: [configs/train.yaml](configs/train.yaml) <br>
+Location: [configs/train.yaml](src/lightning_hydra_template/configs/train.yaml) <br>
 Main project config contains default training configuration.<br>
 It determines how config is composed when simply executing command `python src/lightning_hydra_template/train.py`.<br>
 
@@ -546,7 +548,7 @@ seed: null
 
 ## Experiment Config
 
-Location: [configs/experiment](configs/experiment)<br>
+Location: [configs/experiment](src/lightning_hydra_template/configs/experiment)<br>
 Experiment configs allow you to overwrite parameters from main config.<br>
 For example, you can use them to version control best hyperparameters for each combination of model and dataset.
 
@@ -653,9 +655,7 @@ Default logging structure:
 │       └── ...
 ```
 
-</details>
-
-You can change this structure by modifying paths in [hydra configuration](configs/hydra).
+You can change this structure by modifying paths in [hydra configuration](src/lightning_hydra_template/configs/hydra).
 
 <br>
 
@@ -663,13 +663,13 @@ You can change this structure by modifying paths in [hydra configuration](config
 
 PyTorch Lightning supports many popular logging frameworks: [Weights&Biases](https://www.wandb.com/), [Neptune](https://neptune.ai/), [Comet](https://www.comet.ml/), [MLFlow](https://mlflow.org), [Tensorboard](https://www.tensorflow.org/tensorboard/).
 
-These tools help you keep track of hyperparameters and output metrics and allow you to compare and visualize results. To use one of them simply complete its configuration in [configs/logger](configs/logger) and run:
+These tools help you keep track of hyperparameters and output metrics and allow you to compare and visualize results. To use one of them simply complete its configuration in [configs/logger](src/lightning_hydra_template/configs/logger) and run:
 
 ```bash
 python src/lightning_hydra_template/train.py logger=logger_name
 ```
 
-You can use many of them at once (see [configs/logger/many_loggers.yaml](configs/logger/many_loggers.yaml) for example).
+You can use many of them at once (see [configs/logger/many_loggers.yaml](src/lightning_hydra_template/configs/logger/many_loggers.yaml) for example).
 
 You can also write your own logger.
 
@@ -679,7 +679,7 @@ Lightning provides convenient method for logging custom metrics from inside Ligh
 
 ## Hyperparameter Search
 
-You can define hyperparameter search by adding new config file to [configs/hparams_search](configs/hparams_search).
+You can define hyperparameter search by adding new config file to [configs/hparams_search](src/lightning_hydra_template/configs/hparams_search).
 
 <details>
 <summary><b>Show example hyperparameter search config</b></summary>
@@ -1044,7 +1044,7 @@ from project_name.data.mnist_datamodule import MNISTDataModule
 <details>
 <summary><b>Keep local configs out of code versioning</b></summary>
 
-Some configurations are user/machine/installation specific (e.g. configuration of local cluster, or harddrive paths on a specific machine). For such scenarios, a file [configs/local/default.yaml](configs/local/) can be created which is automatically loaded but not tracked by Git.
+Some configurations are user/machine/installation specific (e.g. configuration of local cluster, or harddrive paths on a specific machine). For such scenarios, a file [configs/local/default.yaml](src/lightning_hydra_template/configs/local/) can be created which is automatically loaded but not tracked by Git.
 
 For example, you can use it for a SLURM cluster config:
 
@@ -1079,8 +1079,6 @@ This template was inspired by:
 - [drivendata/cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science)
 - [lucmos/nn-template](https://github.com/lucmos/nn-template)
 - [ashleve/lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template)
-
-</details>
 
 <br>
 
@@ -1190,7 +1188,7 @@ python src/your_repo_name/train.py trainer=cpu
 python src/your_repo_name/train.py trainer=gpu
 ```
 
-Train model with chosen experiment configuration from [configs/experiment/](configs/experiment/)
+Train model with chosen experiment configuration from [configs/experiment/](src/lightning_hydra_template/configs/experiment/)
 
 ```bash
 python src/your_repo_name/train.py experiment=experiment_name.yaml
