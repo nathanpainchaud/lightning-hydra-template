@@ -135,8 +135,10 @@ The directory structure of new project looks like this:
 git clone https://github.com/nathanpainchaud/lightning-hydra-template
 cd lightning-hydra-template
 
-# [OPTIONAL] create uv environment and install dependencies
-uv sync
+# create uv environment and install dependencies
+# you must specify as an extra the desired CPU/CUDA versions of PyTorch
+# Supported values are: cpu, cu124, cu121, cu118
+uv sync --extra cu124
 
 # install pytorch according to instructions
 # if repo versions is not compatible with your system
@@ -812,7 +814,9 @@ uv self update
 Manually create or update virtual environment to match `pyproject.toml`:
 
 ```bash
-uv sync
+# you must specify as an extra the desired CPU/CUDA versions of PyTorch
+# Supported values are: cpu, cu124, cu121, cu118
+uv sync --extra cu124
 ```
 
 To run a python script using the environment installed by `uv`, you have two options:
@@ -832,13 +836,8 @@ python src/lightning_hydra_template/train.py ...
 <summary><b>Use automatic code formatting</b></summary>
 
 Use pre-commit hooks to standardize code formatting of your project and save mental energy.<br>
-Simply install pre-commit package with:
-
-```bash
-pip install pre-commit
-```
-
-Next, install hooks from [.pre-commit-config.yaml](.pre-commit-config.yaml):
+Assuming you have the pre-commit package installed (either globally or in the virtual environment if you use the default
+`uv` environment), you can install hooks from [.pre-commit-config.yaml](.pre-commit-config.yaml):
 
 ```bash
 pre-commit install
@@ -1153,7 +1152,9 @@ python -m venv ./venv
 source ./venv/bin/activate
 
 # install project
-pip install -e .
+# you must specify as an extra the desired CPU/CUDA versions of PyTorch
+# Supported values are: cpu, cu124, cu121, cu118
+pip install -e .[cu124]
 ```
 
 #### uv
@@ -1172,7 +1173,9 @@ git clone https://github.com/YourGithubName/your-repo-name
 cd your-repo-name
 
 # create uv environment
-uv sync
+# you must specify as an extra the desired CPU/CUDA versions of PyTorch
+# Supported values are: cpu, cu124, cu121, cu118
+uv sync --extra cu124
 source ./venv/bin/activate
 ```
 
