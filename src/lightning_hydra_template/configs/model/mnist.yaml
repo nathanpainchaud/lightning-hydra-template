@@ -25,6 +25,3 @@ metrics:
       _target_: torchmetrics.Accuracy
       task: multiclass
       num_classes: 10
-
-# compile model for faster training with pytorch 2.0
-compile: false
