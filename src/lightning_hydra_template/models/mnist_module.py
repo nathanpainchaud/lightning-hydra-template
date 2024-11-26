@@ -56,7 +56,9 @@ class MNISTLitModule(LightningModule):
 
         # this line allows to access init params with 'self.hparams' attribute
         # also ensures init params will be stored in ckpt
-        self.save_hyperparameters(logger=False)
+        # it is a good practice to ignore nn.Module instances (i.e. `net`) from hyperparameters
+        # as they are already stored in during checkpointing in the model's state_dict
+        self.save_hyperparameters(logger=False, ignore=["net"])
 
         self.net = net
 
