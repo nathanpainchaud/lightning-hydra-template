@@ -53,6 +53,10 @@ def evaluate(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
         log.info("Logging hyperparameters!")
         log_hyperparameters(object_dict)
 
+    if cfg.get("compile"):
+        log.info("Compiling model!")
+        model = hydra.utils.call(cfg.compile, model)
+
     log.info("Starting testing!")
     trainer.test(model=model, datamodule=datamodule, ckpt_path=cfg.ckpt_path)
 

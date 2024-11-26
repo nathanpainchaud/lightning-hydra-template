@@ -43,6 +43,19 @@ train: True
 # lightning chooses best weights based on the metric specified in checkpoint callback
 test: True
 
+# compile model with pytorch 2.0
+compile:
+  _target_: "torch.compile"
+  # Capture the entire model in a single graph (`true`), or try to capture compilable regions of the model (`false`).
+  # It is recommended for best performance to set this to `true` and fix graph breaks errors that may occur.
+  # However, some operations force graph breaks, so default is `false` to ensure it works on all models.
+  fullgraph: False
+  # Dynamic shape tracing.
+  # When `none` (default), torch detects if sizes change after the first run and then recompiles a more dynamic kernel.
+  # When `true`, a dynamic kernel is compiled on the first run.
+  # When `false`, kernels are never dynamic, and always specialized w.r.t. size.
+  dynamic: null
+
 # simply provide checkpoint path to resume training
 ckpt_path: null
 
