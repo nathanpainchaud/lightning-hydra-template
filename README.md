@@ -138,11 +138,9 @@ cd lightning-hydra-template
 # create uv environment and install dependencies
 # you must specify as an extra the desired CPU/CUDA versions of PyTorch
 # Supported values are: cpu, cu124, cu121, cu118
-uv sync --extra cu124
-
-# install pytorch according to instructions
-# if repo versions is not compatible with your system
-# https://pytorch.org/get-started/
+# [OPTIONAL] you can also specify other extras for more functionalities
+# Supported values are: wandb (for W&B integration)
+uv sync --extra cu124 --extra wandb
 ```
 
 Template contains example with MNIST classification.<br>
@@ -162,8 +160,8 @@ When running `python src/lightning_hydra_template/train.py` you should see somet
 ```bash
 python src/lightning_hydra_template/train.py trainer.max_epochs=20 model.optimizer.lr=1e-4
 
-# [OPTIONAL] call the script using uv and the defined entrypoint
-uv run template-train trainer.max_epochs=20 model.optimizer.lr=1e-4
+# [OPTIONAL] call the script using the defined entrypoint
+template-train trainer.max_epochs=20 model.optimizer.lr=1e-4
 ```
 
 > **Note**: You can also add new parameters with `+` sign.
@@ -816,7 +814,9 @@ Manually create or update virtual environment to match `pyproject.toml`:
 ```bash
 # you must specify as an extra the desired CPU/CUDA versions of PyTorch
 # Supported values are: cpu, cu124, cu121, cu118
-uv sync --extra cu124
+# [OPTIONAL] you can also specify other extras for more functionalities
+# Supported values are: wandb (for W&B integration)
+uv sync --extra cu124 --extra wandb
 ```
 
 To run a python script using the environment installed by `uv`, you have two options:
@@ -824,11 +824,16 @@ To run a python script using the environment installed by `uv`, you have two opt
 ```bash
 # 1. Use `uv run` to run the script with the uv environment
 uv run src/lightning_hydra_template/train.py ...
+#    or to run the defined entrypoint
+uv run template-train ...
 
 # 2. Manually activate the uv environment (like any other virtual environment) and run the script
 source ./venv/bin/activate
 python src/lightning_hydra_template/train.py ...
 ```
+
+For simplicity, commands in this README assume that you have activated the virtual environment by running
+`source ./venv/bin/activate`, or that you prefix them with `uv run`.
 
 </details>
 
@@ -1154,7 +1159,9 @@ source ./venv/bin/activate
 # install project
 # you must specify as an extra the desired CPU/CUDA versions of PyTorch
 # Supported values are: cpu, cu124, cu121, cu118
-pip install -e .[cu124]
+# [OPTIONAL] you can also specify other extras for more functionalities
+# Supported values are: wandb (for W&B integration)
+pip install -e .[cu124,wandb]
 ```
 
 #### uv
@@ -1175,7 +1182,9 @@ cd your-repo-name
 # create uv environment
 # you must specify as an extra the desired CPU/CUDA versions of PyTorch
 # Supported values are: cpu, cu124, cu121, cu118
-uv sync --extra cu124
+# [OPTIONAL] you can also specify other extras for more functionalities
+# Supported values are: wandb (for W&B integration)
+uv sync --extra cu124 --extra wandb
 source ./venv/bin/activate
 ```
 
