@@ -29,14 +29,14 @@ def import_from_module(dotpath: str) -> Any:
 def register_omegaconf_resolvers() -> None:
     """Registers custom OmegaConf resolvers."""
 
-    def _raise(ex_name: str, op_name: str, *args) -> bool:
-        """Raises error if condition defined by operator and arguments is not `True`."""
-        op = getattr(operator, op_name)
-        if not (condition_res := op(*args)):
-            raise getattr(builtins, ex_name)(f"Assertion of Hydra configuration failed: {op.__name__}({args})")
-        return condition_res
-
-    OmegaConf.register_new_resolver("raise", lambda ex, op, *args: _raise(ex, op, *args))
+    def _assert(condition: bool, throw_on_fail: bool = True) -> bool:
+        """Assert if condition is `True`, either raising an exception or logging a warning."""
+        if not condition:
+            if throw_on_fail:
+                raise AssertionError("Assertion of Hydra configuration failed!")
+            else:
+                log.warning("Assertion of Hydra configuration failed!")
+        return condition
 
     def _cast(obj: Object, cast_type: str = None) -> Any:
         """Defines a wrapper for basic operators, with the option to cast result to a type."""
@@ -49,8 +49,11 @@ def register_omegaconf_resolvers() -> None:
             obj = cast_cls(obj)
         return obj
 
-    OmegaConf.register_new_resolver("op", lambda op, res_type=None, *args: _cast(getattr(operator, op)(*args)))
+    OmegaConf.register_new_resolver(
+        "assert", lambda condition, throw_on_fail=True: _assert(condition, throw_on_fail=throw_on_fail)
+    )
     OmegaConf.register_new_resolver("cast", lambda obj, cast_type: _cast(obj, cast_type))
+    OmegaConf.register_new_resolver("op", lambda op, *args: getattr(operator, op)(*args))
     OmegaConf.register_new_resolver("call", lambda fn_path, *args: import_from_module(fn_path)(*args))
     OmegaConf.register_new_resolver("call.attr", lambda obj, method_name, *args: getattr(obj, method_name)(*args))
 
@@ -129,6 +132,16 @@ def task_wrapper(task_func: Callable) -> Callable:
     def wrap(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
         # execute the task
         try:
+            # resolve '_assert_' key in config to force interpolation (and thus evaluation)
+            # of conditions and raising exception if conditions are not met
+            # otherwise conditions might not be met while not getting evaluated (e.g. if config tree is not printed),
+            # therefore not triggering an exception
+            # TODO: detect if `_assert_` has already been resolved (e.g. if config tree is not printed)
+            #       and skip check if this is the case to avoid logging multiple warnings
+            if asserts := cfg.get("_assert_"):
+                log.info("Checking config asserts!")
+                OmegaConf.resolve(asserts)
+
             metric_dict, object_dict = task_func(cfg=cfg)
 
         # things to do if exception occurs

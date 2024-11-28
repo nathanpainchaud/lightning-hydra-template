@@ -48,3 +48,15 @@ ckpt_path: null
 
 # seed for random number generators in pytorch, numpy and python.random
 seed: null
+
+# reserved key that is always evaluated
+# this is a good place to put assertions to check the validity of the config, using the `raise` custom Hydra resolver
+_assert_:
+  # it is recommended to make this a dictionary, with the key being a descriptive name of the assertion and
+  # the value being the assertion itself
+  # this is because once assertion message is printed, the variables in the expression have been interpolated,
+  # and are therefore not informative
+  # thus, the key identifies the assertion, and it should be descriptive enough to help understand it
+
+  # an example of an assertion if you want to ensure that the batch size is a multiple of 8
+  # batch_size_multiple_of_8: ${assert:${op:eq,${op:mod,${data.batch_size},8},0}}

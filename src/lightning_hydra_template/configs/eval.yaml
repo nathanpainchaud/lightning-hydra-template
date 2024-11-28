@@ -16,3 +16,8 @@ tags: ["dev"]
 
 # passing checkpoint path is necessary for evaluation
 ckpt_path: ???
+
+# reserved key that is always evaluated
+# this is a good place to put assertions to check the validity of the config, using the `raise` custom Hydra resolver
+# see `train.yaml` for more details about how to use this field
+_assert_: null
