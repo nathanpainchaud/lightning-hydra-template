@@ -1,4 +1,5 @@
 import builtins
+import importlib
 import operator
 import warnings
 from collections.abc import Callable
@@ -12,6 +13,17 @@ from sympy.categories import Object
 from lightning_hydra_template.utils import pylogger, rich_utils
 
 log = pylogger.RankedLogger(__name__, rank_zero_only=True)
+
+
+def import_from_module(dotpath: str) -> Any:
+    """Dynamically imports an object from a module based on its "dotpath".
+
+    :param dotpath: "Dotpath" (name that can be looked up via importlib) where the firsts components specify the module
+        to look up, and the last component is the attribute to import from this module.
+    :return: Target object.
+    """
+    module, module_attr = dotpath.rsplit(".", 1)
+    return getattr(importlib.import_module(module), module_attr)
 
 
 def register_omegaconf_resolvers() -> None:
@@ -29,11 +41,18 @@ def register_omegaconf_resolvers() -> None:
     def _cast(obj: Object, cast_type: str = None) -> Any:
         """Defines a wrapper for basic operators, with the option to cast result to a type."""
         if cast_type is not None:
-            obj = getattr(builtins, cast_type)(obj)
+            cast_cls = (
+                getattr(builtins, cast_type)
+                if "." not in cast_type  # cast_type is assumed to be a built-in type
+                else import_from_module(cast_type)  # cast_type is assumed to be a custom type
+            )
+            obj = cast_cls(obj)
         return obj
 
     OmegaConf.register_new_resolver("op", lambda op, res_type=None, *args: _cast(getattr(operator, op)(*args)))
-    OmegaConf.register_new_resolver("attr.__call__", lambda obj, attr, *args: getattr(obj, attr)(*args))
+    OmegaConf.register_new_resolver("cast", lambda obj, cast_type: _cast(obj, cast_type))
+    OmegaConf.register_new_resolver("call", lambda fn_path, *args: import_from_module(fn_path)(*args))
+    OmegaConf.register_new_resolver("call.attr", lambda obj, method_name, *args: getattr(obj, method_name)(*args))
 
 
 def pre_hydra_routine() -> None:
