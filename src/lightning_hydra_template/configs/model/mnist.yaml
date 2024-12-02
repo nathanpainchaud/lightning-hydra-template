@@ -12,5 +12,19 @@ net:
   lin3_size: 64
   output_size: 10
 
+criterion:
+  _target_: torch.nn.CrossEntropyLoss
+
+metrics:
+  _target_: torchmetrics.MetricCollection
+  # since MetricCollection does not recognize OmegaConf containers as their corresponding Python primitives
+  # force the conversion of OmegaConf containers to Python primitives
+  _convert_: all
+  metrics:
+    acc:
+      _target_: torchmetrics.Accuracy
+      task: multiclass
+      num_classes: 10
+
 # compile model for faster training with pytorch 2.0
 compile: false

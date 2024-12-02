@@ -2,8 +2,9 @@ from typing import Any
 
 import torch
 from lightning import LightningModule
-from torchmetrics import MaxMetric, MeanMetric
-from torchmetrics.classification.accuracy import Accuracy
+from torchmetrics import MeanMetric, MetricCollection, MetricTracker
+
+from lightning_hydra_template.utils import pad_keys
 
 
 class MNISTLitModule(LightningModule):
@@ -44,39 +45,47 @@ class MNISTLitModule(LightningModule):
         net: torch.nn.Module,
         optimizer: torch.optim.Optimizer,
         scheduler: torch.optim.lr_scheduler,
-        compile: bool,
+        criterion: torch.nn.Module,
+        metrics: MetricCollection | None = None,
+        compile: bool = False,
     ) -> None:
         """Initialize a `MNISTLitModule`.
 
         :param net: The model to train.
         :param optimizer: The optimizer to use for training.
         :param scheduler: The learning rate scheduler to use for training.
+        :param criterion: The loss function to use for training.
+        :param metrics: A collection of metrics to use for evaluation.
         """
         super().__init__()
 
         # this line allows to access init params with 'self.hparams' attribute
         # also ensures init params will be stored in ckpt
-        # it is a good practice to ignore nn.Module instances (i.e. `net`) from hyperparameters
+        # it is a good practice to ignore nn.Module instances (i.e. `net`, `criterion`, `metrics`) from hyperparameters
         # as they are already stored in during checkpointing in the model's state_dict
-        self.save_hyperparameters(logger=False, ignore=["net"])
+        self.save_hyperparameters(logger=False, ignore=["net", "criterion", "metrics"])
 
         self.net = net
 
         # loss function
         self.criterion = torch.nn.CrossEntropyLoss()
-
-        # metric objects for calculating and averaging accuracy across batches
-        self.train_acc = Accuracy(task="multiclass", num_classes=10)
-        self.val_acc = Accuracy(task="multiclass", num_classes=10)
-        self.test_acc = Accuracy(task="multiclass", num_classes=10)
-
         # for averaging loss across batches
         self.train_loss = MeanMetric()
-        self.val_loss = MeanMetric()
         self.test_loss = MeanMetric()
+        # for the validation loop, we wrap the loss inside a tracker, to help keep track of the best value across epochs
+        # this is useful for callbacks/optimizers that might need to monitor the validation loss
+        self.val_loss_tracker = MetricTracker(MeanMetric(), maximize=False)
 
-        # for tracking best so far validation accuracy
-        self.val_acc_best = MaxMetric()
+        # metric objects for calculating and averaging accuracy across batches
+        self._base_metrics = metrics
+        if self._base_metrics:
+            # torchmetrics recommends to use different instances of the metrics for train, val, and test
+            # to avoid conflicts since the metrics are stateful
+            self.train_metrics = self._base_metrics.clone(prefix="train/")
+            self.test_metrics = self._base_metrics.clone(prefix="test/")
+            # just as for the loss, we wrap the metrics inside a tracker to help track the best values across epochs
+            # here, we explicitly set `maximize=None` to infer the best value from the underlying metric
+            self.val_metrics_tracker = MetricTracker(self._base_metrics.clone(prefix="val/"), maximize=None)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Perform a forward pass through the model `self.net`.
@@ -85,14 +94,6 @@ class MNISTLitModule(LightningModule):
         :return: A tensor of logits.
         """
         return self.net(x)
-
-    def on_train_start(self) -> None:
-        """Lightning hook that is called when training begins."""
-        # by default lightning executes validation step sanity checks before training starts,
-        # so it's worth to make sure validation metrics don't store results from these checks
-        self.val_loss.reset()
-        self.val_acc.reset()
-        self.val_acc_best.reset()
 
     def model_step(self, batch: tuple[torch.Tensor, torch.Tensor]) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         """Perform a single model step on a batch of data.
@@ -120,17 +121,26 @@ class MNISTLitModule(LightningModule):
         loss, preds, targets = self.model_step(batch)
 
         # update and log metrics
-        self.train_loss(loss)
-        self.train_acc(preds, targets)
+        self.train_loss.update(loss)
+        self.train_metrics.update(preds, targets)
         self.log("train/loss", self.train_loss, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("train/acc", self.train_acc, on_step=False, on_epoch=True, prog_bar=True)
+        if self._base_metrics:
+            self.log_dict(self.train_metrics, on_step=False, on_epoch=True, prog_bar=True)
 
         # return loss or backpropagation will fail
         return loss
 
-    def on_train_epoch_end(self) -> None:
-        """Lightning hook that is called when a training epoch ends."""
-        pass
+    def on_validation_epoch_start(self) -> None:
+        """Lightning hook that is called when a validation epoch starts."""
+        # Initialize new instances of the tracked loss/metrics for the new epoch
+        # Since by default Lightning executes validation step sanity checks before training starts,
+        # this also makes sure that loss/metrics logged during the sanity check (i.e. 1st val increment)
+        # are not used to compute loss/metrics in the 1st actual validation epoch (i.e. 2nd val increment)
+        # This is a workaround to ignore sanity checks values, since trackers do not support deleting previous metrics,
+        # and it is simpler than the alternative of reinitializing the val trackers in `on_train_start`
+        self.val_loss_tracker.increment()
+        if self._base_metrics:
+            self.val_metrics_tracker.increment()
 
     def validation_step(self, batch: tuple[torch.Tensor, torch.Tensor], batch_idx: int) -> None:
         """Perform a single validation step on a batch of data from the validation set.
@@ -140,19 +150,23 @@ class MNISTLitModule(LightningModule):
         """
         loss, preds, targets = self.model_step(batch)
 
-        # update and log metrics
-        self.val_loss(loss)
-        self.val_acc(preds, targets)
-        self.log("val/loss", self.val_loss, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("val/acc", self.val_acc, on_step=False, on_epoch=True, prog_bar=True)
+        # update loss and metrics (which will be logged at the end of the epoch)
+        self.val_loss_tracker.update(loss)
+        if self._base_metrics:
+            self.val_metrics_tracker.update(preds, targets)
 
     def on_validation_epoch_end(self) -> None:
         """Lightning hook that is called when a validation epoch ends."""
-        acc = self.val_acc.compute()  # get current val acc
-        self.val_acc_best(acc)  # update best so far val acc
-        # log `val_acc_best` as a value through `.compute()` method, instead of as a metric object
-        # otherwise metric would be reset by lightning after each epoch
-        self.log("val/acc_best", self.val_acc_best.compute(), sync_dist=True, prog_bar=True)
+        epoch_loss = self.val_loss_tracker.compute()  # get current val loss
+        best_loss = self.val_loss_tracker.best_metric()  # get best so far val loss
+        self.log("val/loss", epoch_loss, prog_bar=True)
+        self.log("val/loss/best", best_loss, prog_bar=True)
+
+        if self._base_metrics:
+            epoch_metrics = self.val_metrics_tracker.compute()  # get current val metrics
+            best_metrics = self.val_metrics_tracker.best_metric()  # get best so far val metrics
+            self.log_dict(epoch_metrics, prog_bar=True)
+            self.log_dict(pad_keys(best_metrics, postfix="/best"), prog_bar=True)
 
     def test_step(self, batch: tuple[torch.Tensor, torch.Tensor], batch_idx: int) -> None:
         """Perform a single test step on a batch of data from the test set.
@@ -163,14 +177,11 @@ class MNISTLitModule(LightningModule):
         loss, preds, targets = self.model_step(batch)
 
         # update and log metrics
-        self.test_loss(loss)
-        self.test_acc(preds, targets)
+        self.test_loss.update(loss)
+        self.test_metrics.update(preds, targets)
         self.log("test/loss", self.test_loss, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("test/acc", self.test_acc, on_step=False, on_epoch=True, prog_bar=True)
-
-    def on_test_epoch_end(self) -> None:
-        """Lightning hook that is called when a test epoch ends."""
-        pass
+        if self._base_metrics:
+            self.log_dict(self.test_metrics, on_step=False, on_epoch=True, prog_bar=True)
 
     def setup(self, stage: str) -> None:
         """Lightning hook that is called at the beginning of fit (train + validate), validate, test, or predict.
