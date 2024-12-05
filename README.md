@@ -46,7 +46,8 @@ The configuration setup is built with simple lightning training in mind. You mig
 ❌ Might not support your workflow <br>
 For example, you can't resume hydra-based multirun or hyperparameter search.
 
-> **Note**: _Keep in mind this is unofficial community project._
+> [!NOTE]
+> _Keep in mind this is unofficial community project._
 
 <br>
 
@@ -164,7 +165,8 @@ python src/lightning_hydra_template/train.py trainer.max_epochs=20 model.optimiz
 template-train trainer.max_epochs=20 model.optimizer.lr=1e-4
 ```
 
-> **Note**: You can also add new parameters with `+` sign.
+> [!NOTE]
+> You can also add new parameters with `+` sign.
 
 ```bash
 python src/lightning_hydra_template/train.py +model.new_param="owo"
@@ -213,11 +215,14 @@ wandb:
 python src/lightning_hydra_template/train.py logger=wandb
 ```
 
-> **Note**: Lightning provides convenient integrations with most popular logging frameworks. Learn more [here](#experiment-tracking).
+> [!NOTE]
+> Lightning provides convenient integrations with most popular logging frameworks. Learn more [here](#experiment-tracking).
 
-> **Note**: Using wandb requires you to [setup account](https://www.wandb.com/) first. After that just complete the config as below.
+> [!IMPORTANT]
+> Using wandb requires you to [setup account](https://www.wandb.com/) first. After that just complete the config as below.
 
-> **Note**: Click [here](https://wandb.ai/hobglob/template-dashboard/) to see example wandb dashboard generated with this template.
+> [!TIP]
+> Click [here](https://wandb.ai/hobglob/template-dashboard/) to see example wandb dashboard generated with this template.
 
 </details>
 
@@ -228,7 +233,8 @@ python src/lightning_hydra_template/train.py logger=wandb
 python src/lightning_hydra_template/train.py experiment=example
 ```
 
-> **Note**: Experiment configs are placed in [configs/experiment/](src/lightning_hydra_template/configs/experiment/).
+> [!TIP]
+> Experiment configs are placed in [configs/experiment/](src/lightning_hydra_template/configs/experiment/).
 
 </details>
 
@@ -239,9 +245,11 @@ python src/lightning_hydra_template/train.py experiment=example
 python src/lightning_hydra_template/train.py callbacks=default
 ```
 
-> **Note**: Callbacks can be used for things such as as model checkpointing, early stopping and [many more](https://lightning.ai/docs/pytorch/latest/extensions/callbacks.html#built-in-callbacks).
+> [!NOTE]
+> Callbacks can be used for things such as model checkpointing, early stopping and [many more](https://lightning.ai/docs/pytorch/latest/extensions/callbacks.html#built-in-callbacks).
 
-> **Note**: Callbacks configs are placed in [configs/callbacks/](src/lightning_hydra_template/configs/callbacks/).
+> [!TIP]
+> Callbacks configs are placed in [configs/callbacks/](src/lightning_hydra_template/configs/callbacks/).
 
 </details>
 
@@ -262,7 +270,8 @@ python src/lightning_hydra_template/train.py +trainer.accumulate_grad_batches=10
 python src/lightning_hydra_template/train.py +trainer.max_time="00:12:00:00"
 ```
 
-> **Note**: PyTorch Lightning provides about [40+ useful trainer flags](https://lightning.ai/docs/pytorch/latest/common/trainer.html#trainer-flags).
+> [!NOTE]
+> PyTorch Lightning provides about [40+ useful trainer flags](https://lightning.ai/docs/pytorch/latest/common/trainer.html#trainer-flags).
 
 </details>
 
@@ -290,7 +299,8 @@ python src/lightning_hydra_template/train.py +trainer.limit_train_batches=0.2 \
 +trainer.limit_val_batches=0.2 +trainer.limit_test_batches=0.2
 ```
 
-> **Note**: Visit [configs/debug/](src/lightning_hydra_template/configs/debug/) for different debugging configs.
+> [!TIP]
+> Visit [configs/debug/](src/lightning_hydra_template/configs/debug/) for different debugging configs.
 
 </details>
 
@@ -301,9 +311,11 @@ python src/lightning_hydra_template/train.py +trainer.limit_train_batches=0.2 \
 python src/lightning_hydra_template/train.py ckpt_path="/path/to/ckpt/name.ckpt"
 ```
 
-> **Note**: Checkpoint can be either path or URL.
+> [!NOTE]
+> Checkpoint can be either path or URL.
 
-> **Note**: Currently loading ckpt doesn't resume logger experiment, but it will be supported in future Lightning release.
+> [!WARNING]
+> Currently loading ckpt doesn't resume logger experiment, but it will be supported in future Lightning release.
 
 </details>
 
@@ -314,7 +326,8 @@ python src/lightning_hydra_template/train.py ckpt_path="/path/to/ckpt/name.ckpt"
 python src/lightning_hydra_template/eval.py ckpt_path="/path/to/ckpt/name.ckpt"
 ```
 
-> **Note**: Checkpoint can be either path or URL.
+> [!NOTE]
+> Checkpoint can be either path or URL.
 
 </details>
 
@@ -327,7 +340,8 @@ python src/lightning_hydra_template/eval.py ckpt_path="/path/to/ckpt/name.ckpt"
 python src/lightning_hydra_template/train.py -m data.batch_size=32,64,128 model.lr=0.001,0.0005
 ```
 
-> **Note**: Hydra composes configs lazily at job launch time. If you change code or configs after launching a job/sweep, the final composed configs might be impacted.
+> [!WARNING]
+> Hydra composes configs lazily at job launch time. If you change code or configs after launching a job/sweep, the final composed configs might be impacted.
 
 </details>
 
@@ -340,9 +354,11 @@ python src/lightning_hydra_template/train.py -m data.batch_size=32,64,128 model.
 python src/lightning_hydra_template/train.py -m hparams_search=mnist_optuna experiment=example
 ```
 
-> **Note**: Using [Optuna Sweeper](https://hydra.cc/docs/next/plugins/optuna_sweeper) doesn't require you to add any boilerplate to your code, everything is defined in a [single config file](src/lightning_hydra_template/configs/hparams_search/mnist_optuna.yaml).
+> [!NOTE]
+> Using [Optuna Sweeper](https://hydra.cc/docs/next/plugins/optuna_sweeper) doesn't require you to add any boilerplate to your code, everything is defined in a [single config file](src/lightning_hydra_template/configs/hparams_search/mnist_optuna.yaml).
 
-> **Warning**: Optuna sweeps are not failure-resistant (if one job crashes then the whole sweep crashes).
+> [!Warning]
+> Optuna sweeps are not failure-resistant (if one job crashes then the whole sweep crashes).
 
 </details>
 
@@ -353,7 +369,8 @@ python src/lightning_hydra_template/train.py -m hparams_search=mnist_optuna expe
 python src/lightning_hydra_template/train.py -m 'experiment=glob(*)'
 ```
 
-> **Note**: Hydra provides special syntax for controlling behavior of multiruns. Learn more [here](https://hydra.cc/docs/next/tutorials/basic/running_your_app/multi-run). The command above executes all experiments from [configs/experiment/](src/lightning_hydra_template/configs/experiment/).
+> [!NOTE]
+> Hydra provides special syntax for controlling behavior of multiruns. Learn more [here](https://hydra.cc/docs/next/tutorials/basic/running_your_app/multi-run). The command above executes all experiments from [configs/experiment/](src/lightning_hydra_template/configs/experiment/).
 
 </details>
 
@@ -364,7 +381,8 @@ python src/lightning_hydra_template/train.py -m 'experiment=glob(*)'
 python src/lightning_hydra_template/train.py -m seed=1,2,3,4,5 trainer.deterministic=True logger=csv tags=["benchmark"]
 ```
 
-> **Note**: `trainer.deterministic=True` makes pytorch more deterministic but impacts the performance.
+> [!WARNING]
+> `trainer.deterministic=True` makes pytorch more deterministic but impacts the performance.
 
 </details>
 
@@ -378,7 +396,8 @@ python src/lightning_hydra_template/train.py -m seed=1,2,3,4,5 trainer.determini
 <details>
 <summary><b>Use Hydra tab completion</b></summary>
 
-> **Note**: Hydra allows you to autocomplete config argument overrides in shell as you write them, by pressing `tab` key. Read the [docs](https://hydra.cc/docs/tutorials/basic/running_your_app/tab_completion).
+> [!NOTE]
+> Hydra allows you to autocomplete config argument overrides in shell as you write them, by pressing `tab` key. Read the [docs](https://hydra.cc/docs/tutorials/basic/running_your_app/tab_completion).
 
 </details>
 
@@ -389,7 +408,8 @@ python src/lightning_hydra_template/train.py -m seed=1,2,3,4,5 trainer.determini
 pre-commit run -a
 ```
 
-> **Note**: Apply pre-commit hooks to do things like auto-formatting code and configs, performing code analysis or removing output from jupyter notebooks. See [# Best Practices](#best-practices) for more.
+> [!NOTE]
+> Apply pre-commit hooks to do things like auto-formatting code and configs, performing code analysis or removing output from jupyter notebooks. See [# Best Practices](#best-practices) for more.
 
 Update pre-commit hook versions in `.pre-commit-config.yaml` with:
 
@@ -408,7 +428,8 @@ Each experiment should be tagged in order to easily filter them across files or 
 python src/lightning_hydra_template/train.py tags=["mnist","experiment_X"]
 ```
 
-> **Note**: You might need to escape the bracket characters in your shell with `python src/lightning_hydra_template/train.py tags=\["mnist","experiment_X"\]`.
+> [!NOTE]
+> You might need to escape the bracket characters in your shell with `python src/lightning_hydra_template/train.py tags=\["mnist","experiment_X"\]`.
 
 If no tags are provided, you will be asked to input them from command line:
 
@@ -426,7 +447,8 @@ If no tags are provided for multirun, an error will be raised:
 ValueError: Specify tags before launching a multirun!
 ```
 
-> **Note**: Appending lists from command line is currently not supported in hydra :(
+> [!NOTE]
+> Appending lists from command line is currently not supported in hydra :(
 
 </details>
 
@@ -602,7 +624,7 @@ logger:
 
 ## Workflow
 
-**Basic workflow**
+### Basic workflow
 
 1. Write your PyTorch Lightning module (see [models/mnist_module.py](src/lightning_hydra_template/models/mnist_module.py) for example)
 2. Write your PyTorch Lightning datamodule (see [data/mnist_datamodule.py](src/lightning_hydra_template/data/mnist_datamodule.py) for example)
@@ -612,7 +634,7 @@ logger:
    python src/lightning_hydra_template/train.py experiment=experiment_name.yaml
    ```
 
-**Experiment design**
+### Experiment design
 
 _Say you want to execute many runs to plot how accuracy changes in respect to batch size._
 
@@ -755,7 +777,8 @@ datamodule = hydra.utils.instantiate(config.data)
 model = hydra.utils.instantiate(config.model, some_param=datamodule.some_param)
 ```
 
-> **Note**: Not a very robust solution, since it assumes all your datamodules have `some_param` attribute available.
+> [!IMPORTANT]
+> Not a very robust solution, since it assumes all your datamodules have `some_param` attribute available.
 
 Similarly, you can pass a whole datamodule config as an init parameter:
 
@@ -781,7 +804,8 @@ def on_train_start(self):
   self.some_param = self.trainer.datamodule.some_param
 ```
 
-> **Note**: This only works after the training starts since otherwise trainer won't be yet available in LightningModule.
+> [!WARNING]
+> This only works after the training starts since otherwise trainer won't be yet available in LightningModule.
 
 <br>
 
