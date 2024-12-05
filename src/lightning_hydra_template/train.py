@@ -90,8 +90,8 @@ def train(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
 
 
 @hydra.main(version_base=None, config_path="configs", config_name="train.yaml")
-def main(cfg: DictConfig) -> float | None:
-    """Main entry point for training.
+def hydra_main(cfg: DictConfig) -> float | None:
+    """Hydra entry point for training.
 
     :param cfg: DictConfig configuration composed by Hydra.
     :return: Optional[float] with optimized metric value.
@@ -110,6 +110,16 @@ def main(cfg: DictConfig) -> float | None:
     return metric_value
 
 
-if __name__ == "__main__":
+def main() -> float | None:
+    """Main entry point for training, before Hydra is called.
+
+    This is a workaround for issues with Python packaging tools requiring a function to target for script entrypoints.
+    It provides a target for entrypoints that comes before Hydra is called, allowing for pre-Hydra routines to be run
+    (e.g. setting up environment variables, registering custom OmegaConf resolvers etc.)
+    """
     pre_hydra_routine()
+    return hydra_main()
+
+
+if __name__ == "__main__":
     main()
