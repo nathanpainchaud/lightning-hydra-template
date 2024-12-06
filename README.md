@@ -1167,6 +1167,12 @@ ______________________________________________________________________
 
 What it does
 
+> [!IMPORTANT]
+> Using this project requires a basic understanding of PyTorch Lightning and Hydra. If you do not know at least what
+> these libraries do and how they work at a high level, you should familiarize yourself with them.
+> We refer you to the [PyTorch Lightning documentation](https://lightning.ai/docs/pytorch/stable/) and the
+> [Hydra documentation](https://hydra.cc/docs/intro/).
+
 ## Installation
 
 #### Pip
