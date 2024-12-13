@@ -13,13 +13,12 @@ log = pylogger.RankedLogger(__name__, rank_zero_only=True)
 def log_hyperparameters(object_dict: dict[str, Any]) -> None:
     """Controls which config parts are saved by Lightning loggers.
 
-    Additionally saves:
+    Additionally, saves:
         - Number of model parameters
 
-    :param object_dict: A dictionary containing the following objects:
-        - `"cfg"`: A DictConfig object containing the main config.
-        - `"model"`: The Lightning model.
-        - `"trainer"`: The Lightning trainer.
+    Args:
+        object_dict: A dictionary containing the following objects: `"cfg"`: a DictConfig object containing the main
+            config, `"model"`: the Lightning model, `"trainer"`: the Lightning trainer.
     """
     hparams = {}
 
@@ -59,11 +58,14 @@ def pad_keys(
 ) -> dict[str, Any]:
     """Pads the keys of a mapping with a combination of prefix/postfix.
 
-    :param map: Mapping with string keys for which to add a prefix to the keys.
-    :param prefix: Prefix to prepend to the current keys in the mapping.
-    :param postfix: Postfix to append to the current keys in the mapping.
-    :param exclude: Keys to exclude from the prefix addition. These will remain unchanged in the new mapping.
-    :return: Dictionary where the keys have been prepended with `prefix` / appended with `postfix`.
+    Args:
+        map: Mapping with string keys for which to add a prefix to the keys.
+        prefix: Prefix to prepend to the current keys in the mapping.
+        postfix: Postfix to append to the current keys in the mapping.
+        exclude: Keys to exclude from the prefix addition. These will remain unchanged in the new mapping.
+
+    Returns:
+        Dictionary where the keys have been prepended with `prefix` / appended with `postfix`.
     """
     if exclude is None:
         exclude = []

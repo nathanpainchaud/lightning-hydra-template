@@ -24,9 +24,12 @@ log = pylogger.RankedLogger(__name__, rank_zero_only=True)
 def import_from_module(dotpath: str) -> Any:
     """Dynamically imports an object from a module based on its "dotpath".
 
-    :param dotpath: "Dotpath" (name that can be looked up via importlib) where the firsts components specify the module
-        to look up, and the last component is the attribute to import from this module.
-    :return: Target object.
+    Args:
+        dotpath: "Dotpath" (i.e. name that can be looked up via importlib) where the firsts components specify the
+            module to look up, and the last component is the attribute to import from this module.
+
+    Returns:
+        Target object.
     """
     module, module_attr = dotpath.rsplit(".", 1)
     return getattr(importlib.import_module(module), module_attr)
@@ -90,7 +93,8 @@ def extras(cfg: DictConfig) -> None:
         - Setting tags from command line
         - Rich config printing
 
-    :param cfg: A DictConfig object containing the config tree.
+    Args:
+        cfg: A DictConfig object containing the config tree.
     """
     # return if no `extras` config
     if not cfg.get("extras"):
@@ -123,16 +127,17 @@ def task_wrapper(task_func: Callable) -> Callable:
         - etc. (adjust depending on your needs)
 
     Example:
-    ```
-    @utils.task_wrapper
-    def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-        ...
-        return metric_dict, object_dict
-    ```
+        The decorator can be used as follows:
+        >>> @task_wrapper
+        ... def train(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
+        ...     ...
+        ...     return metric_dict, object_dict
 
-    :param task_func: The task function to be wrapped.
+    Args:
+        task_func: The task function to be wrapped.
 
-    :return: The wrapped task function.
+    Returns:
+        The wrapped task function.
     """
 
     def wrap(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -181,46 +186,51 @@ def task_wrapper(task_func: Callable) -> Callable:
 def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Callable[[DictConfig], float | None]:
     """Optional decorator that performs a cartesian product sweep of config nodes to run the task function serially.
 
-    :Example:
-    ```
-    cfg = OmegaConf.create(
-        {
-            "serial_sweeper": {
-                "params": {"foo": "choice(0, 1)", "bar": "range(2)"},
-                "reduce": {"_target_": statistics.mean},
-            }
-        }
-    )
-
-    @hydra.main(...)
-    @utils.hydra_serial_sweeper
-    def main(cfg: DictConfig) -> float | None:
+    Example:
+        The decorator can be used as follows:
+        >>> cfg = OmegaConf.create(
+        ...     {
+        ...         "foo": None,
+        ...         "bar": None,
+        ...         "serial_sweeper": {
+        ...             "params": {"foo": "choice(0, 1)", "bar": "range(2)"},
+        ...             "reduce": {"_target_": statistics.mean},
+        ...         }
+        ...     }
+        ... )
         ...
-        return metric_value
+        >>> @hydra.main(...)
+        ... @hydra_serial_sweeper
+        ... def main(cfg: DictConfig) -> float | None:
+        ...     metric_value = cfg.foo + cfg.bar
+        ...     return metric_value
+        ...
+        >>> main()
+        1.0
 
-    sweep_ret = main()
-    # `sweep_ret` averages the return values of  `main` for all 4 combinations of `foo` and `bar`:
-    # #0 : foo=0 bar=0
-    # #1 : foo=0 bar=1
-    # #2 : foo=1 bar=0
-    # #3 : foo=1 bar=1
-    ```
+        The result is the average of the return values of `main` for all 4 combinations of `"foo"` and `"bar"`:
+        #0 : foo=0 bar=0 -> 0
+        #1 : foo=0 bar=1 -> 1
+        #2 : foo=1 bar=0 -> 1
+        #3 : foo=1 bar=1 -> 2
 
-    .. note::
-       The original motivation for this decorator was to enable automatic hyperparameter search, with tools like Optuna,
-       in a cross-validation setting where the task function has to be run multiple times, i.e. on each fold, from a
-       single process, that can then return an aggregated metric value.
+    Note:
+        The original motivation for this decorator was to enable automatic hyperparameter search, with tools like
+        Optuna, in a cross-validation setting where the task function has to be run multiple times, i.e. on each fold,
+        from a single process, that can then return an aggregated metric value.
 
-       It was deemed easy enough to implement this as part of a more general design, emulating Hydra's built-in
-       `BasicSweeper`, that supports the cartesian product of multiple sweep parameters. This also explains why the
-       decorated task function is expected to return either a single value or None.
+        It was deemed easy enough to implement this as part of a more general design, emulating Hydra's built-in
+        `BasicSweeper`, that supports the cartesian product of multiple sweep parameters. This also explains why the
+        decorated task function is expected to return either a single value or None.
 
-       For further functionalities, like parallel tasks, etc., consider using Hydra's built-in sweepers or plugins, as
-       they are likely better suited for these purposes and this decorator is not intended to replace them.
+        For further functionalities, like parallel tasks, etc., consider using Hydra's built-in sweepers or plugins, as
+        they are likely better suited for these purposes and this decorator is not intended to replace them.
 
-    :param task_func: The task function, i.e. Hydra main, to be wrapped.
+    Args:
+        task_func: The task function, i.e. Hydra main, to be wrapped.
 
-    :return: The wrapped task function.
+    Returns:
+        The wrapped task function.
     """
 
     @wraps(task_func)
@@ -285,9 +295,12 @@ def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Cal
 def get_metric_value(metric_dict: dict[str, Any], metric_name: str | None) -> float | None:
     """Safely retrieves value of the metric logged in LightningModule.
 
-    :param metric_dict: A dict containing metric values.
-    :param metric_name: If provided, the name of the metric to retrieve.
-    :return: If a metric name was provided, the value of the metric.
+    Args:
+        metric_dict: A dict containing metric values.
+        metric_name: If provided, the name of the metric to retrieve.
+
+    Returns:
+        If a metric name was provided, the value of the metric.
     """
     if not metric_name:
         log.info("Metric name is None! Skipping metric value retrieval...")

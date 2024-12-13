@@ -15,11 +15,12 @@ class SimpleDenseNet(nn.Module):
     ) -> None:
         """Initialize a `SimpleDenseNet` module.
 
-        :param input_size: The number of input features.
-        :param lin1_size: The number of output features of the first linear layer.
-        :param lin2_size: The number of output features of the second linear layer.
-        :param lin3_size: The number of output features of the third linear layer.
-        :param output_size: The number of output features of the final linear layer.
+        Args:
+            input_size: The number of input features.
+            lin1_size: The number of output features of the first linear layer.
+            lin2_size: The number of output features of the second linear layer.
+            lin3_size: The number of output features of the third linear layer.
+            output_size: The number of output features of the final linear layer.
         """
         super().__init__()
 
@@ -39,8 +40,11 @@ class SimpleDenseNet(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Perform a single forward pass through the network.
 
-        :param x: The input tensor.
-        :return: A tensor of predictions.
+        Args:
+            x: The input tensor.
+
+        Returns:
+            A tensor of predictions.
         """
         batch_size, channels, width, height = x.size()
 

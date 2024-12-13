@@ -15,9 +15,10 @@ class RankedLogger(logging.LoggerAdapter):
     ) -> None:
         """Initializes a multi-GPU-friendly logger that logs on all processes with the rank prefixed in the log message.
 
-        :param name: The name of the logger. Default is ``__name__``.
-        :param rank_zero_only: Whether to force all logs to only occur on the rank zero process. Default is `False`.
-        :param extra: (Optional) A dict-like object which provides contextual information. See `logging.LoggerAdapter`.
+        Args:
+            name: The name of the logger. Default is ``__name__``.
+            rank_zero_only: Whether to force all logs to only occur on the rank zero process. Default is `False`.
+            extra: An (optional) dict-like object which provides contextual information. See `logging.LoggerAdapter`.
         """
         logger = logging.getLogger(name)
         super().__init__(logger=logger, extra=extra)
@@ -28,11 +29,12 @@ class RankedLogger(logging.LoggerAdapter):
 
         If `'rank'` is provided, then the log will only occur on that rank/process.
 
-        :param level: The level to log at. Look at `logging.__init__.py` for more information.
-        :param msg: The message to log.
-        :param rank: The rank to log at.
-        :param args: Additional args to pass to the underlying logging function.
-        :param kwargs: Any additional keyword args to pass to the underlying logging function.
+        Args:
+            level: The level to log at. Look at `logging.__init__.py` for more information.
+            msg: The message to log.
+            rank: The rank to log at.
+            *args: Additional args to pass to the underlying logging function.
+            **kwargs: Any additional keyword args to pass to the underlying logging function.
         """
         if self.isEnabledFor(level):
             msg, kwargs = self.process(msg, kwargs)
