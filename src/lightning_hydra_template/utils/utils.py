@@ -1,12 +1,18 @@
 import builtins
+import copy
 import importlib
+import itertools
 import operator
 import warnings
 from collections.abc import Callable
+from functools import wraps
 from importlib.util import find_spec
+from pathlib import Path
 from typing import Any
 
 import rootutils
+from hydra.core.override_parser.overrides_parser import OverridesParser
+from hydra.utils import call
 from omegaconf import DictConfig, OmegaConf
 from sympy.categories import Object
 
@@ -168,6 +174,110 @@ def task_wrapper(task_func: Callable) -> Callable:
                     wandb.finish()
 
         return metric_dict, object_dict
+
+    return wrap
+
+
+def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Callable[[DictConfig], float | None]:
+    """Optional decorator that performs a cartesian product sweep of config nodes to run the task function serially.
+
+    :Example:
+    ```
+    cfg = OmegaConf.create(
+        {
+            "serial_sweeper": {
+                "params": {"foo": "choice(0, 1)", "bar": "range(2)"},
+                "reduce": {"_target_": statistics.mean},
+            }
+        }
+    )
+
+    @hydra.main(...)
+    @utils.hydra_serial_sweeper
+    def main(cfg: DictConfig) -> float | None:
+        ...
+        return metric_value
+
+    sweep_ret = main()
+    # `sweep_ret` averages the return values of  `main` for all 4 combinations of `foo` and `bar`:
+    # #0 : foo=0 bar=0
+    # #1 : foo=0 bar=1
+    # #2 : foo=1 bar=0
+    # #3 : foo=1 bar=1
+    ```
+
+    .. note::
+       The original motivation for this decorator was to enable automatic hyperparameter search, with tools like Optuna,
+       in a cross-validation setting where the task function has to be run multiple times, i.e. on each fold, from a
+       single process, that can then return an aggregated metric value.
+
+       It was deemed easy enough to implement this as part of a more general design, emulating Hydra's built-in
+       `BasicSweeper`, that supports the cartesian product of multiple sweep parameters. This also explains why the
+       decorated task function is expected to return either a single value or None.
+
+       For further functionalities, like parallel tasks, etc., consider using Hydra's built-in sweepers or plugins, as
+       they are likely better suited for these purposes and this decorator is not intended to replace them.
+
+    :param task_func: The task function, i.e. Hydra main, to be wrapped.
+
+    :return: The wrapped task function.
+    """
+
+    @wraps(task_func)
+    def wrap(cfg: DictConfig) -> float | None:
+        if serial_sweeper_cfg := cfg.get("serial_sweeper"):
+            # Convert sweep params to a string format interpretable by Hydra overrides parser
+            params_conf = []
+            for k, v in serial_sweeper_cfg.params.items():
+                params_conf.append(f"{k}={v}")
+            # Parse the sweep params, expanding any sweep overrides
+            parser = OverridesParser.create(config_loader=None)
+            params_sweeps = parser.parse_overrides(params_conf)
+            # Convert sweeps from internal Hydra representation to list of config dicts
+            sweep_by_param: dict[str, list[Any]] = {
+                param_sweep.key_or_group: list(param_sweep.sweep_iterator()) for param_sweep in params_sweeps
+            }
+            params_sets: list[dict[str, Any]] = [
+                dict(zip(sweep_by_param.keys(), sweep_iter_vals, strict=False))
+                for sweep_iter_vals in itertools.product(*sweep_by_param.values())
+            ]
+
+            # For each param value in the sweep
+            returns = []
+            for params in params_sets:
+                # Copy the original config and update the param values
+                current_cfg = copy.deepcopy(cfg)
+                for param_key, param_val in params.items():
+                    OmegaConf.update(current_cfg, param_key, param_val)
+
+                # Append the runtime output dir with the param config
+                params_override_dirname = ",".join([f"{k}={v}" for k, v in params.items()])
+                current_cfg.paths.output_dir += f"/{params_override_dirname}"
+                # Create the output directory, since Hydra also makes sure the output directory exists
+                Path(current_cfg.paths.output_dir).mkdir(parents=True, exist_ok=True)
+
+                # Execute the task function and store the return value
+                returns.append(task_func(current_cfg))
+
+            # Try to guess if the task function is expected to return values
+            # Warn the user if a mix of values/None are returned
+            if 0 < sum(return_val is None for return_val in returns) < len(returns):
+                warning_msg = (
+                    "None returned for some iterations of <cfg.serial_sweeper>! \n"
+                    "Return values for the sweep are: \n"
+                    + "\n".join(
+                        f"{params} -> {return_val}" for params, return_val in zip(params_sets, returns, strict=False)
+                    )
+                )
+
+                log.warning(warning_msg)
+
+            # Reduce the return values from the sweep to a single value
+            return call(serial_sweeper_cfg.reduce, returns)
+
+        else:
+            # Otherwise, run the task function normally
+            return task_func(cfg)
 
     return wrap
 

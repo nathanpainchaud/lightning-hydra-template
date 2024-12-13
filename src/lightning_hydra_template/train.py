@@ -10,6 +10,7 @@ from lightning_hydra_template.utils import (
     RankedLogger,
     extras,
     get_metric_value,
+    hydra_serial_sweeper,
     instantiate_callbacks,
     instantiate_loggers,
     log_hyperparameters,
@@ -90,6 +91,7 @@ def train(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
 
 
 @hydra.main(version_base=None, config_path="configs", config_name="train.yaml")
+@hydra_serial_sweeper
 def hydra_main(cfg: DictConfig) -> float | None:
     """Hydra entry point for training.
 
