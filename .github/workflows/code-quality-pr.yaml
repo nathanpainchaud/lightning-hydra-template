@@ -21,16 +21,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
 
-      - name: Find modified files
-        id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: " "
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
 
-      - name: List modified files
-        run: echo '${{ steps.file_changes.outputs.files}}'
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
 
       - name: Run pre-commits
         uses: pre-commit/action@v3.0.1
         with:
-          extra_args: --files ${{ steps.file_changes.outputs.files}}
+          extra_args: --files ${{ steps.changed-files.outputs.all_changed_files }}
