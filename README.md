@@ -7,8 +7,11 @@
 [![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=pytorchlightning&logoColor=white)](https://pytorchlightning.ai/)
 [![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/ashleve/lightning-hydra-template#license)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff) <br>
+[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/test.yml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/test.yml)
+[![code-quality](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml)
+[![codecov](https://codecov.io/gh/nathanpainchaud/lightning-hydra-template/branch/main/graph/badge.svg)](https://codecov.io/gh/nathanpainchaud/lightning-hydra-template) <br>
+[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/nathanpainchaud/lightning-hydra-template#license)
 
 A clean template to kickstart your deep learning project 🚀⚡🔥<br>
 Click on [<kbd>Use this template</kbd>](https://github.com/nathanpainchaud/lightning-hydra-template/generate) to initialize new repository.
@@ -69,7 +72,8 @@ For example, you can't resume hydra-based multirun or hyperparameter search.
 - [**Experiment Tracking**](#experiment-tracking): Tensorboard, W&B, and CSVLogger
 - [**Logs**](#logs): all logs (checkpoints, configs, etc.) are stored in a dynamically generated folder structure
 - [**Hyperparameter Search**](#hyperparameter-search): simple search is effortless with Hydra plugins like Optuna Sweeper
-- [**Continuous Integration**](#continuous-integration): automatically lint your repo with Github Actions
+- [**Tests**](#tests): generic, easy-to-adapt smoke tests for speeding up the development
+- [**Continuous Integration**](#continuous-integration): automatically test and lint your repo with Github Actions
 - [**Best Practices**](#best-practices): a couple of recommended tools, practices and standards
 
 <br>
@@ -117,6 +121,8 @@ The directory structure of new project looks like this:
 │       │
 │       ├── eval.py                  <- Run evaluation
 │       └── train.py                 <- Run training
+│
+├── tests                     <- Tests of any kind
 │
 ├── .env.example              <- Example of file for storing private environment variables
 ├── .gitignore                <- List of files ignored by git
@@ -420,6 +426,22 @@ pre-commit autoupdate
 </details>
 
 <details>
+<summary><b>Run tests</b></summary>
+
+```bash
+# run all tests
+pytest
+
+# run tests from specific file
+pytest tests/test_train.py
+
+# run all tests except the ones marked as slow
+pytest -k "not slow"
+```
+
+</details>
+
+<details>
 <summary><b>Use tags</b></summary>
 
 Each experiment should be tagged in order to easily filter them across files or in logger UI:
@@ -696,6 +718,35 @@ You can use many of them at once (see [configs/logger/many_loggers.yaml](src/lig
 You can also write your own logger.
 
 Lightning provides convenient method for logging custom metrics from inside LightningModule. Read the [docs](https://lightning.ai/docs/pytorch/latest/extensions/logging.html#automatic-logging) or take a look at [MNIST example](src/lightning_hydra_template/models/mnist_module.py).
+
+<br>
+
+## Tests
+
+Template comes with generic tests implemented with `pytest`.
+
+```bash
+# run all tests
+pytest
+
+# run tests from specific file
+pytest tests/test_train.py
+
+# run all tests except the ones marked as slow
+pytest -k "not slow"
+```
+
+Most of the implemented tests don't check for any specific output - they exist to simply verify that executing some commands doesn't end up in throwing exceptions. You can execute them once in a while to speed up the development.
+
+Currently, the tests cover cases like:
+
+- running 1 train, val and test step
+- running 1 epoch on 1% of data, saving ckpt and resuming for the second epoch
+- running 2 epochs on 1% of data, with DDP simulated on CPU
+
+And many others. You should be able to modify them easily for your use case.
+
+There is also `@RunIf` decorator implemented, that allows you to run tests only if certain conditions are met, e.g. GPU is available or system is not windows. See the [examples](tests/test_train.py).
 
 <br>
 
