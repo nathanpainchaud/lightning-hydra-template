@@ -2,10 +2,9 @@ version = 1
 requires-python = ">=3.12, <4"
 resolution-markers = [
     "sys_platform != 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
     "sys_platform == 'linux'",
-    "platform_system != 'Darwin' and sys_platform != 'linux'",
-    "platform_system != 'Darwin' and sys_platform == 'linux'",
-    "platform_system == 'Darwin'",
 ]
 conflicts = [[
     { package = "lightning-hydra-template", extra = "cpu" },
@@ -97,6 +96,15 @@ wheels = [
 ]
 
 [[package]]
+name = "annotated-types"
+version = "0.7.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz", hash = "sha256:aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89", size = 16081 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl", hash = "sha256:1f02e8b43a8fbbc3f3e0d4f0f4bfc8131bcb4eebe8849b8e5c773f3a1c582a53", size = 13643 },
+]
+
+[[package]]
 name = "antlr4-python3-runtime"
 version = "4.9.3"
 source = { registry = "https://pypi.org/simple" }
@@ -182,7 +190,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "(platform_system == 'Windows' and sys_platform != 'linux') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -222,9 +230,9 @@ name = "cmd2"
 version = "2.5.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "gnureadline", marker = "(platform_system == 'Darwin' and sys_platform != 'linux') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "gnureadline", marker = "sys_platform == 'darwin' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "pyperclip" },
-    { name = "pyreadline3", marker = "(platform_system == 'Windows' and sys_platform != 'linux') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "pyreadline3", marker = "sys_platform == 'win32' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "wcwidth" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/2a/8a/42bfec2be9da0fe22519404329da302c1ca4e0d2a01a5cdf8b8785a91926/cmd2-2.5.7.tar.gz", hash = "sha256:0219e2bb75075fa16deffb88edf86efdd2a87439d1fa7b94fdea4b929a3dc914", size = 691584 }
@@ -246,7 +254,7 @@ name = "colorlog"
 version = "6.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "(platform_system != 'Darwin' and sys_platform == 'win32') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'win32' and extra != 'extra-24-lightning-hydra-template-cpu') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d3/7a/359f4d5df2353f26172b3cc39ea32daa39af8de522205f512f458923e677/colorlog-6.9.0.tar.gz", hash = "sha256:bfba54a1b93b94f54e1f4fe48395725a3d92fd2a4af702f6bd70946bdc0c6ac2", size = 16624 }
 wheels = [
@@ -511,8 +519,8 @@ dependencies = [
     { name = "packaging" },
     { name = "pytorch-lightning" },
     { name = "pyyaml" },
-    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(sys_platform != 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" }, marker = "extra == 'extra-24-lightning-hydra-template-cu118' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu121", source = { registry = "https://download.pytorch.org/whl/cu121" }, marker = "extra == 'extra-24-lightning-hydra-template-cu121' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu124", source = { registry = "https://download.pytorch.org/whl/cu124" }, marker = "(extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124')" },
@@ -541,10 +549,10 @@ dependencies = [
 
 [package.optional-dependencies]
 cpu = [
-    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_system == 'Darwin'" },
-    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "platform_system != 'Darwin'" },
-    { name = "torchvision", version = "0.20.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_system == 'Darwin'" },
-    { name = "torchvision", version = "0.20.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "platform_system != 'Darwin'" },
+    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'darwin'" },
+    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
+    { name = "torchvision", version = "0.20.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'darwin'" },
+    { name = "torchvision", version = "0.20.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
 ]
 cu118 = [
     { name = "torch", version = "2.5.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" } },
@@ -581,18 +589,18 @@ requires-dist = [
     { name = "lightning", specifier = ">=2.4.0,<3" },
     { name = "rich", specifier = ">=13.9.4,<14" },
     { name = "rootutils", specifier = ">=1.0.7,<2" },
-    { name = "torch", marker = "platform_system == 'Darwin' and extra == 'cpu'", specifier = ">=2.5.1,<3" },
-    { name = "torch", marker = "platform_system != 'Darwin' and extra == 'cpu'", specifier = ">=2.5.1,<3", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
+    { name = "torch", marker = "sys_platform == 'darwin' and extra == 'cpu'", specifier = ">=2.5.1,<3" },
+    { name = "torch", marker = "sys_platform != 'darwin' and extra == 'cpu'", specifier = ">=2.5.1,<3", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
     { name = "torch", marker = "extra == 'cu118'", specifier = ">=2.5.1,<3", index = "https://download.pytorch.org/whl/cu118", conflict = { package = "lightning-hydra-template", extra = "cu118" } },
     { name = "torch", marker = "extra == 'cu121'", specifier = ">=2.5.1,<3", index = "https://download.pytorch.org/whl/cu121", conflict = { package = "lightning-hydra-template", extra = "cu121" } },
     { name = "torch", marker = "extra == 'cu124'", specifier = ">=2.5.1,<3", index = "https://download.pytorch.org/whl/cu124", conflict = { package = "lightning-hydra-template", extra = "cu124" } },
     { name = "torchmetrics", specifier = ">=1.6.0,<2" },
-    { name = "torchvision", marker = "platform_system == 'Darwin' and extra == 'cpu'", specifier = ">=0.20.1,<1" },
-    { name = "torchvision", marker = "platform_system != 'Darwin' and extra == 'cpu'", specifier = ">=0.20.1,<1", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
+    { name = "torchvision", marker = "sys_platform == 'darwin' and extra == 'cpu'", specifier = ">=0.20.1,<1" },
+    { name = "torchvision", marker = "sys_platform != 'darwin' and extra == 'cpu'", specifier = ">=0.20.1,<1", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
     { name = "torchvision", marker = "extra == 'cu118'", specifier = ">=0.20.1,<1", index = "https://download.pytorch.org/whl/cu118", conflict = { package = "lightning-hydra-template", extra = "cu118" } },
     { name = "torchvision", marker = "extra == 'cu121'", specifier = ">=0.20.1,<1", index = "https://download.pytorch.org/whl/cu121", conflict = { package = "lightning-hydra-template", extra = "cu121" } },
     { name = "torchvision", marker = "extra == 'cu124'", specifier = ">=0.20.1,<1", index = "https://download.pytorch.org/whl/cu124", conflict = { package = "lightning-hydra-template", extra = "cu124" } },
-    { name = "wandb", marker = "extra == 'wandb'", specifier = ">=0.18.7,<0.19" },
+    { name = "wandb", marker = "extra == 'wandb'", specifier = ">=0.19.1,<0.20" },
 ]
 
 [package.metadata.requires-dev]
@@ -811,7 +819,6 @@ name = "nvidia-cublas-cu12"
 version = "12.1.3.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -824,7 +831,6 @@ name = "nvidia-cublas-cu12"
 version = "12.4.5.8"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -849,7 +855,6 @@ name = "nvidia-cuda-cupti-cu12"
 version = "12.1.105"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -862,7 +867,6 @@ name = "nvidia-cuda-cupti-cu12"
 version = "12.4.127"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -887,7 +891,6 @@ name = "nvidia-cuda-nvrtc-cu12"
 version = "12.1.105"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -900,7 +903,6 @@ name = "nvidia-cuda-nvrtc-cu12"
 version = "12.4.127"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -925,7 +927,6 @@ name = "nvidia-cuda-runtime-cu12"
 version = "12.1.105"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -938,7 +939,6 @@ name = "nvidia-cuda-runtime-cu12"
 version = "12.4.127"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -952,7 +952,7 @@ name = "nvidia-cudnn-cu11"
 version = "9.1.0.70"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu11" },
+    { name = "nvidia-cublas-cu11", marker = "sys_platform == 'linux'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/00/3b/0b776f04e364cd99e4cf152c2a9eadb5934c67c9a91429da55169a9447fd/nvidia_cudnn_cu11-9.1.0.70-py3-none-manylinux2014_x86_64.whl", hash = "sha256:e6135ac63fe9d5b0b89cfb35c3fc1c1349f2b995becadf2e9dc21bca89d9633d", size = 663919573 },
@@ -964,8 +964,8 @@ name = "nvidia-cudnn-cu12"
 version = "9.1.0.70"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu12", version = "12.1.3.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-24-lightning-hydra-template-cu121' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-24-lightning-hydra-template-cu124' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121')" },
+    { name = "nvidia-cublas-cu12", version = "12.1.3.1", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9f/fd/713452cd72343f682b1c7b9321e23829f00b842ceaedcda96e742ea0b0b3/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl", hash = "sha256:165764f44ef8c61fcdfdfdbe769d687e06374059fbb388b6c89ecb0e28793a6f", size = 664752741 },
@@ -988,7 +988,6 @@ name = "nvidia-cufft-cu12"
 version = "11.0.2.54"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -1001,11 +1000,10 @@ name = "nvidia-cufft-cu12"
 version = "11.2.1.3"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "nvidia-nvjitlink-cu12", marker = "extra == 'extra-24-lightning-hydra-template-cu124' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121')" },
+    { name = "nvidia-nvjitlink-cu12", marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7a/8a/0e728f749baca3fbeffad762738276e5df60851958be7783af121a7221e7/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_aarch64.whl", hash = "sha256:5dad8008fc7f92f5ddfa2101430917ce2ffacd86824914c82e28990ad7f00399", size = 211422548 },
@@ -1029,7 +1027,6 @@ name = "nvidia-curand-cu12"
 version = "10.3.2.106"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -1042,7 +1039,6 @@ name = "nvidia-curand-cu12"
 version = "10.3.5.147"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -1056,7 +1052,7 @@ name = "nvidia-cusolver-cu11"
 version = "11.4.1.48"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu11" },
+    { name = "nvidia-cublas-cu11", marker = "sys_platform == 'linux'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/55/ee/939ff0104991dd7bdabb4c9767994c612ba0e1c9a55672a1ddd42f5e5b16/nvidia_cusolver_cu11-11.4.1.48-py3-none-manylinux1_x86_64.whl", hash = "sha256:ca538f545645b7e6629140786d3127fe067b3d5a085bd794cde5bfe877c8926f", size = 128240842 },
@@ -1070,13 +1066,12 @@ name = "nvidia-cusolver-cu12"
 version = "11.4.5.107"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "nvidia-cublas-cu12", version = "12.1.3.1", source = { registry = "https://pypi.org/simple" } },
-    { name = "nvidia-cusparse-cu12", version = "12.1.0.106", source = { registry = "https://pypi.org/simple" } },
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-cublas-cu12", version = "12.1.3.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cusparse-cu12", version = "12.1.0.106", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'linux'" },
+    { name = "nvidia-nvjitlink-cu12", marker = "sys_platform == 'linux'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/bc/1d/8de1e5c67099015c834315e333911273a8c6aaba78923dd1d1e25fc5f217/nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl", hash = "sha256:8a7ec542f0412294b15072fa7dab71d31334014a69f953004ea7a118206fe0dd", size = 124161928 },
@@ -1088,13 +1083,12 @@ name = "nvidia-cusolver-cu12"
 version = "11.6.1.9"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-24-lightning-hydra-template-cu124' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121')" },
-    { name = "nvidia-cusparse-cu12", version = "12.3.1.170", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-24-lightning-hydra-template-cu124' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121')" },
-    { name = "nvidia-nvjitlink-cu12", marker = "extra == 'extra-24-lightning-hydra-template-cu124' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121')" },
+    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cusparse-cu12", version = "12.3.1.170", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-nvjitlink-cu12", marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/46/6b/a5c33cf16af09166845345275c34ad2190944bcc6026797a39f8e0a282e0/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_aarch64.whl", hash = "sha256:d338f155f174f90724bbde3758b7ac375a70ce8e706d70b018dd3375545fc84e", size = 127634111 },
@@ -1118,11 +1112,10 @@ name = "nvidia-cusparse-cu12"
 version = "12.1.0.106"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-nvjitlink-cu12", marker = "sys_platform == 'linux'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/65/5b/cfaeebf25cd9fdec14338ccb16f6b2c4c7fa9163aefcf057d86b9cc248bb/nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl", hash = "sha256:f3b50f42cf363f86ab21f720998517a659a48131e8d538dc02f8768237bd884c", size = 195958278 },
@@ -1134,11 +1127,10 @@ name = "nvidia-cusparse-cu12"
 version = "12.3.1.170"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "nvidia-nvjitlink-cu12", marker = "extra == 'extra-24-lightning-hydra-template-cu124' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121')" },
+    { name = "nvidia-nvjitlink-cu12", marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/96/a9/c0d2f83a53d40a4a41be14cea6a0bf9e668ffcf8b004bd65633f433050c0/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_aarch64.whl", hash = "sha256:9d32f62896231ebe0480efd8a7f702e143c98cfaa0e8a76df3386c1ba2b54df3", size = 207381987 },
@@ -1188,7 +1180,6 @@ name = "nvidia-nvtx-cu12"
 version = "12.1.105"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -1201,7 +1192,6 @@ name = "nvidia-nvtx-cu12"
 version = "12.4.127"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "sys_platform != 'linux'",
     "sys_platform == 'linux'",
 ]
 wheels = [
@@ -1417,6 +1407,59 @@ wheels = [
 ]
 
 [[package]]
+name = "pydantic"
+version = "2.10.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "annotated-types" },
+    { name = "pydantic-core" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/70/7e/fb60e6fee04d0ef8f15e4e01ff187a196fa976eb0f0ab524af4599e5754c/pydantic-2.10.4.tar.gz", hash = "sha256:82f12e9723da6de4fe2ba888b5971157b3be7ad914267dea8f05f82b28254f06", size = 762094 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f3/26/3e1bbe954fde7ee22a6e7d31582c642aad9e84ffe4b5fb61e63b87cd326f/pydantic-2.10.4-py3-none-any.whl", hash = "sha256:597e135ea68be3a37552fb524bc7d0d66dcf93d395acd93a00682f1efcb8ee3d", size = 431765 },
+]
+
+[[package]]
+name = "pydantic-core"
+version = "2.27.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fc/01/f3e5ac5e7c25833db5eb555f7b7ab24cd6f8c322d3a3ad2d67a952dc0abc/pydantic_core-2.27.2.tar.gz", hash = "sha256:eb026e5a4c1fee05726072337ff51d1efb6f59090b7da90d30ea58625b1ffb39", size = 413443 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d6/74/51c8a5482ca447871c93e142d9d4a92ead74de6c8dc5e66733e22c9bba89/pydantic_core-2.27.2-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:9e0c8cfefa0ef83b4da9588448b6d8d2a2bf1a53c3f1ae5fca39eb3061e2f0b0", size = 1893127 },
+    { url = "https://files.pythonhosted.org/packages/d3/f3/c97e80721735868313c58b89d2de85fa80fe8dfeeed84dc51598b92a135e/pydantic_core-2.27.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:83097677b8e3bd7eaa6775720ec8e0405f1575015a463285a92bfdfe254529ef", size = 1811340 },
+    { url = "https://files.pythonhosted.org/packages/9e/91/840ec1375e686dbae1bd80a9e46c26a1e0083e1186abc610efa3d9a36180/pydantic_core-2.27.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:172fce187655fece0c90d90a678424b013f8fbb0ca8b036ac266749c09438cb7", size = 1822900 },
+    { url = "https://files.pythonhosted.org/packages/f6/31/4240bc96025035500c18adc149aa6ffdf1a0062a4b525c932065ceb4d868/pydantic_core-2.27.2-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:519f29f5213271eeeeb3093f662ba2fd512b91c5f188f3bb7b27bc5973816934", size = 1869177 },
+    { url = "https://files.pythonhosted.org/packages/fa/20/02fbaadb7808be578317015c462655c317a77a7c8f0ef274bc016a784c54/pydantic_core-2.27.2-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:05e3a55d124407fffba0dd6b0c0cd056d10e983ceb4e5dbd10dda135c31071d6", size = 2038046 },
+    { url = "https://files.pythonhosted.org/packages/06/86/7f306b904e6c9eccf0668248b3f272090e49c275bc488a7b88b0823444a4/pydantic_core-2.27.2-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:9c3ed807c7b91de05e63930188f19e921d1fe90de6b4f5cd43ee7fcc3525cb8c", size = 2685386 },
+    { url = "https://files.pythonhosted.org/packages/8d/f0/49129b27c43396581a635d8710dae54a791b17dfc50c70164866bbf865e3/pydantic_core-2.27.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6fb4aadc0b9a0c063206846d603b92030eb6f03069151a625667f982887153e2", size = 1997060 },
+    { url = "https://files.pythonhosted.org/packages/0d/0f/943b4af7cd416c477fd40b187036c4f89b416a33d3cc0ab7b82708a667aa/pydantic_core-2.27.2-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:28ccb213807e037460326424ceb8b5245acb88f32f3d2777427476e1b32c48c4", size = 2004870 },
+    { url = "https://files.pythonhosted.org/packages/35/40/aea70b5b1a63911c53a4c8117c0a828d6790483f858041f47bab0b779f44/pydantic_core-2.27.2-cp312-cp312-musllinux_1_1_aarch64.whl", hash = "sha256:de3cd1899e2c279b140adde9357c4495ed9d47131b4a4eaff9052f23398076b3", size = 1999822 },
+    { url = "https://files.pythonhosted.org/packages/f2/b3/807b94fd337d58effc5498fd1a7a4d9d59af4133e83e32ae39a96fddec9d/pydantic_core-2.27.2-cp312-cp312-musllinux_1_1_armv7l.whl", hash = "sha256:220f892729375e2d736b97d0e51466252ad84c51857d4d15f5e9692f9ef12be4", size = 2130364 },
+    { url = "https://files.pythonhosted.org/packages/fc/df/791c827cd4ee6efd59248dca9369fb35e80a9484462c33c6649a8d02b565/pydantic_core-2.27.2-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:a0fcd29cd6b4e74fe8ddd2c90330fd8edf2e30cb52acda47f06dd615ae72da57", size = 2158303 },
+    { url = "https://files.pythonhosted.org/packages/9b/67/4e197c300976af185b7cef4c02203e175fb127e414125916bf1128b639a9/pydantic_core-2.27.2-cp312-cp312-win32.whl", hash = "sha256:1e2cb691ed9834cd6a8be61228471d0a503731abfb42f82458ff27be7b2186fc", size = 1834064 },
+    { url = "https://files.pythonhosted.org/packages/1f/ea/cd7209a889163b8dcca139fe32b9687dd05249161a3edda62860430457a5/pydantic_core-2.27.2-cp312-cp312-win_amd64.whl", hash = "sha256:cc3f1a99a4f4f9dd1de4fe0312c114e740b5ddead65bb4102884b384c15d8bc9", size = 1989046 },
+    { url = "https://files.pythonhosted.org/packages/bc/49/c54baab2f4658c26ac633d798dab66b4c3a9bbf47cff5284e9c182f4137a/pydantic_core-2.27.2-cp312-cp312-win_arm64.whl", hash = "sha256:3911ac9284cd8a1792d3cb26a2da18f3ca26c6908cc434a18f730dc0db7bfa3b", size = 1885092 },
+    { url = "https://files.pythonhosted.org/packages/41/b1/9bc383f48f8002f99104e3acff6cba1231b29ef76cfa45d1506a5cad1f84/pydantic_core-2.27.2-cp313-cp313-macosx_10_12_x86_64.whl", hash = "sha256:7d14bd329640e63852364c306f4d23eb744e0f8193148d4044dd3dacdaacbd8b", size = 1892709 },
+    { url = "https://files.pythonhosted.org/packages/10/6c/e62b8657b834f3eb2961b49ec8e301eb99946245e70bf42c8817350cbefc/pydantic_core-2.27.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:82f91663004eb8ed30ff478d77c4d1179b3563df6cdb15c0817cd1cdaf34d154", size = 1811273 },
+    { url = "https://files.pythonhosted.org/packages/ba/15/52cfe49c8c986e081b863b102d6b859d9defc63446b642ccbbb3742bf371/pydantic_core-2.27.2-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:71b24c7d61131bb83df10cc7e687433609963a944ccf45190cfc21e0887b08c9", size = 1823027 },
+    { url = "https://files.pythonhosted.org/packages/b1/1c/b6f402cfc18ec0024120602bdbcebc7bdd5b856528c013bd4d13865ca473/pydantic_core-2.27.2-cp313-cp313-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:fa8e459d4954f608fa26116118bb67f56b93b209c39b008277ace29937453dc9", size = 1868888 },
+    { url = "https://files.pythonhosted.org/packages/bd/7b/8cb75b66ac37bc2975a3b7de99f3c6f355fcc4d89820b61dffa8f1e81677/pydantic_core-2.27.2-cp313-cp313-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:ce8918cbebc8da707ba805b7fd0b382816858728ae7fe19a942080c24e5b7cd1", size = 2037738 },
+    { url = "https://files.pythonhosted.org/packages/c8/f1/786d8fe78970a06f61df22cba58e365ce304bf9b9f46cc71c8c424e0c334/pydantic_core-2.27.2-cp313-cp313-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:eda3f5c2a021bbc5d976107bb302e0131351c2ba54343f8a496dc8783d3d3a6a", size = 2685138 },
+    { url = "https://files.pythonhosted.org/packages/a6/74/d12b2cd841d8724dc8ffb13fc5cef86566a53ed358103150209ecd5d1999/pydantic_core-2.27.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bd8086fa684c4775c27f03f062cbb9eaa6e17f064307e86b21b9e0abc9c0f02e", size = 1997025 },
+    { url = "https://files.pythonhosted.org/packages/a0/6e/940bcd631bc4d9a06c9539b51f070b66e8f370ed0933f392db6ff350d873/pydantic_core-2.27.2-cp313-cp313-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:8d9b3388db186ba0c099a6d20f0604a44eabdeef1777ddd94786cdae158729e4", size = 2004633 },
+    { url = "https://files.pythonhosted.org/packages/50/cc/a46b34f1708d82498c227d5d80ce615b2dd502ddcfd8376fc14a36655af1/pydantic_core-2.27.2-cp313-cp313-musllinux_1_1_aarch64.whl", hash = "sha256:7a66efda2387de898c8f38c0cf7f14fca0b51a8ef0b24bfea5849f1b3c95af27", size = 1999404 },
+    { url = "https://files.pythonhosted.org/packages/ca/2d/c365cfa930ed23bc58c41463bae347d1005537dc8db79e998af8ba28d35e/pydantic_core-2.27.2-cp313-cp313-musllinux_1_1_armv7l.whl", hash = "sha256:18a101c168e4e092ab40dbc2503bdc0f62010e95d292b27827871dc85450d7ee", size = 2130130 },
+    { url = "https://files.pythonhosted.org/packages/f4/d7/eb64d015c350b7cdb371145b54d96c919d4db516817f31cd1c650cae3b21/pydantic_core-2.27.2-cp313-cp313-musllinux_1_1_x86_64.whl", hash = "sha256:ba5dd002f88b78a4215ed2f8ddbdf85e8513382820ba15ad5ad8955ce0ca19a1", size = 2157946 },
+    { url = "https://files.pythonhosted.org/packages/a4/99/bddde3ddde76c03b65dfd5a66ab436c4e58ffc42927d4ff1198ffbf96f5f/pydantic_core-2.27.2-cp313-cp313-win32.whl", hash = "sha256:1ebaf1d0481914d004a573394f4be3a7616334be70261007e47c2a6fe7e50130", size = 1834387 },
+    { url = "https://files.pythonhosted.org/packages/71/47/82b5e846e01b26ac6f1893d3c5f9f3a2eb6ba79be26eef0b759b4fe72946/pydantic_core-2.27.2-cp313-cp313-win_amd64.whl", hash = "sha256:953101387ecf2f5652883208769a79e48db18c6df442568a0b5ccd8c2723abee", size = 1990453 },
+    { url = "https://files.pythonhosted.org/packages/51/b2/b2b50d5ecf21acf870190ae5d093602d95f66c9c31f9d5de6062eb329ad1/pydantic_core-2.27.2-cp313-cp313-win_arm64.whl", hash = "sha256:ac4dbfd1691affb8f48c2c13241a2e3b60ff23247cbcf981759c768b6633cf8b", size = 1885186 },
+]
+
+[[package]]
 name = "pygments"
 version = "2.18.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1445,7 +1488,7 @@ name = "pytest"
 version = "8.3.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "(platform_system != 'Darwin' and sys_platform == 'win32') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'win32' and extra != 'extra-24-lightning-hydra-template-cpu') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform != 'win32' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "iniconfig" },
     { name = "packaging" },
     { name = "pluggy" },
@@ -1473,8 +1516,8 @@ dependencies = [
     { name = "lightning-utilities" },
     { name = "packaging" },
     { name = "pyyaml" },
-    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(sys_platform != 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" }, marker = "extra == 'extra-24-lightning-hydra-template-cu118' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu121", source = { registry = "https://download.pytorch.org/whl/cu121" }, marker = "extra == 'extra-24-lightning-hydra-template-cu121' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu124", source = { registry = "https://download.pytorch.org/whl/cu124" }, marker = "(extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124')" },
@@ -1744,31 +1787,32 @@ name = "torch"
 version = "2.5.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "platform_system == 'Darwin'",
+    "sys_platform == 'darwin'",
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
 ]
 dependencies = [
-    { name = "filelock", marker = "platform_system == 'Darwin'" },
-    { name = "fsspec", marker = "platform_system == 'Darwin'" },
-    { name = "jinja2", marker = "platform_system == 'Darwin'" },
-    { name = "networkx", marker = "platform_system == 'Darwin'" },
-    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cuda-cupti-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cuda-nvrtc-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cuda-runtime-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cudnn-cu12", marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cufft-cu12", version = "11.2.1.3", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-curand-cu12", version = "10.3.5.147", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cusolver-cu12", version = "11.6.1.9", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-cusparse-cu12", version = "12.3.1.170", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-nccl-cu12", marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-nvjitlink-cu12", marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "nvidia-nvtx-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "setuptools", marker = "platform_system == 'Darwin'" },
-    { name = "sympy", marker = "platform_system == 'Darwin'" },
-    { name = "triton", marker = "(python_full_version < '3.13' and platform_machine == 'x86_64' and platform_system == 'Linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "typing-extensions", marker = "platform_system == 'Darwin'" },
+    { name = "filelock", marker = "sys_platform == 'darwin'" },
+    { name = "fsspec", marker = "sys_platform == 'darwin'" },
+    { name = "jinja2", marker = "sys_platform == 'darwin'" },
+    { name = "networkx", marker = "sys_platform == 'darwin'" },
+    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cuda-cupti-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cuda-nvrtc-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cuda-runtime-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cudnn-cu12", marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cufft-cu12", version = "11.2.1.3", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-curand-cu12", version = "10.3.5.147", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cusolver-cu12", version = "11.6.1.9", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-cusparse-cu12", version = "12.3.1.170", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-nccl-cu12", marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-nvjitlink-cu12", marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "nvidia-nvtx-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "setuptools", marker = "sys_platform == 'darwin'" },
+    { name = "sympy", marker = "sys_platform == 'darwin'" },
+    { name = "triton", marker = "(python_full_version < '3.13' and platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "typing-extensions", marker = "sys_platform == 'darwin'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8b/5c/36c114d120bfe10f9323ed35061bc5878cc74f3f594003854b0ea298942f/torch-2.5.1-cp312-cp312-manylinux1_x86_64.whl", hash = "sha256:ed231a4b3a5952177fafb661213d690a72caaad97d5824dd4fc17ab9e15cec03", size = 906389343 },
@@ -1783,17 +1827,17 @@ name = "torch"
 version = "2.5.1+cpu"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
-    "platform_system != 'Darwin' and sys_platform != 'linux'",
-    "platform_system != 'Darwin' and sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "filelock", marker = "platform_system != 'Darwin'" },
-    { name = "fsspec", marker = "platform_system != 'Darwin'" },
-    { name = "jinja2", marker = "platform_system != 'Darwin'" },
-    { name = "networkx", marker = "platform_system != 'Darwin'" },
-    { name = "setuptools", marker = "platform_system != 'Darwin'" },
-    { name = "sympy", marker = "platform_system != 'Darwin'" },
-    { name = "typing-extensions", marker = "platform_system != 'Darwin'" },
+    { name = "filelock", marker = "sys_platform != 'darwin'" },
+    { name = "fsspec", marker = "sys_platform != 'darwin'" },
+    { name = "jinja2", marker = "sys_platform != 'darwin'" },
+    { name = "networkx", marker = "sys_platform != 'darwin'" },
+    { name = "setuptools", marker = "sys_platform != 'darwin'" },
+    { name = "sympy", marker = "sys_platform != 'darwin'" },
+    { name = "typing-extensions", marker = "sys_platform != 'darwin'" },
 ]
 wheels = [
     { url = "https://download.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp312-cp312-linux_x86_64.whl", hash = "sha256:4856f9d6925121d13c2df07aa7580b767f449dfe71ae5acde9c27535d5da4840" },
@@ -1808,26 +1852,28 @@ source = { registry = "https://download.pytorch.org/whl/cu118" }
 resolution-markers = [
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
     { name = "filelock" },
     { name = "fsspec" },
     { name = "jinja2" },
     { name = "networkx" },
-    { name = "nvidia-cublas-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-cupti-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-nvrtc-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-runtime-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cudnn-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cufft-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-curand-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cusolver-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cusparse-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nccl-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nvtx-cu11", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
+    { name = "nvidia-cublas-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-cupti-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-nvrtc-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-runtime-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cudnn-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cufft-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-curand-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cusolver-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cusparse-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nccl-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nvtx-cu11", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "setuptools" },
     { name = "sympy" },
-    { name = "triton", marker = "python_full_version < '3.13' and platform_machine == 'x86_64' and platform_system == 'Linux'" },
+    { name = "triton", marker = "python_full_version < '3.13' and platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "typing-extensions" },
 ]
 wheels = [
@@ -1843,26 +1889,28 @@ source = { registry = "https://download.pytorch.org/whl/cu121" }
 resolution-markers = [
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
     { name = "filelock" },
     { name = "fsspec" },
     { name = "jinja2" },
     { name = "networkx" },
-    { name = "nvidia-cublas-cu12", version = "12.1.3.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-cupti-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-nvrtc-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-runtime-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cudnn-cu12", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cufft-cu12", version = "11.0.2.54", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-curand-cu12", version = "10.3.2.106", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cusolver-cu12", version = "11.4.5.107", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cusparse-cu12", version = "12.1.0.106", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nccl-cu12", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nvtx-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
+    { name = "nvidia-cublas-cu12", version = "12.1.3.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-cupti-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-nvrtc-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-runtime-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cudnn-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cufft-cu12", version = "11.0.2.54", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-curand-cu12", version = "10.3.2.106", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cusolver-cu12", version = "11.4.5.107", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cusparse-cu12", version = "12.1.0.106", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nccl-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nvtx-cu12", version = "12.1.105", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "setuptools" },
     { name = "sympy" },
-    { name = "triton", marker = "python_full_version < '3.13' and platform_machine == 'x86_64' and platform_system == 'Linux'" },
+    { name = "triton", marker = "python_full_version < '3.13' and platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "typing-extensions" },
 ]
 wheels = [
@@ -1878,27 +1926,29 @@ source = { registry = "https://download.pytorch.org/whl/cu124" }
 resolution-markers = [
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
     { name = "filelock" },
     { name = "fsspec" },
     { name = "jinja2" },
     { name = "networkx" },
-    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-cupti-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-nvrtc-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cuda-runtime-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cudnn-cu12", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cufft-cu12", version = "11.2.1.3", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-curand-cu12", version = "10.3.5.147", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cusolver-cu12", version = "11.6.1.9", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-cusparse-cu12", version = "12.3.1.170", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nccl-cu12", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nvjitlink-cu12", marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
-    { name = "nvidia-nvtx-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and platform_system == 'Linux'" },
+    { name = "nvidia-cublas-cu12", version = "12.4.5.8", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-cupti-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-nvrtc-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cuda-runtime-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cudnn-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cufft-cu12", version = "11.2.1.3", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-curand-cu12", version = "10.3.5.147", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cusolver-cu12", version = "11.6.1.9", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-cusparse-cu12", version = "12.3.1.170", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nccl-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nvjitlink-cu12", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "nvidia-nvtx-cu12", version = "12.4.127", source = { registry = "https://pypi.org/simple" }, marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "setuptools" },
     { name = "sympy" },
-    { name = "triton", marker = "python_full_version < '3.13' and platform_machine == 'x86_64' and platform_system == 'Linux'" },
+    { name = "triton", marker = "python_full_version < '3.13' and platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "typing-extensions" },
 ]
 wheels = [
@@ -1915,8 +1965,8 @@ dependencies = [
     { name = "lightning-utilities" },
     { name = "numpy" },
     { name = "packaging" },
-    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(platform_system == 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124')" },
-    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_system != 'Darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "(sys_platform == 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra != 'extra-24-lightning-hydra-template-cu121' and extra != 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(sys_platform != 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" }, marker = "extra == 'extra-24-lightning-hydra-template-cu118' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu121", source = { registry = "https://download.pytorch.org/whl/cu121" }, marker = "extra == 'extra-24-lightning-hydra-template-cu121' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
     { name = "torch", version = "2.5.1+cu124", source = { registry = "https://download.pytorch.org/whl/cu124" }, marker = "(extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra != 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124')" },
@@ -1931,12 +1981,12 @@ name = "torchvision"
 version = "0.20.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "platform_system == 'Darwin'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
-    { name = "numpy", marker = "platform_system == 'Darwin'" },
-    { name = "pillow", marker = "platform_system == 'Darwin'" },
-    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "platform_system == 'Darwin'" },
+    { name = "numpy", marker = "sys_platform == 'darwin'" },
+    { name = "pillow", marker = "sys_platform == 'darwin'" },
+    { name = "torch", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform == 'darwin'" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c5/eb/4ba19616378f2bc085999432fded2b7dfdbdccc6dd0fc293203452508100/torchvision-0.20.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:1a31256ff945d64f006bb306813a7c95a531fe16bfb2535c837dd4c104533d7a", size = 1787553 },
@@ -1950,13 +2000,13 @@ name = "torchvision"
 version = "0.20.1+cpu"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
-    "platform_system != 'Darwin' and sys_platform != 'linux'",
-    "platform_system != 'Darwin' and sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "numpy", marker = "platform_system != 'Darwin'" },
-    { name = "pillow", marker = "platform_system != 'Darwin'" },
-    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "platform_system != 'Darwin'" },
+    { name = "numpy", marker = "sys_platform != 'darwin'" },
+    { name = "pillow", marker = "sys_platform != 'darwin'" },
+    { name = "torch", version = "2.5.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
 ]
 wheels = [
     { url = "https://download.pytorch.org/whl/cpu/torchvision-0.20.1%2Bcpu-cp312-cp312-linux_x86_64.whl", hash = "sha256:5f46c7ac7f00a065cb40bfb1e1bfc4ba16a35f5d46b3fe70cca6b3cea7f822f7" },
@@ -1970,6 +2020,8 @@ source = { registry = "https://download.pytorch.org/whl/cu118" }
 resolution-markers = [
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
     { name = "numpy" },
@@ -1988,6 +2040,8 @@ source = { registry = "https://download.pytorch.org/whl/cu121" }
 resolution-markers = [
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
     { name = "numpy" },
@@ -2006,6 +2060,8 @@ source = { registry = "https://download.pytorch.org/whl/cu124" }
 resolution-markers = [
     "sys_platform != 'linux'",
     "sys_platform == 'linux'",
+    "sys_platform != 'darwin' and sys_platform != 'linux'",
+    "sys_platform == 'darwin'",
 ]
 dependencies = [
     { name = "numpy" },
@@ -2022,7 +2078,7 @@ name = "tqdm"
 version = "4.67.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "(platform_system == 'Windows' and sys_platform != 'linux') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (platform_system != 'Windows' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (sys_platform == 'linux' and extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a8/4b/29b4ef32e036bb34e4ab51796dd745cdba7ed47ad142a9f4a1eb8e0c744d/tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2", size = 169737 }
 wheels = [
@@ -2034,7 +2090,7 @@ name = "triton"
 version = "3.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "filelock", marker = "extra == 'extra-24-lightning-hydra-template-cu118' or extra == 'extra-24-lightning-hydra-template-cu121' or extra == 'extra-24-lightning-hydra-template-cu124' or extra != 'extra-24-lightning-hydra-template-cpu'" },
+    { name = "filelock", marker = "(sys_platform == 'linux' and extra != 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cu121' and extra == 'extra-24-lightning-hydra-template-cu124') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/78/eb/65f5ba83c2a123f6498a3097746607e5b2f16add29e36765305e4ac7fdd8/triton-3.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c8182f42fd8080a7d39d666814fa36c5e30cc00ea7eeeb1a2983dbb4c99a0fdc", size = 209551444 },
@@ -2080,32 +2136,34 @@ wheels = [
 
 [[package]]
 name = "wandb"
-version = "0.18.7"
+version = "0.19.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "docker-pycreds" },
     { name = "gitpython" },
     { name = "platformdirs" },
-    { name = "protobuf", marker = "platform_system != 'Darwin' or sys_platform != 'linux' or extra != 'extra-24-lightning-hydra-template-cpu' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu121') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu124')" },
+    { name = "protobuf" },
     { name = "psutil" },
+    { name = "pydantic" },
     { name = "pyyaml" },
     { name = "requests" },
     { name = "sentry-sdk" },
     { name = "setproctitle" },
     { name = "setuptools" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d5/10/81cd2519a92c5dc76f0a3553daa32bc58875e05abae6eca4509e65c87d63/wandb-0.18.7.tar.gz", hash = "sha256:00f9891558d4833ee47f21ce6c603499f0bd1a7ce117ff55ee1a041e9094f9a2", size = 9505273 }
+sdist = { url = "https://files.pythonhosted.org/packages/31/3e/8fae74f1d1727e628a0a76c5c2fbe5d56f0466af494b2945786d2d1436ba/wandb-0.19.1.tar.gz", hash = "sha256:a9b4bf790c468e7b350eeaba2de002672a5cbaa3049899ab060940e2388f429a", size = 11806657 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/78/ca2444c41bcacd6b49846cfa853698935c656f4419f38d0860177b31763c/wandb-0.18.7-py3-none-any.whl", hash = "sha256:c2b9f9fea6daf8b62a505ea5d77d7e5e375c6014947a8882c0497399a9a1e4af", size = 6266739 },
-    { url = "https://files.pythonhosted.org/packages/0c/6d/cf600f649090d3c3f8ac86becf10a1d3d5c1ce305389c4d02cc9488fb8d0/wandb-0.18.7-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:9fb2d381b20a079d7bb519b1b5cbbd94a10e941a2a0c5ccc044748b00344a294", size = 15789924 },
-    { url = "https://files.pythonhosted.org/packages/de/7f/23f776942928bc9aea4d167030c39f4aee23fe07159ab5341bba8bb05a7f/wandb-0.18.7-py3-none-macosx_11_0_arm64.whl", hash = "sha256:87209f5aed8dbcf4b699ce745d096bc13b3cb66217efa5c44dd772d4f7fe7836", size = 15223289 },
-    { url = "https://files.pythonhosted.org/packages/0b/e7/1cfc141d8ea5138cfa8bc6383b9047c7e0c26873ce15e43bc5db8fa5f249/wandb-0.18.7-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:e31d2115c558257406bf9beffe13d42313d958f2809cb15123a8e6a6d18d66c6", size = 15921278 },
-    { url = "https://files.pythonhosted.org/packages/8f/bc/1688dd13505479f2a1901728e7d0e7b572ea7d9233af9beff62edf9a42fa/wandb-0.18.7-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e261e9f87005a4487548137d04bfa10fa14e3306b9901bc6ac2f3335c73df7c6", size = 15179910 },
-    { url = "https://files.pythonhosted.org/packages/a3/65/8af6447adb236c0b487ae44f370cb24c8afda678b5acf7f1cb4469739048/wandb-0.18.7-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b3133683a5b3bd3a50cf498e6b5ecc7406738619ae9f245326a9fa2e80ad313f", size = 16104608 },
-    { url = "https://files.pythonhosted.org/packages/a6/34/fccdb0a3001200eadcf660558e549be895f18e0a10658fa957712fe02333/wandb-0.18.7-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:7ca272660d880ba007aa7b4be2f88160692b2f12dccd431bd2f6471c85e68986", size = 16181168 },
-    { url = "https://files.pythonhosted.org/packages/62/29/465482fa31ee52e310df09b365ea1f498799b1aba9b7520f9f27f83eb371/wandb-0.18.7-py3-none-win32.whl", hash = "sha256:a42b63c9b9e552b51e51b35caf26d81675dbc012317bc2701e39b3d84d479354", size = 15472552 },
-    { url = "https://files.pythonhosted.org/packages/1f/d3/1996ef42e58a049d6b2d6c3e3f0c8d7d38a286f707c515672a928fd9eb6c/wandb-0.18.7-py3-none-win_amd64.whl", hash = "sha256:4ba9fda6dd7db02a23c6b302411fe26c3fcfea4947cc130a65e1de19812d324e", size = 15472555 },
+    { url = "https://files.pythonhosted.org/packages/b1/03/82f0a8e4736f0606acf249740684e17a7089e373be7c6c00fd996ac1e50c/wandb-0.19.1-py3-none-any.whl", hash = "sha256:b3195b3fe4d1b8131f64b956e6a5de7486cecfec179570986dbd6c64cd29b3c5", size = 6228892 },
+    { url = "https://files.pythonhosted.org/packages/04/d4/927decd1186c90f90ac4e6106d7dbf88010f1b0bea075d5a53bf492986b9/wandb-0.19.1-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:788c20d8c3dabe490b50961dc91298886853dd8a0276a09ef3fc5c7f1f137c1d", size = 19945568 },
+    { url = "https://files.pythonhosted.org/packages/57/f9/8a5cdf40a1607462160c9e521b9ba409a2fd284b3a965caf31abacf21608/wandb-0.19.1-py3-none-macosx_11_0_arm64.whl", hash = "sha256:343d46c59aba3c30cf98ce8e0b9a2e1e52986a0ac0433d092de9aa856aeece98", size = 19169106 },
+    { url = "https://files.pythonhosted.org/packages/75/7b/5468e629c91367efb30321dd6efe5e5dd56c7a306e0c6c4eac2eabd71417/wandb-0.19.1-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:7541efa8ffab715ba932fcb5117c4255a47cadebf0365d1dc1eb684a94744573", size = 19964193 },
+    { url = "https://files.pythonhosted.org/packages/29/ad/e959984f24f06e225194a5eb67ec0bed859b54d39b827505b26badda930c/wandb-0.19.1-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ec64a859478b9f5bcf894aedd2bcccaf6917abe7b8adbd722b2a43b7063d33db", size = 18758961 },
+    { url = "https://files.pythonhosted.org/packages/c0/70/b6bc8f0abfa975a3610acbb6884dd4ec949276bc8370e89975051b256332/wandb-0.19.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:405000bc3d2e369934ff1266fcc55ff968e4a0f24c2fdaa9a0585b170c01b60c", size = 20026002 },
+    { url = "https://files.pythonhosted.org/packages/b6/fc/1f111e4ae753dab3059eb60b1056862f274637aab5ef2c53994cb0377102/wandb-0.19.1-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:809b5ae83ed314b97db1077490f37d6c926c7c96fad9b6b5a2476534d54defb4", size = 18764897 },
+    { url = "https://files.pythonhosted.org/packages/5f/30/1521cd5ab1fa771938682a1d4f4eb007c2da6eb0a679e266ec846ff1ad46/wandb-0.19.1-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:e01e9176b5ca9660226edcbfd9323019aa9bd5789a4b384d23ba53e062d3966e", size = 20099920 },
+    { url = "https://files.pythonhosted.org/packages/fd/1b/6ed9806af9e8f2b068a4bbf5039ae72988ed6f5cfb656caedef36190ebf3/wandb-0.19.1-py3-none-win32.whl", hash = "sha256:093cc5c39ce629390c4f465b1ae89bab2ee9b29c2a46c8b5143858dd8c73264b", size = 19469132 },
+    { url = "https://files.pythonhosted.org/packages/ce/d9/45dd1615aed5487eb6a5709e1a4fa38433653a30a3c60756f11cce6d02ac/wandb-0.19.1-py3-none-win_amd64.whl", hash = "sha256:1fc9d403fffb84e37f4e56a075b26b639e9f489899c9b9db9f46e3a7b7d93c64", size = 19469135 },
 ]
 
 [[package]]
