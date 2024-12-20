@@ -55,8 +55,10 @@ jobs:
       - name: Set up Python
         run: uv python install
 
-      - name: Install the project
-        run: uv sync --extra cpu
+      - name: Install the project + pytest-cov
+        run: |
+          uv sync --extra cpu
+          uv pip install pytest-cov
 
       - name: Run tests and collect coverage
         run: uv run pytest --cov src # NEEDS TO BE UPDATED WHEN CHANGING THE NAME OF "src" FOLDER
