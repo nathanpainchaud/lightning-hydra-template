@@ -1,6 +1,10 @@
 # Script to reproduce an issue with using `self.log` in compiled PyTorch Lightning module
 # This minimal example reproduces the issue, whose root cause is an interaction between dynamo and torchmetrics
 # Link to the issue: https://github.com/Lightning-AI/pytorch-lightning/issues/18123
+
+# Disable ruff entirely for this file
+# flake8: noqa
+
 import torch
 import torch.nn as nn
 from torchmetrics import Accuracy
