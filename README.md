@@ -7,10 +7,12 @@
 [![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=pytorchlightning&logoColor=white)](https://pytorchlightning.ai/)
 [![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff) <br>
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+<br>
 [![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/test.yml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/test.yml)
 [![code-quality](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml)
-[![codecov](https://codecov.io/gh/nathanpainchaud/lightning-hydra-template/branch/main/graph/badge.svg)](https://codecov.io/gh/nathanpainchaud/lightning-hydra-template) <br>
+[![codecov](https://codecov.io/github/nathanpainchaud/lightning-hydra-template/graph/badge.svg?token=8UUQ6FTYXQ)](https://codecov.io/github/nathanpainchaud/lightning-hydra-template)
+<br>
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/nathanpainchaud/lightning-hydra-template#license)
 
 A clean template to kickstart your deep learning project 🚀⚡🔥<br>
