@@ -9,7 +9,7 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 <br>
-[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/test.yml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/test.yml)
+[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml)
 [![code-quality](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml)
 [![codecov](https://codecov.io/github/nathanpainchaud/lightning-hydra-template/graph/badge.svg?token=8UUQ6FTYXQ)](https://codecov.io/github/nathanpainchaud/lightning-hydra-template)
 <br>
@@ -817,6 +817,7 @@ Template comes with CI workflows implemented in Github Actions:
 
 - `.github/workflows/code-quality-main.yaml`: running pre-commits on main branch for all files
 - `.github/workflows/code-quality-pr.yaml`: running pre-commits on pull requests for modified files only
+- `.github/workflows/run-pytest.yaml`: running all tests with pytest and uploading coverage report to Codecov
 
 <br>
 
