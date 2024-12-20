@@ -1,0 +1,15 @@
+# This custom sweeper tries to emulate closely the syntax of Hydra's built-in BasicSweeper
+# https://hydra.cc/docs/tutorials/basic/running_your_app/multi-run/#sweeping-via-hydrasweeperparams
+
+# The keys indicate the config nodes to sweep over, in dot-notation
+# The values define how to sweep, and have to be one of the sweep overrides defined by Hydra
+# https://hydra.cc/docs/advanced/override_grammar/extended/#sweeps
+
+params:
+  seed: range(5) # By default, sweep over 5 seeds
+  # For nested config values, use dot-notation, e.g.:
+  # model.optimizer.lr: choice(0.1,0.01,0.001)
+
+# If the experiment return a value, e.g. a performance metric, `reduce` defines how to aggregate over the sweep
+reduce:
+  _target_: numpy.nanmean

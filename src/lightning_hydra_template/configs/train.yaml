@@ -12,6 +12,9 @@ defaults:
   - paths: default
   - extras: default
   - hydra: default
+  # serial sweeper is a custom sweeper that emulates the syntax of Hydra's built-in BasicSweeper
+  # to run multiple experiments in serial in the same process, e.g. cross-validation
+  - serial_sweeper: null
 
   # experiment configs allow for version control of specific hyperparameters
   # e.g. best hyperparameters for given model and datamodule

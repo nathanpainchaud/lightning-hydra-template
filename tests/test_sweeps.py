@@ -64,3 +64,20 @@ def test_optuna_sweep(tmp_path: Path) -> None:
         "++trainer.fast_dev_run=true",
     ] + overrides
     run_sh_command(command)
+
+
+@RunIf(sh=True)
+@pytest.mark.slow
+def test_serial_sweep(tmp_path: Path) -> None:
+    """Test single-process serial sweeping.
+
+    Args:
+        tmp_path: The temporary logging path.
+    """
+    command = [
+        startfile,
+        "serial_sweeper=seeds",
+        "hydra.run.dir=" + str(tmp_path),
+        "++trainer.fast_dev_run=true",
+    ] + overrides
+    run_sh_command(command)

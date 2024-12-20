@@ -2,6 +2,7 @@ import builtins
 import copy
 import importlib
 import itertools
+import math
 import operator
 import warnings
 from collections.abc import Callable
@@ -268,18 +269,24 @@ def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Cal
                 # Execute the task function and store the return value
                 returns.append(task_func(current_cfg))
 
-            # Try to guess if the task function is expected to return values
-            # Warn the user if a mix of values/None are returned
-            if 0 < sum(return_val is None for return_val in returns) < len(returns):
-                warning_msg = (
+            # If task function returns None across the sweep, skip aggregation and warn the user
+            if all(return_val is None for return_val in returns):
+                log.warning(
+                    "All iterations of <cfg.serial_sweeper> returned None! \n"
+                    "If you don't need to locally aggregate return values of the sweep (e.g. for hyperparameter "
+                    "optimization), consider switching to Hydra's built-in sweepers."
+                )
+                return None
+
+            # If some runs seem to have failed, warn the user
+            if 0 < sum(return_val is None or math.isnan(return_val) for return_val in returns) < len(returns):
+                log.warning(
                     "None returned for some iterations of <cfg.serial_sweeper>! \n"
                     "Return values for the sweep are: \n"
                     + "\n".join(
                         f"{params} -> {return_val}" for params, return_val in zip(params_sets, returns, strict=False)
                     )
                 )
-
-                log.warning(warning_msg)
 
             # Reduce the return values from the sweep to a single value
             return call(serial_sweeper_cfg.reduce, returns)
