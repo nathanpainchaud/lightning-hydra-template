@@ -14,7 +14,6 @@ import rootutils
 from hydra.core.override_parser.overrides_parser import OverridesParser
 from hydra.utils import call
 from omegaconf import DictConfig, OmegaConf
-from sympy.categories import Object
 
 from lightning_hydra_template.utils import pylogger, rich_utils
 
@@ -47,7 +46,7 @@ def register_omegaconf_resolvers() -> None:
                 log.warning("Assertion of Hydra configuration failed!")
         return condition
 
-    def _cast(obj: Object, cast_type: str = None) -> Any:
+    def _cast(obj: Any, cast_type: str = None) -> Any:
         """Defines a wrapper for basic operators, with the option to cast result to a type."""
         if cast_type is not None:
             cast_cls = (
