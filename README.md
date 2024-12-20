@@ -499,7 +499,7 @@ Switch between models and datamodules with command line arguments:
 python src/lightning_hydra_template/train.py model=mnist
 ```
 
-Example pipeline managing the instantiation logic: [src/train.py](src/lightning_hydra_template/train.py).
+Example pipeline managing the instantiation logic: [src/lightning_hydra_template/train.py](src/lightning_hydra_template/train.py).
 
 <br>
 
