@@ -45,12 +45,17 @@ cu124 = [
 [dependency-groups]
 dev = [
     "pre-commit>=4.0.1,<5",
-    "pytest>=8.3.4,<9",
-    "sh>=2.1.0,<3",
+    {include-group = "lint"},
+    {include-group = "test"},
 ]
 lint = [
     "docformatter>=1.7.5,<2",
-    "ruff>=0.8.0,<0.9",
+    "ruff>=0.8.4,<0.9",
+]
+test = [
+    "pytest>=8.3.4,<9",
+    "pytest-cov>=6.0.0,<7",
+    "sh>=2.1.0,<3",
 ]
 
 [project.scripts]
@@ -62,7 +67,6 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv]
-default-groups = [ "dev", "lint" ]
 # Refer to the note above about installing pytorch using optional dependencies,
 # especially the link to uv's documentation, to understand this configuration
 conflicts = [
