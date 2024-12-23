@@ -78,13 +78,13 @@ conflicts = [
 # Refer to the note above about installing pytorch using optional dependencies,
 # especially the link to uv's documentation, to understand this configuration
 torch = [
-  { index = "pytorch-cpu", extra = "cpu", marker = "platform_system != 'Darwin'" },
+  { index = "pytorch-cpu", extra = "cpu", marker = "sys_platform != 'Darwin'" },
   { index = "pytorch-cu118", extra = "cu118" },
   { index = "pytorch-cu121", extra = "cu121" },
   { index = "pytorch-cu124", extra = "cu124" },
 ]
 torchvision = [
-  { index = "pytorch-cpu", extra = "cpu", marker = "platform_system != 'Darwin'" },
+  { index = "pytorch-cpu", extra = "cpu", marker = "sys_platform != 'Darwin'" },
   { index = "pytorch-cu118", extra = "cu118" },
   { index = "pytorch-cu121", extra = "cu121" },
   { index = "pytorch-cu124", extra = "cu124" },
