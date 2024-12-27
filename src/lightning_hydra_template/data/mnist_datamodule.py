@@ -201,7 +201,3 @@ class MNISTDataModule(LightningDataModule):
             state_dict: The datamodule state returned by `self.state_dict()`.
         """
         pass
-
-
-if __name__ == "__main__":
-    _ = MNISTDataModule()
