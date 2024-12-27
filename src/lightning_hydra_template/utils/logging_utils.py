@@ -54,7 +54,10 @@ def log_hyperparameters(object_dict: dict[str, Any]) -> None:
 
 
 def pad_keys(
-    map: Mapping[str, Any], prefix: str = None, postfix: str = None, exclude: str | Sequence[str] | None = None
+    map: Mapping[str, Any],
+    prefix: str | None = None,
+    postfix: str | None = None,
+    exclude: str | Sequence[str] | None = None,
 ) -> dict[str, Any]:
     """Pads the keys of a mapping with a combination of prefix/postfix.
 

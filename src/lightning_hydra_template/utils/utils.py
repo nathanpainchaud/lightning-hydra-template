@@ -47,7 +47,7 @@ def register_omegaconf_resolvers() -> None:
                 log.warning("Assertion of Hydra configuration failed!")
         return condition
 
-    def _cast(obj: Any, cast_type: str = None) -> Any:
+    def _cast(obj: Any, cast_type: str | None = None) -> Any:
         """Defines a wrapper for basic operators, with the option to cast result to a type."""
         if cast_type is not None:
             cast_cls = (
