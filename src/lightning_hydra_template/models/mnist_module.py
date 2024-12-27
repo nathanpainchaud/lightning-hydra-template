@@ -68,7 +68,7 @@ class MNISTLitModule(LightningModule):
         self.net = net
 
         # loss function
-        self.criterion = torch.nn.CrossEntropyLoss()
+        self.criterion = criterion
         # for averaging loss across batches
         self.train_loss = MeanMetric()
         self.test_loss = MeanMetric()
