@@ -19,6 +19,9 @@ from .package_available import (
     _XLA_AVAILABLE,
 )
 
+if _SH_AVAILABLE:
+    import sh
+
 
 class RunIf:
     """RunIf wrapper for conditional skipping of tests.
@@ -101,7 +104,7 @@ class RunIf:
 
         if sh:
             conditions.append(not _SH_AVAILABLE)
-            reasons.append("sh")
+            reasons.append("sh is not supported on Windows")
 
         if fairscale:
             conditions.append(not _FAIRSCALE_AVAILABLE)
@@ -133,3 +136,18 @@ class RunIf:
             reason=f"Requires: [{' + '.join(reasons)}]",
             **kwargs,
         )
+
+
+def run_sh_command(command: list[str]) -> None:
+    """Default method for executing shell commands with `pytest` and `sh` package.
+
+    Args:
+        command: A list of shell commands as strings.
+    """
+    msg = None
+    try:
+        sh.python(command)
+    except sh.ErrorReturnCode as e:
+        msg = e.stderr.decode()
+    if msg:
+        pytest.fail(reason=msg)

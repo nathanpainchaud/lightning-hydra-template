@@ -2,8 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from .helpers.run_if import RunIf
-from .helpers.run_sh_command import run_sh_command
+from .helpers.run import RunIf, run_sh_command
 
 startfile = "src/lightning_hydra_template/train.py"
 overrides = ["logger=[]"]
