@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 import pytest
@@ -99,7 +98,7 @@ def test_train_resume(tmp_path: Path, cfg_train: DictConfig) -> None:
     HydraConfig().set_config(cfg_train)
     metric_dict_1, _ = train(cfg_train)
 
-    files = os.listdir(tmp_path / "checkpoints")
+    files = {child.name for child in Path(tmp_path / "checkpoints").iterdir()}
     assert "last.ckpt" in files
     assert "epoch_000.ckpt" in files
 
@@ -109,7 +108,7 @@ def test_train_resume(tmp_path: Path, cfg_train: DictConfig) -> None:
 
     metric_dict_2, _ = train(cfg_train)
 
-    files = os.listdir(tmp_path / "checkpoints")
+    files = {child.name for child in Path(tmp_path / "checkpoints").iterdir()}
     assert "epoch_001.ckpt" in files
     assert "epoch_002.ckpt" not in files
 

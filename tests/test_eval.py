@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 import pytest
@@ -27,7 +26,7 @@ def test_train_eval(tmp_path: Path, cfg_train: DictConfig, cfg_eval: DictConfig)
     HydraConfig().set_config(cfg_train)
     train_metric_dict, _ = train(cfg_train)
 
-    assert "last.ckpt" in os.listdir(tmp_path / "checkpoints")
+    assert "last.ckpt" in {child.name for child in (tmp_path / "checkpoints").iterdir()}
 
     with open_dict(cfg_eval):
         cfg_eval.ckpt_path = str(tmp_path / "checkpoints" / "last.ckpt")
