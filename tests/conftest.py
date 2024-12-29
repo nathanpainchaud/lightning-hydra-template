@@ -6,10 +6,24 @@ import pytest
 import rootutils
 from hydra import compose, initialize
 from hydra.core.global_hydra import GlobalHydra
-from omegaconf import DictConfig, open_dict
+from omegaconf import DictConfig, OmegaConf, open_dict
+
+from lightning_hydra_template.utils import pre_hydra_routine
 
 
-@pytest.fixture(scope="package")
+@pytest.fixture(scope="session", autouse=True)
+def setup_hydra() -> None:
+    """Global auto-fixture that sets up global state for Hydra/OmegaConf for all tests."""
+    # Setup
+    pre_hydra_routine()
+
+    yield
+
+    # Teardown
+    OmegaConf.clear_resolvers()
+
+
+@pytest.fixture(scope="session")
 def cfg_train_global() -> DictConfig:
     """A pytest fixture for setting up a default Hydra DictConfig for training.
 
@@ -23,9 +37,9 @@ def cfg_train_global() -> DictConfig:
         with open_dict(cfg):
             cfg.paths.root_dir = str(rootutils.find_root(indicator=".project-root"))
             cfg.trainer.max_epochs = 1
-            cfg.trainer.limit_train_batches = 0.01
-            cfg.trainer.limit_val_batches = 0.1
-            cfg.trainer.limit_test_batches = 0.1
+            cfg.trainer.limit_train_batches = 5
+            cfg.trainer.limit_val_batches = 2
+            cfg.trainer.limit_test_batches = 2
             cfg.trainer.accelerator = "cpu"
             cfg.trainer.devices = 1
             cfg.compile = False
@@ -38,7 +52,7 @@ def cfg_train_global() -> DictConfig:
     return cfg
 
 
-@pytest.fixture(scope="package")
+@pytest.fixture(scope="session")
 def cfg_eval_global() -> DictConfig:
     """A pytest fixture for setting up a default Hydra DictConfig for evaluation.
 
@@ -52,7 +66,7 @@ def cfg_eval_global() -> DictConfig:
         with open_dict(cfg):
             cfg.paths.root_dir = str(rootutils.find_root(indicator=".project-root"))
             cfg.trainer.max_epochs = 1
-            cfg.trainer.limit_test_batches = 0.1
+            cfg.trainer.limit_test_batches = 2
             cfg.trainer.accelerator = "cpu"
             cfg.trainer.devices = 1
             cfg.compile = False

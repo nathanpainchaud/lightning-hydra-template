@@ -58,6 +58,7 @@ def test_optuna_sweep(tmp_path: Path) -> None:
         "-m",
         "hparams_search=mnist_optuna",
         "hydra.sweep.dir=" + str(tmp_path),
+        "hydra.sweeper.n_jobs=1",
         "hydra.sweeper.n_trials=10",
         "hydra.sweeper.sampler.n_startup_trials=5",
         "++trainer.fast_dev_run=true",
