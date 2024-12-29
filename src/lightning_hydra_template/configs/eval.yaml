@@ -20,9 +20,8 @@ ckpt_path: ???
 # TODO: Re-enable torch.compile when compatibility with Lightning/torchmetrics is fixed. See issues below:
 # Lightning: https://github.com/Lightning-AI/pytorch-lightning/issues/18123
 # torchmetrics: https://github.com/Lightning-AI/torchmetrics/issues/1780
-## compile model with pytorch 2.0
+# compile model with pytorch 2.0
 #compile:
-#  _target_: "torch.compile"
 #  # Capture the entire model in a single graph (`true`), or try to capture compilable regions of the model (`false`).
 #  # It is recommended for best performance to set this to `true` and fix graph breaks errors that may occur.
 #  # However, some operations force graph breaks, so default is `false` to ensure it works on all models.

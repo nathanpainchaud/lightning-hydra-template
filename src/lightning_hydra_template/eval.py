@@ -1,6 +1,7 @@
 from typing import Any
 
 import hydra
+import torch
 from lightning import LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
@@ -56,9 +57,10 @@ def evaluate(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
         log.info("Logging hyperparameters!")
         log_hyperparameters(object_dict)
 
-    if cfg.get("compile"):
+    if compile_cfg := cfg.get("compile"):
         log.info("Compiling model!")
-        model = hydra.utils.call(cfg.compile, model)
+        compile_kwargs = compile_cfg if isinstance(compile_cfg, DictConfig) else {}
+        model = torch.compile(model, **compile_kwargs)
 
     log.info("Starting testing!")
     trainer.test(model=model, datamodule=datamodule, ckpt_path=cfg.ckpt_path)

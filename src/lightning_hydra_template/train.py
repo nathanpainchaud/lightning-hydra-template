@@ -2,6 +2,7 @@ from typing import Any
 
 import hydra
 import lightning as L  # noqa: N812
+import torch
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
@@ -66,9 +67,10 @@ def train(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
         log.info("Logging hyperparameters!")
         log_hyperparameters(object_dict)
 
-    if cfg.get("compile"):
+    if compile_cfg := cfg.get("compile"):
         log.info("Compiling model!")
-        model = hydra.utils.call(cfg.compile, model)
+        compile_kwargs = compile_cfg if isinstance(compile_cfg, DictConfig) else {}
+        model = torch.compile(model, **compile_kwargs)
 
     if cfg.get("train"):
         log.info("Starting training!")
