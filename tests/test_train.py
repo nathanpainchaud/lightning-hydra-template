@@ -23,6 +23,24 @@ def test_train_fast_dev_run(cfg_train: DictConfig) -> None:
     train(cfg_train)
 
 
+@pytest.mark.skip(
+    reason="`torch.compile` is known to not be working currently with `LightningModule`s "
+    "(see https://github.com/Lightning-AI/pytorch-lightning/issues/18123#issuecomment-2501668731)"
+)
+def test_train_fast_dev_run_compile(cfg_train: DictConfig) -> None:
+    """Run for 1 train, val and test step with model compilation enabled.
+
+    Args:
+        cfg_train: A DictConfig containing a valid training configuration.
+    """
+    HydraConfig().set_config(cfg_train)
+    with open_dict(cfg_train):
+        cfg_train.trainer.fast_dev_run = True
+        cfg_train.trainer.accelerator = "cpu"
+        cfg_train.compile = True
+    train(cfg_train)
+
+
 @RunIf(min_gpus=1)
 def test_train_fast_dev_run_gpu(cfg_train: DictConfig) -> None:
     """Run for 1 train, val and test step on GPU.
