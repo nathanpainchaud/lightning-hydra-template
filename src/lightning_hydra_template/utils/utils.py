@@ -69,7 +69,7 @@ def register_omegaconf_resolvers() -> None:
 
 def pre_hydra_routine() -> None:
     """Configure environment and variables that must be set before running Hydra."""
-    rootutils.setup_root(__file__, indicator=".project-root")
+    rootutils.setup_root(__file__, indicator="pyproject.toml")
     # the setup_root above is equivalent to:
     # - setting up PROJECT_ROOT environment variable
     #       (which is used as a base for paths in "configs/paths/default.yaml")

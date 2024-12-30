@@ -129,8 +129,7 @@ The directory structure of new project looks like this:
 ├── .env.example              <- Example of file for storing private environment variables
 ├── .gitignore                <- List of files ignored by git
 ├── .pre-commit-config.yaml   <- Configuration of pre-commit hooks for code formatting
-├── .project-root             <- File for inferring the position of project root directory
-├── pyproject.toml            <- Project management and tools configuration
+├── pyproject.toml            <- Project management and tools configuration (also used to infer project root directory)
 ├── README.md
 └── uv.lock                   <- Lock file specifying the exact versions of dependencies in uv environment
 ```
