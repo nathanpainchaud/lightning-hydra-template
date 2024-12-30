@@ -1,9 +1,9 @@
 """This file prepares config fixtures for other tests."""
 
+import os
 from pathlib import Path
 
 import pytest
-import rootutils
 from hydra import compose, initialize
 from hydra.core.global_hydra import GlobalHydra
 from omegaconf import DictConfig, OmegaConf, open_dict
@@ -35,7 +35,8 @@ def cfg_train_global() -> DictConfig:
 
         # set defaults for all tests
         with open_dict(cfg):
-            cfg.paths.root_dir = str(rootutils.find_root(indicator=".project-root"))
+            # Use a shared data directory to speed up testing by avoiding re-downloading datasets
+            cfg.paths.data_dir = os.path.join(os.environ["PROJECT_ROOT"], "data")
             cfg.trainer.max_epochs = 1
             cfg.trainer.limit_train_batches = 5
             cfg.trainer.limit_val_batches = 2
@@ -64,7 +65,8 @@ def cfg_eval_global() -> DictConfig:
 
         # set defaults for all tests
         with open_dict(cfg):
-            cfg.paths.root_dir = str(rootutils.find_root(indicator=".project-root"))
+            # Use a shared data directory to speed up testing by avoiding re-downloading datasets
+            cfg.paths.data_dir = os.path.join(os.environ["PROJECT_ROOT"], "data")
             cfg.trainer.max_epochs = 1
             cfg.trainer.limit_test_batches = 2
             cfg.trainer.accelerator = "cpu"
@@ -95,7 +97,6 @@ def cfg_train(cfg_train_global: DictConfig, tmp_path: Path) -> DictConfig:
     cfg = cfg_train_global.copy()
 
     with open_dict(cfg):
-        cfg.paths.data_dir = str(tmp_path)
         cfg.paths.log_dir = str(tmp_path)
         cfg.paths.output_dir = str(tmp_path)
 
@@ -120,7 +121,6 @@ def cfg_eval(cfg_eval_global: DictConfig, tmp_path: Path) -> DictConfig:
     cfg = cfg_eval_global.copy()
 
     with open_dict(cfg):
-        cfg.paths.data_dir = str(tmp_path)
         cfg.paths.log_dir = str(tmp_path)
         cfg.paths.output_dir = str(tmp_path)
 
