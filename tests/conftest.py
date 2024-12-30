@@ -6,31 +6,50 @@ from pathlib import Path
 import pytest
 from hydra import compose, initialize
 from hydra.core.global_hydra import GlobalHydra
-from omegaconf import DictConfig, OmegaConf, open_dict
+from omegaconf import DictConfig, open_dict
 
 from lightning_hydra_template.utils import pre_hydra_routine
 
 
 @pytest.fixture(scope="session", autouse=True)
-def setup_hydra() -> None:
-    """Global auto-fixture that sets up global state for Hydra/OmegaConf for all tests."""
-    # Setup
+def setup_pre_hydra_routine() -> None:
+    """Auto-fixture to set up global state (e.g. root env var, Hydra/OmegaConf resolvers, etc.) for all tests."""
     pre_hydra_routine()
-
-    yield
-
-    # Teardown
-    OmegaConf.clear_resolvers()
 
 
 @pytest.fixture(scope="session")
-def cfg_train_global() -> DictConfig:
+def train_script() -> Path:
+    """A pytest fixture for the training script.
+
+    Returns:
+        The path to the training script.
+    """
+    return Path(os.environ["PROJECT_ROOT"], "src/lightning_hydra_template/train.py")
+
+
+@pytest.fixture(scope="session")
+def cfg_path() -> Path:
+    """A pytest fixture for the directory containing the Hydra configuration files.
+
+    Returns:
+        The path to the directory containing the Hydra configuration files, relative to the test directory.
+    """
+    test_dir = Path(__file__).parent
+    cfg_dir = Path(os.environ["PROJECT_ROOT"], "src/lightning_hydra_template/configs")
+    return cfg_dir.relative_to(test_dir, walk_up=True)
+
+
+@pytest.fixture(scope="session")
+def cfg_train_global(cfg_path: Path) -> DictConfig:
     """A pytest fixture for setting up a default Hydra DictConfig for training.
+
+    Args:
+        cfg_path: The directory containing the Hydra configuration files.
 
     Returns:
         A DictConfig object containing a default Hydra configuration for training.
     """
-    with initialize(version_base=None, config_path="../src/lightning_hydra_template/configs"):
+    with initialize(version_base=None, config_path=str(cfg_path)):
         cfg = compose(config_name="train.yaml", return_hydra_config=True, overrides=[])
 
         # set defaults for all tests
@@ -54,13 +73,16 @@ def cfg_train_global() -> DictConfig:
 
 
 @pytest.fixture(scope="session")
-def cfg_eval_global() -> DictConfig:
+def cfg_eval_global(cfg_path: Path) -> DictConfig:
     """A pytest fixture for setting up a default Hydra DictConfig for evaluation.
+
+    Args:
+        cfg_path: The directory containing the Hydra configuration files.
 
     Returns:
         A DictConfig containing a default Hydra configuration for evaluation.
     """
-    with initialize(version_base=None, config_path="../src/lightning_hydra_template/configs"):
+    with initialize(version_base=None, config_path=str(cfg_path)):
         cfg = compose(config_name="eval.yaml", return_hydra_config=True, overrides=["ckpt_path=."])
 
         # set defaults for all tests
