@@ -21,7 +21,7 @@ jobs:
         with:
           # It is considered best practice (by uv's developers) to pin to a specific uv version
           # https://docs.astral.sh/uv/guides/integration/github/#installation
-          version: 0.5.11
+          version: 0.5.14
 
       - name: Set up Python
         uses: actions/setup-python@v5
