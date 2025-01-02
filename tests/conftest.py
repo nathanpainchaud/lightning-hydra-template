@@ -18,16 +18,6 @@ def setup_pre_hydra_routine() -> None:
 
 
 @pytest.fixture(scope="session")
-def train_script() -> Path:
-    """A pytest fixture for the training script.
-
-    Returns:
-        The path to the training script.
-    """
-    return Path(os.environ["PROJECT_ROOT"], "src/lightning_hydra_template/train.py")
-
-
-@pytest.fixture(scope="session")
 def cfg_path() -> Path:
     """A pytest fixture for the directory containing the Hydra configuration files.
 
