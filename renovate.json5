@@ -1,0 +1,20 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:recommended"
+  ],
+  "pre-commit": {
+    enabled: true
+  },
+  pyenv: {
+    enabled: false
+  },
+  packageRules: [
+    {
+      // Set monthly schedule to reduce noise (since this hook is updated very frequently)
+      description: "Schedule renovatebot/pre-commit-hooks updates on the first day of the month before 4 AM.",
+      matchPackageNames: ["renovatebot/pre-commit-hooks"],
+      schedule: ["* 0-3 1 * *"]
+    }
+  ]
+}
