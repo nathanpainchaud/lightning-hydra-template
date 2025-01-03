@@ -2,15 +2,18 @@
 
 # Lightning-Hydra-Template
 
-[![python](https://img.shields.io/badge/-Python_3.12-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![python](https://img.shields.io/badge/-Python_3.12-blue?logo=python&logoColor=white)](https://docs.python.org/3.12/)
 [![pytorch](https://img.shields.io/badge/PyTorch_2.0+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
 [![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=lightning&logoColor=white)](https://lightning.ai/pytorch-lightning)
 [![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/)
+<br>
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![pre-commit](https://img.shields.io/badge/Pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 <br>
-[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml)
 [![code-quality](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml)
+[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml)
 [![codecov](https://codecov.io/github/nathanpainchaud/lightning-hydra-template/graph/badge.svg?token=8UUQ6FTYXQ)](https://codecov.io/github/nathanpainchaud/lightning-hydra-template)
 <br>
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/nathanpainchaud/lightning-hydra-template?tab=MIT-1-ov-file)
@@ -1174,15 +1177,22 @@ ______________________________________________________________________
 
 # Your Project Name
 
-[![pytorch](https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
-[![lightning](https://img.shields.io/badge/-Lightning-792ee5?logo=lightning&logoColor=white)](https://lightning.ai/pytorch-lightning)
-[![hydra](https://img.shields.io/badge/Config-Hydra-89b8cd)](https://hydra.cc/)
-[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
-[![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![python](https://img.shields.io/badge/-Python_3.12-blue?logo=python&logoColor=white)](https://docs.python.org/3.12/)
+[![pytorch](https://img.shields.io/badge/PyTorch_2.0+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
+[![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=lightning&logoColor=white)](https://lightning.ai/pytorch-lightning)
+[![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/)
 [![lightning-hydra-template](https://img.shields.io/badge/-Lightning--Hydra--Template-017F2F?style=flat&logo=github&labelColor=gray)](https://github.com/nathanpainchaud/lightning-hydra-template)
 <br>
-[![Paper](http://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg)](https://www.nature.com/articles/nature14539)
-[![Conference](http://img.shields.io/badge/AnyConference-year-4b44ce.svg)](https://papers.nips.cc/paper/2020)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![pre-commit](https://img.shields.io/badge/Pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
+# Publications
+
+[![Journal](http://img.shields.io/badge/Journal-year-4b44ce.svg)](https://doi.org/10.1038/nature14539)
+
+[![Conference](http://img.shields.io/badge/Conference-year-4b44ce.svg)](https://papers.nips.cc/paper/7181-attention-is-all-you-need)
+[![Paper](http://img.shields.io/badge/paper-arxiv.1706.03762-B31B1B.svg)](https://arxiv.org/abs/1706.03762)
 
 </div>
 
