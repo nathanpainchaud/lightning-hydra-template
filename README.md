@@ -367,7 +367,7 @@ python src/lightning_hydra_template/train.py -m hparams_search=mnist_optuna expe
 > [!NOTE]
 > Using [Optuna Sweeper](https://hydra.cc/docs/next/plugins/optuna_sweeper) doesn't require you to add any boilerplate to your code, everything is defined in a [single config file](src/lightning_hydra_template/configs/hparams_search/mnist_optuna.yaml).
 
-> [!Warning]
+> [!WARNING]
 > Optuna sweeps are not failure-resistant (if one job crashes then the whole sweep crashes).
 
 </details>
