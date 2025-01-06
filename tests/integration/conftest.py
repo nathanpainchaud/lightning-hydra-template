@@ -11,13 +11,13 @@ from omegaconf import DictConfig, open_dict
 from lightning_hydra_template.utils import pre_hydra_routine
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="package", autouse=True)
 def setup_pre_hydra_routine() -> None:
     """Auto-fixture to set up global state (e.g. root env var, Hydra/OmegaConf resolvers, etc.) for all tests."""
     pre_hydra_routine()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="package")
 def cfg_path() -> Path:
     """A pytest fixture for the directory containing the Hydra configuration files.
 
@@ -29,7 +29,7 @@ def cfg_path() -> Path:
     return cfg_dir.relative_to(test_dir, walk_up=True)
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="package")
 def cfg_train_global(cfg_path: Path) -> DictConfig:
     """A pytest fixture for setting up a default Hydra DictConfig for training.
 
@@ -62,7 +62,7 @@ def cfg_train_global(cfg_path: Path) -> DictConfig:
     return cfg
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="package")
 def cfg_eval_global(cfg_path: Path) -> DictConfig:
     """A pytest fixture for setting up a default Hydra DictConfig for evaluation.
 

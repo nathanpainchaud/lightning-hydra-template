@@ -436,8 +436,11 @@ pre-commit autoupdate
 # run all tests
 pytest
 
-# run tests from specific file
-pytest tests/test_train.py
+# run a test package
+pytest tests/integration
+
+# run tests from a specific file
+pytest tests/integration/test_train.py
 
 # run all tests except the ones marked as slow
 pytest -k "not slow"
@@ -733,8 +736,11 @@ Template comes with generic tests implemented with `pytest`.
 # run all tests
 pytest
 
-# run tests from specific file
-pytest tests/test_train.py
+# run a test package
+pytest tests/integration
+
+# run tests from a specific file
+pytest tests/integration/test_train.py
 
 # run all tests except the ones marked as slow
 pytest -k "not slow"
