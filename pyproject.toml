@@ -135,11 +135,14 @@ markers = [
 minversion = "6.0"
 testpaths = "tests/"
 
+[tool.coverage.run]
+branch = true
+
 [tool.coverage.report]
 exclude_lines = [
     "pragma: nocover",
+    "raise AssertionError",
     "raise NotImplementedError",
-    "raise NotImplementedError()",
     "if __name__ == .__main__.:",
 ]
 

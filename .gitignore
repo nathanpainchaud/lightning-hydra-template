@@ -28,6 +28,15 @@ wheels/
 .spyderproject
 .spyproject
 
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
 # Data & Models
 *.h5
 *.tar
