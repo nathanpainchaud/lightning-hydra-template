@@ -22,10 +22,7 @@ def test_train_fast_dev_run(cfg_train: DictConfig) -> None:
     train(cfg_train)
 
 
-@pytest.mark.skip(
-    reason="`torch.compile` is known to not be working currently with `LightningModule`s "
-    "(see https://github.com/Lightning-AI/pytorch-lightning/issues/18123#issuecomment-2501668731)"
-)
+@pytest.mark.slow
 def test_train_fast_dev_run_compile(cfg_train: DictConfig) -> None:
     """Run for 1 train, val and test step with model compilation enabled.
 
