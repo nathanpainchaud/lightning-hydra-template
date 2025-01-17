@@ -19,8 +19,8 @@ def train_script() -> Path:
 
 
 @pytest.fixture
-def logging_overrides(tmp_path: Path) -> list[str]:
-    """A pytest fixture for the overrides to use to configure logging during the tests.
+def testing_overrides(tmp_path: Path) -> list[str]:
+    """A pytest fixture for the overrides to use for tests (e.g. logging, accelerator, compilation, etc.).
 
     Returns:
         A list of configuration overrides.
@@ -29,54 +29,55 @@ def logging_overrides(tmp_path: Path) -> list[str]:
         "hydra.run.dir=" + str(tmp_path),
         "hydra.sweep.dir=" + str(tmp_path),
         "logger=[]",
+        "compile=false",  # Disable compilation to speed up tests
     ]
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_experiments(train_script: Path, logging_overrides: list[str]) -> None:
+def test_experiments(train_script: Path, testing_overrides) -> None:
     """Test running all available experiment configs with `fast_dev_run=True`.
 
     Args:
         train_script: The path of the script to invoke.
-        logging_overrides: The logging overrides to use.
+        testing_overrides: The generic overrides to suitably configure tests.
     """
     command = [
         str(train_script),
         "-m",
         "experiment=glob(*)",
         "++trainer.fast_dev_run=true",
-    ] + logging_overrides
+    ] + testing_overrides
     run_sh_command(command)
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_hydra_sweep(train_script: Path, logging_overrides: list[str]) -> None:
+def test_hydra_sweep(train_script: Path, testing_overrides) -> None:
     """Test default hydra sweep.
 
     Args:
         train_script: The path of the script to invoke.
-        logging_overrides: The logging overrides to use.
+        testing_overrides: The generic overrides to suitably configure tests.
     """
     command = [
         str(train_script),
         "-m",
         "model.optimizer.lr=0.005,0.01",
         "++trainer.fast_dev_run=true",
-    ] + logging_overrides
+    ] + testing_overrides
 
     run_sh_command(command)
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_optuna_sweep(train_script: Path, logging_overrides: list[str]) -> None:
+def test_optuna_sweep(train_script: Path, testing_overrides) -> None:
     """Test Optuna hyperparam sweeping.
 
     Args:
         train_script: The path of the script to invoke.
-        logging_overrides: The logging overrides to use.
+        testing_overrides: The generic overrides to suitably configure tests.
     """
     command = [
         str(train_script),
@@ -86,22 +87,22 @@ def test_optuna_sweep(train_script: Path, logging_overrides: list[str]) -> None:
         "hydra.sweeper.n_trials=10",
         "hydra.sweeper.sampler.n_startup_trials=5",
         "++trainer.fast_dev_run=true",
-    ] + logging_overrides
+    ] + testing_overrides
     run_sh_command(command)
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_serial_sweep(train_script: Path, logging_overrides: list[str]) -> None:
+def test_serial_sweep(train_script: Path, testing_overrides) -> None:
     """Test single-process serial sweeping.
 
     Args:
         train_script: The path of the script to invoke.
-        logging_overrides: The logging overrides to use.
+        testing_overrides: The generic overrides to suitably configure tests.
     """
     command = [
         str(train_script),
         "serial_sweeper=seeds",
         "++trainer.fast_dev_run=true",
-    ] + logging_overrides
+    ] + testing_overrides
     run_sh_command(command)
