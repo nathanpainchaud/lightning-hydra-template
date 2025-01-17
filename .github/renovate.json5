@@ -1,33 +1,44 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "config:recommended"
+    'config:recommended',
   ],
-  "pre-commit": {
-    enabled: true
+  'pre-commit': {
+    enabled: true,
   },
   pyenv: {
-    enabled: false
+    enabled: false,
   },
   packageRules: [
     {
       // Group PyTorch and domain libraries
-      groupName: "PyTorch",
-      matchPackageNames: ["torch", "torchvision"],
+      groupName: 'PyTorch',
+      matchPackageNames: [
+        'torch',
+        'torchvision',
+      ],
     },
     {
       // Set monthly schedule to reduce noise (since this hook is updated very frequently)
-      description: "Schedule renovatebot/pre-commit-hooks updates on the first day of the month before 4 AM.",
-      matchPackageNames: ["renovatebot/pre-commit-hooks"],
-      schedule: ["* 0-3 1 * *"]
+      description: 'Schedule renovatebot/pre-commit-hooks updates on the first day of the month before 4 AM.',
+      matchPackageNames: [
+        'renovatebot/pre-commit-hooks',
+      ],
+      schedule: [
+        '* 0-3 1 * *',
+      ],
     },
     {
       // Ignore patch bumps to reduce noise (since this hook receives frequent patch bumps)
       // This also mirrors the version range in `pyproject.toml`, making the hook consistent with dev dependencies
-      description: "Disable patch bumps for ruff pre-commit hook.",
-      matchPackageNames: ["astral-sh/ruff-pre-commit"],
-      updateTypes: ["patch"],
-      enabled: false
-    }
-  ]
+      description: 'Disable patch bumps for ruff pre-commit hook.',
+      matchPackageNames: [
+        'astral-sh/ruff-pre-commit',
+      ],
+      matchUpdateTypes: [
+        'patch',
+      ],
+      enabled: false,
+    },
+  ],
 }
