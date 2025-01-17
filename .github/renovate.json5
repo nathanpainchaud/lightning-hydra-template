@@ -11,6 +11,11 @@
   },
   packageRules: [
     {
+      // Group PyTorch and domain libraries
+      groupName: "PyTorch",
+      matchPackageNames: ["torch", "torchvision"],
+    },
+    {
       // Set monthly schedule to reduce noise (since this hook is updated very frequently)
       description: "Schedule renovatebot/pre-commit-hooks updates on the first day of the month before 4 AM.",
       matchPackageNames: ["renovatebot/pre-commit-hooks"],
