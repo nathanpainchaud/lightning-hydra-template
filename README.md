@@ -13,7 +13,7 @@
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 <br>
 [![code-quality](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/code-quality-main.yaml)
-[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/run-pytest.yaml)
+[![tests](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/tests.yaml/badge.svg)](https://github.com/nathanpainchaud/lightning-hydra-template/actions/workflows/tests.yaml)
 [![codecov](https://codecov.io/github/nathanpainchaud/lightning-hydra-template/graph/badge.svg?token=8UUQ6FTYXQ)](https://codecov.io/github/nathanpainchaud/lightning-hydra-template)
 <br>
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/nathanpainchaud/lightning-hydra-template?tab=MIT-1-ov-file)
