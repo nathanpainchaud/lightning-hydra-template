@@ -63,7 +63,11 @@ jobs:
         run: uv sync --extra cpu
 
       - name: Run tests and collect coverage
-        run: uv run --no-sync pytest --cov --cov-report=xml
+        # Explicitly point to pyproject.toml to work around a `coverage` limitation where child processes created by
+        # tests do not inherit the coverage configuration from pyproject.toml if it is discovered implicitly, i.e. not
+        # specified on the command line.
+        # Limitation is described here: https://github.com/nedbat/coveragepy/issues/512
+        run: uv run --no-sync pytest --cov --cov-report=xml --cov-config=pyproject.toml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
