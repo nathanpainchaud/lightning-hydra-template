@@ -49,7 +49,7 @@ repos:
 
   # md formatting
   - repo: https://github.com/hukkin/mdformat
-    rev: 0.7.21
+    rev: 0.7.22
     hooks:
       - id: mdformat
         args: ["--number"]
