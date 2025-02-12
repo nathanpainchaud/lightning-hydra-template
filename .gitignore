@@ -43,7 +43,7 @@ coverage.xml
 *.tar.gz
 
 # Lightning-Hydra-Template
-src/lightning_hydra_template/configs/local/default.yaml
+src/**/configs/local/
 /data/
 /logs/
 .env
