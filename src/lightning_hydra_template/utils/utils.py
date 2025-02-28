@@ -1,4 +1,3 @@
-import builtins
 import copy
 import importlib
 import itertools
@@ -47,24 +46,11 @@ def register_omegaconf_resolvers() -> None:
                 log.warning("Assertion of Hydra configuration failed!")
         return condition
 
-    def _cast(obj: Any, cast_type: str | None = None) -> Any:
-        """Defines a wrapper for basic operators, with the option to cast result to a type."""
-        if cast_type is not None:
-            cast_cls = (
-                getattr(builtins, cast_type)
-                if "." not in cast_type  # cast_type is assumed to be a built-in type
-                else import_from_module(cast_type)  # cast_type is assumed to be a custom type
-            )
-            obj = cast_cls(obj)
-        return obj
-
     OmegaConf.register_new_resolver(
         "assert", lambda condition, throw_on_fail=True: _assert(condition, throw_on_fail=throw_on_fail)
     )
-    OmegaConf.register_new_resolver("cast", lambda obj, cast_type: _cast(obj, cast_type))
     OmegaConf.register_new_resolver("op", lambda op, *args: getattr(operator, op)(*args))
     OmegaConf.register_new_resolver("call", lambda fn_path, *args: import_from_module(fn_path)(*args))
-    OmegaConf.register_new_resolver("call.attr", lambda obj, method_name, *args: getattr(obj, method_name)(*args))
 
 
 def pre_hydra_routine() -> None:
