@@ -1,0 +1,9 @@
+# @package _global_
+
+# example of config file for storing private and user specific environment variables, like keys or system paths
+# rename it to "default.yaml" (anything except 'example.yaml' is excluded from version control by default)
+# hydra allows you to reference variables in .yaml configs with special syntax: ${oc.env:MY_VAR}
+hydra:
+  job:
+    env_set:
+      MY_VAR: "/home/user/my/system/path"
