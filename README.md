@@ -129,7 +129,6 @@ The directory structure of new project looks like this:
 │
 ├── tests                     <- Tests of any kind
 │
-├── .env.example              <- Example of file for storing private environment variables
 ├── .gitignore                <- List of files ignored by git
 ├── .pre-commit-config.yaml   <- Configuration of pre-commit hooks for code formatting
 ├── pyproject.toml            <- Project management and tools configuration (also used to infer project root directory)
@@ -953,20 +952,25 @@ pre-commit autoupdate
 </details>
 
 <details>
-<summary><b>Set private environment variables in .env file</b></summary>
+<summary><b>Set private environment variables in local config files</b></summary>
 
 System specific variables (e.g. absolute paths to datasets) should not be under version control or it will result in conflict between different users. Your private keys also shouldn't be versioned since you don't want them to be leaked.<br>
 
-Template contains `.env.example` file, which serves as an example. Create a new file called `.env` (this name is excluded from version control in .gitignore).
-You should use it for storing environment variables like this:
+Template contains [`configs/local/example.yaml`](src/lightning_hydra_template/configs/local/example.yaml) file, which serves as an example.
+Create a new file called `configs/local/default.yaml` (all `local/*` configs except for `example.yaml` are excluded from version control in the [`.gitignore`](.gitignore)).
+You can use it for declaring environment variables like this:
 
+```yaml
+# @package _global_
+hydra:
+  job:
+    env_set:
+      MY_VAR: "/home/user/my/system/path"
 ```
-MY_VAR=/home/user/my_system_path
-```
 
-All variables from `.env` are loaded in `train.py` automatically.
+Hydra automatically sets the keys under `hydra.job.env_set` as environment variables when launching jobs.
 
-Hydra allows you to reference any env variable in `.yaml` configs like this:
+Hydra also allows you to reference any env variable in `.yaml` configs like this:
 
 ```yaml
 path_to_data: ${oc.env:MY_VAR}
