@@ -151,36 +151,44 @@ line-length = 120
 
 [tool.ruff.lint]
 select = [
-    # pycodestyle
-    "E",
-    "W",
-    # Pyflakes
-    "F",
-    # pydocstyle
-    "D",
-    # pyupgrade
-    "UP",
-    # flake8-bandit
-    "S",
-    # flake8-bugbear
-    "B",
-    # flake8-simplify
-    "SIM",
-    # isort
-    "I",
-    # pep8-naming
-    "N",
-    # Pylint (except Refactor (R))
-    "PLC",
-    "PLE",
+    "A",    # see: https://pypi.org/project/flake8-builtins
+    "ANN",  # see: https://pypi.org/project/flake8-annotations
+    "B",    # see: https://pypi.org/project/flake8-bugbear
+    "C4",   # see: https://pypi.org/project/flake8-comprehensions
+    "D",    # see: https://pypi.org/project/pydocstyle
+    "E",    # see: https://pypi.org/project/pycodestyle
+    "EXE",  # see: https://pypi.org/project/flake8-executable
+    "F",    # see: https://pypi.org/project/pyflakes
+    "I",    # see: https://pypi.org/project/isort/
+    "ISC",  # see: https://pypi.org/project/flake8-implicit-str-concat
+    "N",    # see: https://pypi.org/project/pep8-naming
+    "PERF", # see: https://pypi.org/project/perflint/
+    "PIE",  # see: https://pypi.org/project/flake8-pie
+    "PLC",  # see: https://pypi.org/project/pylint/
+    "PLE",  # all Pylint errors except Refactor (R)
     "PLW",
+    "PT",   # see: https://pypi.org/project/flake8-pytest-style
+    "Q",    # see: https://pypi.org/project/flake8-quotes
+    "RET",  # see: https://pypi.org/project/flake8-return
+    "RUF",  # Ruff-specific rules
+    "S",    # see: https://pypi.org/project/flake8-bandit
+    "SIM",  # see: https://pypi.org/project/flake8-simplify
+    "T10",  # see: https://pypi.org/project/flake8-debugger
+    "TID",  # see: https://pypi.org/project/flake8-tidy-imports/
+    "UP",   # see: https://docs.astral.sh/ruff/rules/#pyupgrade-up
+    "W",    # see: https://pypi.org/project/pycodestyle
 ]
 ignore = [
-    # Allow use of assert
-    "S101",
+    # Do not require type hints for *args and **kwargs
+    "ANN002",
+    "ANN003",
+    # Allow use of Any type
+    "ANN401",
     # Do not require docstrings in __init__ and modules
     "D100",
     "D104",
+    # Allow use of assert
+    "S101",
 ]
 
 [tool.ruff.lint.pydocstyle]

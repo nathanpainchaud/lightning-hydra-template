@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from ..helpers.run import RunIf, run_sh_command
+from ..helpers.run import RunIf, run_sh_command  # noqa: TID252
 
 
 @pytest.fixture(scope="module")
@@ -35,7 +35,7 @@ def testing_overrides(tmp_path: Path) -> list[str]:
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_experiments(train_script: Path, testing_overrides) -> None:
+def test_experiments(train_script: Path, testing_overrides: list[str]) -> None:
     """Test running all available experiment configs with `fast_dev_run=True`.
 
     Args:
@@ -47,13 +47,14 @@ def test_experiments(train_script: Path, testing_overrides) -> None:
         "-m",
         "experiment=glob(*)",
         "++trainer.fast_dev_run=true",
-    ] + testing_overrides
+        *testing_overrides,
+    ]
     run_sh_command(command)
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_hydra_sweep(train_script: Path, testing_overrides) -> None:
+def test_hydra_sweep(train_script: Path, testing_overrides: list[str]) -> None:
     """Test default hydra sweep.
 
     Args:
@@ -65,14 +66,15 @@ def test_hydra_sweep(train_script: Path, testing_overrides) -> None:
         "-m",
         "model.optimizer.lr=0.005,0.01",
         "++trainer.fast_dev_run=true",
-    ] + testing_overrides
+        *testing_overrides,
+    ]
 
     run_sh_command(command)
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_optuna_sweep(train_script: Path, testing_overrides) -> None:
+def test_optuna_sweep(train_script: Path, testing_overrides: list[str]) -> None:
     """Test Optuna hyperparam sweeping.
 
     Args:
@@ -87,13 +89,14 @@ def test_optuna_sweep(train_script: Path, testing_overrides) -> None:
         "hydra.sweeper.n_trials=10",
         "hydra.sweeper.sampler.n_startup_trials=5",
         "++trainer.fast_dev_run=true",
-    ] + testing_overrides
+        *testing_overrides,
+    ]
     run_sh_command(command)
 
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_serial_sweep(train_script: Path, testing_overrides) -> None:
+def test_serial_sweep(train_script: Path, testing_overrides: list[str]) -> None:
     """Test single-process serial sweeping.
 
     Args:
@@ -104,5 +107,6 @@ def test_serial_sweep(train_script: Path, testing_overrides) -> None:
         str(train_script),
         "serial_sweeper=seeds",
         "++trainer.fast_dev_run=true",
-    ] + testing_overrides
+        *testing_overrides,
+    ]
     run_sh_command(command)

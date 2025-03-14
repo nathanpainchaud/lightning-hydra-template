@@ -93,7 +93,7 @@ def cfg_eval_global(cfg_path: Path) -> DictConfig:
     return cfg
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def cfg_train(cfg_train_global: DictConfig, tmp_path: Path) -> DictConfig:
     """Modifies the `cfg_train_global()` fixture to use a temporary logging path `tmp_path`.
 
@@ -117,7 +117,7 @@ def cfg_train(cfg_train_global: DictConfig, tmp_path: Path) -> DictConfig:
     GlobalHydra.instance().clear()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def cfg_eval(cfg_eval_global: DictConfig, tmp_path: Path) -> DictConfig:
     """Modifies the `cfg_eval_global()` fixture to use a temporary logging path `tmp_path`.
 

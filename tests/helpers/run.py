@@ -5,7 +5,6 @@ from typing import Any
 import pytest
 import torch
 from packaging.version import Version
-from pytest import MarkDecorator
 
 from .package_available import (
     _COMET_AVAILABLE,
@@ -53,7 +52,7 @@ class RunIf:
         comet: bool = False,
         mlflow: bool = False,
         **kwargs: dict[Any, Any],
-    ) -> MarkDecorator:
+    ) -> pytest.MarkDecorator:
         """Creates a new `@RunIf` `MarkDecorator` decorator.
 
         Args:

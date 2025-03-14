@@ -42,8 +42,7 @@ def register_omegaconf_resolvers() -> None:
         if not condition:
             if throw_on_fail:
                 raise AssertionError("Assertion of Hydra configuration failed!")
-            else:
-                log.warning("Assertion of Hydra configuration failed!")
+            log.warning("Assertion of Hydra configuration failed!")
         return condition
 
     OmegaConf.register_new_resolver(
@@ -277,9 +276,8 @@ def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Cal
             # Reduce the return values from the sweep to a single value
             return call(serial_sweeper_cfg.reduce, returns)
 
-        else:
-            # Otherwise, run the task function normally
-            return task_func(cfg)
+        # Otherwise, run the task function normally
+        return task_func(cfg)
 
     return wrap
 

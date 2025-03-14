@@ -184,7 +184,6 @@ class MNISTDataModule(LightningDataModule):
         Args:
             stage: The stage being torn down. Either `"fit"`, `"validate"`, `"test"`, or `"predict"`. Defaults to None.
         """
-        pass
 
     def state_dict(self) -> dict[Any, Any]:
         """Called when saving a checkpoint. Implement to generate and save the datamodule state.
@@ -200,4 +199,3 @@ class MNISTDataModule(LightningDataModule):
         Args:
             state_dict: The datamodule state returned by `self.state_dict()`.
         """
-        pass

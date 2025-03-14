@@ -6,7 +6,7 @@ from omegaconf import DictConfig, open_dict
 
 from lightning_hydra_template.train import train
 
-from ..helpers.run import RunIf
+from ..helpers.run import RunIf  # noqa: TID252
 
 
 def test_train_fast_dev_run(cfg_train: DictConfig) -> None:

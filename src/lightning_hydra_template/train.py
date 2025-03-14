@@ -113,11 +113,8 @@ def hydra_main(cfg: DictConfig) -> float | None:
     # train the model
     metric_dict, _ = train(cfg)
 
-    # safely retrieve metric value for hydra-based hyperparameter optimization
-    metric_value = get_metric_value(metric_dict=metric_dict, metric_name=cfg.get("optimized_metric"))
-
-    # return optimized metric
-    return metric_value
+    # safely retrieve optimized metric value for hydra-based hyperparameter optimization
+    return get_metric_value(metric_dict=metric_dict, metric_name=cfg.get("optimized_metric"))
 
 
 def main() -> float | None:
