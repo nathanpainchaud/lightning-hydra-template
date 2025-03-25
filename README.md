@@ -820,11 +820,11 @@ This approach doesn't support resuming interrupted search and advanced technique
 
 ## Continuous Integration
 
-Template comes with CI workflows implemented in Github Actions:
+Template comes with CI workflows implemented in GitHub workflows:
 
-- `.github/workflows/code-quality-main.yaml`: running pre-commits on main branch for all files
-- `.github/workflows/code-quality-pr.yaml`: running pre-commits on pull requests for modified files only
-- `.github/workflows/run-pytest.yaml`: running all tests with pytest and uploading coverage report to Codecov
+- [`Code Quality Main`](.github/workflows/code-quality-main.yaml): running pre-commits on main branch for all files
+- [`Code Quality PR`](.github/workflows/code-quality-pr.yaml): running pre-commits on pull requests for modified files only
+- [`Tests`](.github/workflows/tests.yaml): running all tests with pytest and uploading coverage report to Codecov
 
 <br>
 
