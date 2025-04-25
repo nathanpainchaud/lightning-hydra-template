@@ -147,7 +147,7 @@ cd lightning-hydra-template
 
 # use uv to create a virtual environment and install the project and its dependencies
 # you must specify as extra the desired compute platform for PyTorch (i.e. CPU/CUDA)
-# Supported values are: cpu, cu126, cu124, cu118
+# Supported values are: cpu, cu128, cu126, cu118
 # [OPTIONAL] you can also specify other extras for more functionalities
 # Supported values are: wandb (for W&B integration)
 uv sync --extra cpu --extra wandb
@@ -1237,7 +1237,7 @@ What it does
    cd your-repo-name
    ```
 2. Create a virtual environment and install the project and its dependencies. You must specify as an extra the desired
-   compute platform for PyTorch (i.e. CPU/CUDA). Supported values are: `cpu`, `cu126`, `cu124`, `cu118`.
+   compute platform for PyTorch (i.e. CPU/CUDA). Supported values are: `cpu`, `cu128`, `cu126`, `cu118`.
    ```bash
    # e.g. to install the project with the PyTorch version built for CPU
    uv sync --extra cpu
