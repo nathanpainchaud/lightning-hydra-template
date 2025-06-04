@@ -328,18 +328,6 @@ wheels = [
 ]
 
 [[package]]
-name = "docker-pycreds"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c5/e6/d1f6c00b7221e2d7c4b470132c931325c8b22c51ca62417e300f5ce16009/docker-pycreds-0.4.0.tar.gz", hash = "sha256:6ce3270bcaf404cc4c3e27e4b6c70d3521deae82fb508767870fdbf772d584d4", size = 8754, upload-time = "2018-11-29T03:26:50.996Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f5/e8/f6bd1eee09314e7e6dee49cbe2c5e22314ccdb38db16c9fc72d2fa80d054/docker_pycreds-0.4.0-py2.py3-none-any.whl", hash = "sha256:7266112468627868005106ec19cd0d722702d2b7d5912a28e19b826c3d37af49", size = 8982, upload-time = "2018-11-29T03:26:49.575Z" },
-]
-
-[[package]]
 name = "filelock"
 version = "3.16.1"
 source = { registry = "https://pypi.org/simple" }
@@ -653,7 +641,7 @@ requires-dist = [
     { name = "torchvision", marker = "extra == 'cu118'", specifier = ">=0.22,<0.23", index = "https://download.pytorch.org/whl/cu118", conflict = { package = "lightning-hydra-template", extra = "cu118" } },
     { name = "torchvision", marker = "extra == 'cu126'", specifier = ">=0.22,<0.23", index = "https://download.pytorch.org/whl/cu126", conflict = { package = "lightning-hydra-template", extra = "cu126" } },
     { name = "torchvision", marker = "extra == 'cu128'", specifier = ">=0.22,<0.23", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "lightning-hydra-template", extra = "cu128" } },
-    { name = "wandb", marker = "extra == 'wandb'", specifier = ">=0.19.3,<0.20" },
+    { name = "wandb", marker = "extra == 'wandb'", specifier = ">=0.20,<0.21" },
 ]
 provides-extras = ["wandb", "cpu", "cu118", "cu126", "cu128"]
 
@@ -2080,15 +2068,6 @@ wheels = [
 ]
 
 [[package]]
-name = "six"
-version = "1.17.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
-]
-
-[[package]]
 name = "smmap"
 version = "5.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -2292,14 +2271,13 @@ dependencies = [
     { name = "typing-extensions", marker = "(sys_platform != 'darwin' and extra == 'extra-24-lightning-hydra-template-cpu') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra == 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu128')" },
 ]
 wheels = [
-    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl" },
+    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:a845b6f3bda3c40f736847dede95d8bfec81fb7e11458cd25973ba13542cf1f6" },
     { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:64123c05615e27368c7a7816f6e39c6d219998693beabde0b0b9cedf91b5ed8b" },
     { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:69e25c973bdd7ea24b0fa9f9792114950afaeb8f819e5723819b923f50989175" },
-    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp312-cp312-win_arm64.whl", hash = "sha256:1d7a6f33868276770a657beec7f77c7726b4da9d0739eff1b3ae64cc9a09d8e3" },
-    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl" },
+    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:addf9107939522ffb3b60d2900fee838a77dbe098e2643e01164f46f8612f9c0" },
     { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:3b09aa2c8d30fa567a8d13270fbf9af7ee472fdfafbc7dfdc87c607bf46001f7" },
     { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:99ca8f4cb53484c45bb668657069c17139c07367ea20ddef2c0ce8412f42da2f" },
-    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313t-manylinux_2_28_aarch64.whl" },
+    { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:1bc9e6a4e2463582ae020d76ea0753ed9c84526e235089414d25c2c6d16ae866" },
     { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:7b31fa6b1d026542b4ed8ce7ec7ee5489413cd9bd6479c14c5ad559c15d92e3b" },
     { url = "https://download.pytorch.org/whl/cpu/torch-2.7.0%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:b42cfe122faed26c6ffee1c97d64e6a1f72a081b64d457a2c97244c1497f4adc" },
 ]
@@ -2417,13 +2395,13 @@ dependencies = [
     { name = "typing-extensions", marker = "(extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra != 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu128')" },
 ]
 wheels = [
-    { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp312-cp312-manylinux_2_28_aarch64.whl" },
+    { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:6bba7dca5d9a729f1e8e9befb98055498e551efaf5ed034824c168b560afc1ac" },
     { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:7c0f08d1c44a02abad389373dddfce75904b969a410be2f4e5109483dd3dc0ce" },
     { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp312-cp312-win_amd64.whl", hash = "sha256:1704e5dd66c9221e4e8b6ae2d80cbf54e129571e643f5fa9ca78cc6d2096403a" },
-    { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313-manylinux_2_28_aarch64.whl" },
+    { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:633f35e8b1b1f640ef5f8a98dbd84f19b548222ce7ba8f017fe47ce6badc106a" },
     { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:d2f69f909da5dc52113ec66a851d62079f3d52c83184cf64beebdf12ca2f705c" },
     { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313-win_amd64.whl", hash = "sha256:58c749f52ddc9098155c77d6c74153bb13d8978fd6e1063b5d7b41d4644f5af5" },
-    { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313t-manylinux_2_28_aarch64.whl" },
+    { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:fa05ac6ebed4777de7a5eff398c1f17b697c02422516748ce66a8151873e5a0e" },
     { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:78e13c26c38ae92d6841cf9ce760d7e9d52bca3e3183de371812e84274b054dc" },
     { url = "https://download.pytorch.org/whl/cu128/torch-2.7.0%2Bcu128-cp313-cp313t-win_amd64.whl", hash = "sha256:3559e98be824c2b12ab807319cd61c6174d73a524c9961317de8e8a44133c5c5" },
 ]
@@ -2661,12 +2639,12 @@ wheels = [
 
 [[package]]
 name = "wandb"
-version = "0.19.3"
+version = "0.20.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
-    { name = "docker-pycreds" },
     { name = "gitpython" },
+    { name = "packaging" },
     { name = "platformdirs" },
     { name = "protobuf" },
     { name = "psutil" },
@@ -2675,20 +2653,20 @@ dependencies = [
     { name = "requests" },
     { name = "sentry-sdk" },
     { name = "setproctitle" },
-    { name = "setuptools" },
+    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8a/b5/ac38bf2445847c54b89d221951851fc21e9cf02a683b70127e9a18f61860/wandb-0.19.3.tar.gz", hash = "sha256:a4e14e4d81281ea7b67828358cb3ef79dcadf82fc09abb345c53cd6fa37de8ea", size = 38874802, upload-time = "2025-01-13T23:40:38.22Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/de/2d/41eaa1bf1159e9817465658c81573f259dd477148470e651d1eac703ed31/wandb-0.20.0.tar.gz", hash = "sha256:e703906f4f49e0cdf4285b9e042cbeb1a1790900ab64069430ad8207bf2118ef", size = 40319050, upload-time = "2025-06-03T20:39:16.507Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/0c/5580c207aa20615d00fe06c9d2bc933175ae1952dbd35132adacb35fa695/wandb-0.19.3-py3-none-any.whl", hash = "sha256:632352e8a9d6184328d638e8b6bcfd3a315d3c0bfd49a875948dd34633df6306", size = 6321413, upload-time = "2025-01-13T23:39:46.281Z" },
-    { url = "https://files.pythonhosted.org/packages/81/fe/0032be4b895efc28c85766840ef791d58a77306ded77fbcaff5b345cb3a5/wandb-0.19.3-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:cdc882695819b16b9761f3344aabf85c4b98d8e042b4b1d413df57582735dc18", size = 20160098, upload-time = "2025-01-13T23:39:51.309Z" },
-    { url = "https://files.pythonhosted.org/packages/3e/9d/8fac511b78fb9b661c66e8fe5f821f44dd4af10c7faffd1f06be42d8ab08/wandb-0.19.3-py3-none-macosx_11_0_arm64.whl", hash = "sha256:75ab20f3df0e02ad690c01a0e07650baa2e1df8862faf603d9d6b35e6b033a46", size = 19373096, upload-time = "2025-01-13T23:39:56.357Z" },
-    { url = "https://files.pythonhosted.org/packages/db/57/f6e3be5588fd57a367d00b8c6ade0c4ae7b87861f3424d2f67e827296b76/wandb-0.19.3-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:a66d0e47ea317cd650c8c0a9aba13444261c4626cd6e40da0213c79e18c4a746", size = 20167707, upload-time = "2025-01-13T23:40:01.37Z" },
-    { url = "https://files.pythonhosted.org/packages/66/19/9b3561e7f3f2ada0f8e2681175bb5a40cb55cd507ef0e8d7d54d2148203b/wandb-0.19.3-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:67425f1d29f304909f8d25292ae916cf095e200cf38848bf4fbb8fefc33f37d8", size = 19059367, upload-time = "2025-01-13T23:40:05.049Z" },
-    { url = "https://files.pythonhosted.org/packages/9d/28/901b1b66ebeafdeac861fc624853279db46aeee83fab91124d463f36742b/wandb-0.19.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b8c9b02abeabf4398628e10c4aa4946e081899892c56d60f30680f929c67ddb3", size = 20341114, upload-time = "2025-01-13T23:40:10.358Z" },
-    { url = "https://files.pythonhosted.org/packages/4b/4d/f63cf32062f406c528f6b7be3a65cf7d72626f2a73f31b3155474d0357bc/wandb-0.19.3-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:5dd87f2f01ee312cccc5868c229ba02b5005891c86bb7750a17b06bf7f55dacb", size = 19068581, upload-time = "2025-01-13T23:40:15.599Z" },
-    { url = "https://files.pythonhosted.org/packages/94/f1/2cf8300c6680290caceeed55984ca9b7743f219fa16029e0db595db74cc6/wandb-0.19.3-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:f3b3d24dcff15569f0b0fc81f6ab6bd78834de0f3ff7e4b00ab56158f871d2be", size = 20420463, upload-time = "2025-01-13T23:40:19.346Z" },
-    { url = "https://files.pythonhosted.org/packages/7f/a6/27c5714a3dab31cb097727635dfe8f3640d3dacd772f7bfe1f9f0e15c2ad/wandb-0.19.3-py3-none-win32.whl", hash = "sha256:ca8364b5d33e57c8578940d5a8179ef28b1f2596e2c6120541061f6a45f693a8", size = 19673546, upload-time = "2025-01-13T23:40:24.254Z" },
-    { url = "https://files.pythonhosted.org/packages/55/db/fa9b344fea9517e3d8d409ffa9ed36d18b270d05361873bf1ba0bf916fff/wandb-0.19.3-py3-none-win_amd64.whl", hash = "sha256:be46245b2a38d7053c8b122d9d366246e01cb9fd85fc5fa4e5d8f9b791da29ae", size = 19673549, upload-time = "2025-01-13T23:40:29.786Z" },
+    { url = "https://files.pythonhosted.org/packages/ab/58/09360b44e2cdccb5e37e39079f68ce1db859d52b28bb43e56ae5cce12c10/wandb-0.20.0-py3-none-any.whl", hash = "sha256:a4a5ce80ee544f609b13a97c4fd7b7faaa12260dc782b54b1f08cf039630525e", size = 6458661, upload-time = "2025-06-03T20:38:50.609Z" },
+    { url = "https://files.pythonhosted.org/packages/45/1d/501b23aae893a48f7939ecbbd4d4f3897049aabf169895f894eb1f1891c3/wandb-0.20.0-py3-none-macosx_10_14_x86_64.whl", hash = "sha256:1a8a6e3f7e19eaf806e026fd1b6d78d90ad92581850913c1894ed8f8d8219c7e", size = 22517295, upload-time = "2025-06-03T20:38:53.266Z" },
+    { url = "https://files.pythonhosted.org/packages/72/dc/e8382c0e0559371ae1f2a85cd75f2ee48e13b2ade12ac1e9f96a1cb51e51/wandb-0.20.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:c366e962f9b9b066d44b968fd16013abc73f696a92497ce4e32368c4d7b203c7", size = 22034296, upload-time = "2025-06-03T20:38:55.734Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/67/70bd381809a55d6b9f93f1175d63690e4fda07c13c497cbd8efab277ad00/wandb-0.20.0-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:060a8b852c3148b68da1920af5444eb0d730cf7e798ddb8187bef5a53a3e9547", size = 22720542, upload-time = "2025-06-03T20:38:58.721Z" },
+    { url = "https://files.pythonhosted.org/packages/39/15/f145a2f1d40fd14464f3fedc2d17163f67b5076c7544e8fd6ebd0818cb6d/wandb-0.20.0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a175a861c64113db659db2117d7b5e76e8ecbdd827352026872788895682e057", size = 21537254, upload-time = "2025-06-03T20:39:01.346Z" },
+    { url = "https://files.pythonhosted.org/packages/a1/11/804a28ef829db1e157647a6a7ca6fc173ab6d82e1f6f6a4f4938a82a7dbf/wandb-0.20.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7c52c16d0f1dec6ad931949c422eb91203383ccafcd9f64d37fc3bfd6bf350a2", size = 23161148, upload-time = "2025-06-03T20:39:03.844Z" },
+    { url = "https://files.pythonhosted.org/packages/4e/4c/5df65f0c2b502923b573b85ea808f252d99fb0c524882ff6502f40e71a84/wandb-0.20.0-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:8dda97fc4f8e886d18946f58413591c02a89b898eeebe3b227733b4cca3862e3", size = 21550425, upload-time = "2025-06-03T20:39:06.471Z" },
+    { url = "https://files.pythonhosted.org/packages/5c/37/8d8fb1aa7e15b6409416a075807216e7b7ae35512b6bbb83a00a940e71fd/wandb-0.20.0-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:12a57c9f71a748cb87d9184b3d3f2aafdf3b56c9af2060a5b5874bdc0a23f037", size = 23237797, upload-time = "2025-06-03T20:39:08.729Z" },
+    { url = "https://files.pythonhosted.org/packages/1b/d0/cde6bb791b3175b4bbde92749a18feea757be50dfe9711a3d91b826a88ac/wandb-0.20.0-py3-none-win32.whl", hash = "sha256:91e8287e6715c0095f4aecf2f8228bd827121fafe227f01909c916326b65c70a", size = 22518250, upload-time = "2025-06-03T20:39:11.051Z" },
+    { url = "https://files.pythonhosted.org/packages/b3/d9/d6f60b2a83e9a316c68839c6bb1d5e4682c846972f49e1eca352fcab749d/wandb-0.20.0-py3-none-win_amd64.whl", hash = "sha256:e0500b6f80a4f898e305e8860a9bd9e141b0dfbad66c65690c69ec0ced825899", size = 22518252, upload-time = "2025-06-03T20:39:13.654Z" },
 ]
 
 [[package]]
