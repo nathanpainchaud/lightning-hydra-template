@@ -636,7 +636,7 @@ requires-dist = [
     { name = "torch", marker = "extra == 'cu118'", specifier = ">=2.7,<2.8", index = "https://download.pytorch.org/whl/cu118", conflict = { package = "lightning-hydra-template", extra = "cu118" } },
     { name = "torch", marker = "extra == 'cu126'", specifier = ">=2.7,<2.8", index = "https://download.pytorch.org/whl/cu126", conflict = { package = "lightning-hydra-template", extra = "cu126" } },
     { name = "torch", marker = "extra == 'cu128'", specifier = ">=2.7,<2.8", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "lightning-hydra-template", extra = "cu128" } },
-    { name = "torchmetrics", specifier = ">=1.7,<1.8" },
+    { name = "torchmetrics", specifier = ">=1.7.3,<1.8" },
     { name = "torchvision", marker = "extra == 'cpu'", specifier = ">=0.22,<0.23", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
     { name = "torchvision", marker = "extra == 'cu118'", specifier = ">=0.22,<0.23", index = "https://download.pytorch.org/whl/cu118", conflict = { package = "lightning-hydra-template", extra = "cu118" } },
     { name = "torchvision", marker = "extra == 'cu126'", specifier = ">=0.22,<0.23", index = "https://download.pytorch.org/whl/cu126", conflict = { package = "lightning-hydra-template", extra = "cu126" } },
@@ -2408,7 +2408,7 @@ wheels = [
 
 [[package]]
 name = "torchmetrics"
-version = "1.7.0"
+version = "1.7.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lightning-utilities" },
@@ -2422,9 +2422,9 @@ dependencies = [
     { name = "torch", version = "2.7.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "extra == 'extra-24-lightning-hydra-template-cu126' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu128')" },
     { name = "torch", version = "2.7.0+cu128", source = { registry = "https://download.pytorch.org/whl/cu128" }, marker = "(extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu118') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra == 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra != 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu118' and extra == 'extra-24-lightning-hydra-template-cu128')" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/47/99/3a28bc2be4f562b9aae5b3557ec4c6cbcfcdd0a7d2a6fcb1ab44e7c55334/torchmetrics-1.7.0.tar.gz", hash = "sha256:7a26d5cb73a6ae51ab5cb514aa4dc0543af7287a507719986a06e15df12ea68b", size = 564173, upload-time = "2025-03-20T19:12:01.289Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/22/8b16c4ec34d93ee15024924cbbe84fbd235bb3e1df2cc8f48c865c1528e7/torchmetrics-1.7.3.tar.gz", hash = "sha256:08450a19cdb67ba1608aac0b213e5dc73033e11b60ad4719696ebcede591621e", size = 566545, upload-time = "2025-06-13T15:39:37.498Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/71/1d/dbbb54743865bad58a9adc7ac2c9bedd28bc76253cb8ec4b69765ccc8190/torchmetrics-1.7.0-py3-none-any.whl", hash = "sha256:39a72cf40c8452e041f5315b997ef811c2baaae01478131cf6ed9813f553a668", size = 960916, upload-time = "2025-03-20T19:11:58.841Z" },
+    { url = "https://files.pythonhosted.org/packages/6f/f2/bed7da46003c26ed44fc7fa3ecc98a84216f0d4758e5e6a3693754d490d9/torchmetrics-1.7.3-py3-none-any.whl", hash = "sha256:7b6fd43e92f0a1071c8bcb029637f252b0630699140a93ed8817ce7afe9db34e", size = 962639, upload-time = "2025-06-13T15:39:35.69Z" },
 ]
 
 [[package]]
