@@ -19,6 +19,14 @@
       ],
     },
     {
+      // Group Ruff dev dependency and pre-commit hook
+      groupName: 'Ruff',
+      matchPackageNames: [
+        'ruff',
+        'astral-sh/ruff-pre-commit',
+      ],
+    },
+    {
       // Set monthly schedule to reduce noise (since this hook is updated very frequently)
       description: 'Schedule renovatebot/pre-commit-hooks updates on the first day of the month before 4 AM.',
       matchPackageNames: [
