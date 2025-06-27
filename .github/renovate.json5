@@ -37,11 +37,12 @@
       ],
     },
     {
-      // Ignore patch bumps to reduce noise (since this hook receives frequent patch bumps)
-      // This also mirrors the version range in `pyproject.toml`, making the hook consistent with dev dependencies
-      description: 'Disable patch bumps for ruff pre-commit hook.',
+      // Ignore patch bumps to reduce noise (since these hooks receive frequent patch bumps)
+      // For hooks mirroring dev dependencies, also makes hooks updates consistent with dependencies version ranges
+      description: 'Disable patch bumps for pre-commit hooks with frequent patch updates.',
       matchPackageNames: [
         'astral-sh/ruff-pre-commit',
+        'rbubley/mirrors-prettier'
       ],
       matchUpdateTypes: [
         'patch',
