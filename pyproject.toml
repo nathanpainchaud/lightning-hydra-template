@@ -12,7 +12,7 @@ dependencies = [
     "lightning>=2.5.0.post0,<2.6",
     "rich>=14,<15",
     "rootutils>=1.0.7,<2",
-    "torchmetrics>=1.7.3,<1.8",
+    "torchmetrics>=1.8,<1.9",
 ]
 [project.optional-dependencies]
 wandb = [
