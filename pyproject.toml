@@ -29,15 +29,15 @@ cpu = [
   "torch>=2.8,<2.9",
   "torchvision>=0.23,<0.24",
 ]
-cu118 = [
-  "torch>=2.8,<2.9",
-  "torchvision>=0.23,<0.24",
-]
 cu126 = [
   "torch>=2.8,<2.9",
   "torchvision>=0.23,<0.24",
 ]
 cu128 = [
+  "torch>=2.8,<2.9",
+  "torchvision>=0.23,<0.24",
+]
+cu129 = [
   "torch>=2.8,<2.9",
   "torchvision>=0.23,<0.24",
 ]
@@ -73,9 +73,9 @@ required-version = ">=0.8,<0.9"
 conflicts = [
   [
     { extra = "cpu" },
-    { extra = "cu118" },
     { extra = "cu126" },
     { extra = "cu128" },
+    { extra = "cu129" },
   ],
 ]
 
@@ -84,15 +84,15 @@ conflicts = [
 # especially the link to uv's documentation, to understand this configuration
 torch = [
   { index = "pytorch-cpu", extra = "cpu" },
-  { index = "pytorch-cu118", extra = "cu118" },
   { index = "pytorch-cu126", extra = "cu126" },
   { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu129", extra = "cu129" },
 ]
 torchvision = [
   { index = "pytorch-cpu", extra = "cpu" },
-  { index = "pytorch-cu118", extra = "cu118" },
   { index = "pytorch-cu126", extra = "cu126" },
   { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu129", extra = "cu129" },
 ]
 
 [[tool.uv.index]]
@@ -103,11 +103,6 @@ url = "https://download.pytorch.org/whl/cpu"
 explicit = true
 
 [[tool.uv.index]]
-name = "pytorch-cu118"
-url = "https://download.pytorch.org/whl/cu118"
-explicit = true
-
-[[tool.uv.index]]
 name = "pytorch-cu126"
 url = "https://download.pytorch.org/whl/cu126"
 explicit = true
@@ -115,6 +110,11 @@ explicit = true
 [[tool.uv.index]]
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu129"
+url = "https://download.pytorch.org/whl/cu129"
 explicit = true
 
 [tool.pytest.ini_options]
