@@ -46,9 +46,7 @@ class SimpleDenseNet(nn.Module):
         Returns:
             A tensor of predictions.
         """
-        batch_size, channels, width, height = x.size()
-
-        # (batch, 1, width, height) -> (batch, 1*width*height)
-        x = x.view(batch_size, -1)
+        # (batch, *dims) -> (batch, product(dims))
+        x = x.view(len(x), -1)
 
         return self.model(x)
