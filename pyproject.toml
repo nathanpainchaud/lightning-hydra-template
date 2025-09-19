@@ -16,7 +16,7 @@ dependencies = [
 ]
 [project.optional-dependencies]
 wandb = [
-    "wandb>=0.21,<0.22",
+    "wandb>=0.22,<0.23",
 ]
 # torch libraries are not included in the main dependencies because they can be platform-specific
 # rather, we leave them as optional dependencies (even though they are required for the code to run)
