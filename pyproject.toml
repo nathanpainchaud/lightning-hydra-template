@@ -50,7 +50,7 @@ dev = [
 ]
 lint = [
     "docformatter>=1.7.5,<2",
-    "ruff>=0.13,<0.14",
+    "ruff>=0.14,<0.15",
 ]
 test = [
     "pytest>=8.3.4,<9",
