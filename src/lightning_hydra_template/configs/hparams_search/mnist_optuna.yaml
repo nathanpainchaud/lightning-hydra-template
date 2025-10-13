@@ -26,8 +26,9 @@ hydra:
     # name of the study to persist optimization results
     study_name: null
 
-    # number of parallel workers
-    n_jobs: 1
+    # number of trial configurations sampled at the same time,
+    # that could be executed in parallel (if supported by the launcher) to speed up search
+    n_jobs: ${oc.select:hydra.launcher.n_jobs,1}
 
     # 'minimize' or 'maximize' the objective
     direction: maximize

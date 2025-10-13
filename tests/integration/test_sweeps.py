@@ -85,7 +85,6 @@ def test_optuna_sweep(train_script: Path, testing_overrides: list[str]) -> None:
         str(train_script),
         "-m",
         "hparams_search=mnist_optuna",
-        "hydra.sweeper.n_jobs=1",
         "hydra.sweeper.n_trials=10",
         "hydra.sweeper.sampler.n_startup_trials=5",
         "++trainer.fast_dev_run=true",
