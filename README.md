@@ -789,7 +789,7 @@ hydra:
     n_trials: 20
 
     # choose Optuna hyperparameter sampler
-    # docs: https://optuna.readthedocs.io/en/stable/reference/samplers.html
+    # docs: https://optuna.readthedocs.io/en/stable/reference/samplers/index.html
     sampler:
       _target_: optuna.samplers.TPESampler
       seed: 1234
