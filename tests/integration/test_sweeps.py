@@ -29,6 +29,7 @@ def testing_overrides(tmp_path: Path) -> list[str]:
         "hydra.run.dir=" + str(tmp_path),
         "hydra.sweep.dir=" + str(tmp_path),
         "logger=[]",
+        "++trainer.fast_dev_run=true",
         "compile=false",  # Disable compilation to speed up tests
     ]
 
@@ -46,7 +47,6 @@ def test_experiments(train_script: Path, testing_overrides: list[str]) -> None:
         str(train_script),
         "-m",
         "experiment=glob(*)",
-        "++trainer.fast_dev_run=true",
         *testing_overrides,
     ]
     run_sh_command(command)
@@ -65,7 +65,6 @@ def test_hydra_sweep(train_script: Path, testing_overrides: list[str]) -> None:
         str(train_script),
         "-m",
         "model.optimizer.lr=0.005,0.01",
-        "++trainer.fast_dev_run=true",
         *testing_overrides,
     ]
 
@@ -87,7 +86,6 @@ def test_optuna_sweep(train_script: Path, testing_overrides: list[str]) -> None:
         "hparams_search=mnist_optuna",
         "hydra.sweeper.n_trials=10",
         "hydra.sweeper.sampler.n_startup_trials=5",
-        "++trainer.fast_dev_run=true",
         *testing_overrides,
     ]
     run_sh_command(command)
@@ -105,7 +103,6 @@ def test_serial_sweep(train_script: Path, testing_overrides: list[str]) -> None:
     command = [
         str(train_script),
         "serial_sweeper=seeds",
-        "++trainer.fast_dev_run=true",
         *testing_overrides,
     ]
     run_sh_command(command)
