@@ -26,20 +26,20 @@ wandb = [
 # Each extra corresponds to a different platform, so it is up to project maintainers to decide which platforms
 # they want to list here, i.e. support
 cpu = [
-  "torch>=2.8,<2.9",
-  "torchvision>=0.23,<0.24",
+  "torch>=2.10,<2.11",
+  "torchvision>=0.25,<0.26",
 ]
 cu126 = [
-  "torch>=2.8,<2.9",
-  "torchvision>=0.23,<0.24",
+  "torch>=2.10,<2.11",
+  "torchvision>=0.25,<0.26",
 ]
 cu128 = [
-  "torch>=2.8,<2.9",
-  "torchvision>=0.23,<0.24",
+  "torch>=2.10,<2.11",
+  "torchvision>=0.25,<0.26",
 ]
 cu129 = [
-  "torch>=2.8,<2.9",
-  "torchvision>=0.23,<0.24",
+  "torch>=2.10,<2.11",
+  "torchvision>=0.25,<0.26",
 ]
 
 [dependency-groups]
