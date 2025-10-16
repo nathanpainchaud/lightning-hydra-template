@@ -56,7 +56,6 @@ repos:
           - mdformat-frontmatter
           - mdformat-footnote
           - mdformat-gfm-alerts
-          - mdformat-tables
 
   # word spelling linter
   - repo: https://github.com/codespell-project/codespell
