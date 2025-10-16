@@ -147,7 +147,7 @@ cd lightning-hydra-template
 
 # use uv to create a virtual environment and install the project and its dependencies
 # you must specify as extra the desired compute platform for PyTorch (i.e. CPU/CUDA)
-# Supported values are: cpu, cu129, cu128, cu126
+# Supported values are: cpu, cu130, cu128, cu126
 # [OPTIONAL] you can also specify other extras for more functionalities
 # Supported values are: wandb (for W&B integration)
 uv sync --extra cpu --extra wandb
@@ -1237,13 +1237,13 @@ What it does
    cd your-repo-name
    ```
 2. Create a virtual environment and install the project and its dependencies. You must specify as an extra the desired
-   compute platform for PyTorch (i.e. CPU/CUDA). Supported values are: `cpu`, `cu129`, `cu128`, `cu126`.
+   compute platform for PyTorch (i.e. CPU/CUDA). Supported values are: `cpu`, `cu130`, `cu128`, `cu126`.
    ```bash
    # e.g. to install the project with the PyTorch version built for CPU
    uv sync --extra cpu
 
-   # e.g. to install the project with the PyTorch version built for CUDA 12.8
-   uv sync --extra cu128
+   # e.g. to install the project with the PyTorch version built for CUDA 13.0
+   uv sync --extra cu130
    ```
    [OPTIONAL] You can also specify other extras for additional functionalities:
    ```bash
@@ -1273,8 +1273,8 @@ What it does
    # e.g. to install the PyTorch version built for CPU
    pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
-   # e.g. to install the PyTorch version built for CUDA 12.8
-   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+   # e.g. to install the PyTorch version built for CUDA 13.0
+   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
    ```
 4. Install the project in editable mode.
    ```bash
