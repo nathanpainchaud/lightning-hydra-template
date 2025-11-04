@@ -29,6 +29,7 @@ def register_omegaconf_resolvers() -> None:
         "op.ternary", lambda condition, true_val, false_val: true_val if condition else false_val
     )
     OmegaConf.register_new_resolver("call", lambda fn_path, *args: import_from_module(fn_path)(*args))
+    OmegaConf.register_new_resolver("tuple", lambda *args: tuple(args))
 
 
 def import_from_module(dotpath: str) -> Any:
