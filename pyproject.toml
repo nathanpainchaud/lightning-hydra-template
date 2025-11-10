@@ -53,7 +53,7 @@ lint = [
     "ruff>=0.14,<0.15",
 ]
 test = [
-    "pytest>=8.3.4,<9",
+    "pytest>=9,<10",
     "pytest-cov>=7,<8",
     "sh>=2.2.1,<3",
 ]
@@ -117,23 +117,25 @@ name = "pytorch-cu129"
 url = "https://download.pytorch.org/whl/cu129"
 explicit = true
 
-[tool.pytest.ini_options]
+[tool.pytest]
 addopts = [
   "--color=yes",
   "--durations=0",
-  "--strict-markers",
   "--doctest-modules",
 ]
 filterwarnings = [
   "ignore::DeprecationWarning",
   "ignore::UserWarning",
 ]
-log_cli = "True"
+log_cli = true
 markers = [
   "slow: slow tests",
 ]
-minversion = "6.0"
-testpaths = "tests/"
+minversion = "9.0"
+strict = true
+testpaths = [
+    "tests/",
+]
 
 [tool.coverage.run]
 branch = true
