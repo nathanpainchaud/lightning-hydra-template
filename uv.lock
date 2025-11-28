@@ -569,7 +569,7 @@ wheels = [
 
 [[package]]
 name = "lightning"
-version = "2.5.0.post0"
+version = "2.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fsspec", extra = ["http"] },
@@ -588,9 +588,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e6/6d/d9d209d9ab3d270ee89afb8f71a3d84d48d41a1880e89d8215d26e8018b7/lightning-2.5.0.post0.tar.gz", hash = "sha256:f720fe4f6d03a7f15f9aef3112c5a0d1eafd8d27b903f4a1354b609685b2ec70", size = 628132, upload-time = "2024-12-21T01:36:50.746Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1a/d5/892ea38816925b3511493e87b0b32494122bf8a20e66f4f2cd2667f95625/lightning-2.6.0.tar.gz", hash = "sha256:881841716b59c1837ae0c562c2e64fea9bcf49ef9de3867bd1f868557ec23d04", size = 656539, upload-time = "2025-11-28T09:34:25.069Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d4/54/2de887e964a561776ac49c5e715ca8a56138ea7e2b95325e0a79aa46a070/lightning-2.5.0.post0-py3-none-any.whl", hash = "sha256:b08463326e6fb39cb3e4db8ff2660a80ce3372a0688c80e3370c091346ea220c", size = 815241, upload-time = "2024-12-21T01:36:46.586Z" },
+    { url = "https://files.pythonhosted.org/packages/d6/e9/36b340c7ec01dad6f034481e98fc9fc0133307beb05c714c0542af98bbde/lightning-2.6.0-py3-none-any.whl", hash = "sha256:f1a13a48909960a3454518486f113fae4fadb2db0e28e9c50d8d38d46c9dc3d6", size = 845956, upload-time = "2025-11-28T09:34:23.273Z" },
 ]
 
 [[package]]
@@ -655,7 +655,7 @@ requires-dist = [
     { name = "hydra-colorlog", specifier = ">=1.2.0,<2" },
     { name = "hydra-core", specifier = ">=1.3.2,<2" },
     { name = "hydra-optuna-sweeper", specifier = ">=1.2.0,<2" },
-    { name = "lightning", specifier = ">=2.5.0.post0,<2.6" },
+    { name = "lightning", specifier = ">=2.6,<2.7" },
     { name = "rich", specifier = ">=14,<15" },
     { name = "rootutils", specifier = ">=1.0.7,<2" },
     { name = "torch", marker = "extra == 'cpu'", specifier = ">=2.8,<2.9", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
