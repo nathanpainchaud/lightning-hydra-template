@@ -140,13 +140,14 @@ def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Cal
 
     Example:
         The decorator can be used as follows:
+        >>> import hydra
         >>> cfg = OmegaConf.create(
         ...     {
         ...         "foo": None,
         ...         "bar": None,
         ...         "serial_sweeper": {
         ...             "params": {"foo": "choice(0, 1)", "bar": "range(2)"},
-        ...             "reduce": {"_target_": statistics.mean},
+        ...             "reduce": {"_target_": "statistics.mean"},
         ...         }
         ...     }
         ... )
@@ -157,7 +158,7 @@ def hydra_serial_sweeper(task_func: Callable[[DictConfig], float | None]) -> Cal
         ...     metric_value = cfg.foo + cfg.bar
         ...     return metric_value
         ...
-        >>> main()
+        >>> main()  # doctest: +SKIP
         1.0
 
         The result is the average of the return values of `main` for all 4 combinations of `"foo"` and `"bar"`:

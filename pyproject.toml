@@ -135,6 +135,7 @@ minversion = "9.0"
 strict = true
 testpaths = [
     "tests/",
+    "src/lightning_hydra_template/", # to run doctests
 ]
 
 [tool.coverage.run]
