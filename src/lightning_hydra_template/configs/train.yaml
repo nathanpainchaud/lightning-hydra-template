@@ -45,6 +45,9 @@ train: True
 # lightning chooses best weights based on the metric specified in checkpoint callback
 test: False
 
+# predict on train/val (and test if `test=True`) sets after training, using best model weights achieved during training
+predict: True
+
 # compile model with pytorch 2.0
 compile:
   # Capture the entire model in a single graph (`true`), or try to capture compilable regions of the model (`false`).

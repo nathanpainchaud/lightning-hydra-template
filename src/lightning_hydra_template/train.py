@@ -89,6 +89,17 @@ def train(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
 
     test_metrics = trainer.callback_metrics
 
+    if cfg.get("predict"):
+        log.info("Starting predicting!")
+        ckpt_path = trainer.checkpoint_callback.best_model_path
+        if ckpt_path == "":
+            log.warning("Best ckpt not found! Using current weights for predicting...")
+            ckpt_path = None
+        dataloaders = [datamodule.train_dataloader(), datamodule.val_dataloader()]
+        if cfg.get("test"):
+            dataloaders.append(datamodule.test_dataloader())
+        trainer.predict(model=model, dataloaders=dataloaders, ckpt_path=ckpt_path, weights_only=False)
+
     # merge train and test metrics
     metric_dict = {**train_metrics, **test_metrics}
 

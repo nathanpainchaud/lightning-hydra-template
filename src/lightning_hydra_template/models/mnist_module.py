@@ -191,6 +191,25 @@ class MNISTLitModule(LightningModule):
         if self._base_metrics:
             self.log_dict(self.test_metrics, on_step=False, on_epoch=True, prog_bar=True)
 
+    def predict_step(
+        self, batch: tuple[torch.Tensor, torch.Tensor], batch_idx: int, dataloader_idx: int | None = None
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """Perform a single predict step on a batch of data from the predict set.
+
+        Args:
+            batch: A batch of data containing the input tensor of images and target labels.
+            batch_idx: The index of the current batch.
+            dataloader_idx: The index of the current dataloader (only if multiple dataloaders are used).
+
+        Returns:
+            A tuple of tensors containing the (unnormalized) predictions (i.e. logits), and the target labels,
+            respectively.
+        """
+        x, y = batch
+        logits = self.forward(x)
+        preds = torch.argmax(logits, dim=1)
+        return preds, y
+
     def configure_optimizers(self) -> dict[str, Any]:
         """Choose what optimizers and learning-rate schedulers to use in your optimization.
 
