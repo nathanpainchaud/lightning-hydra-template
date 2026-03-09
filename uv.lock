@@ -728,7 +728,7 @@ requires-dist = [
     { name = "torch", marker = "extra == 'cu126'", specifier = ">=2.10,<2.11", index = "https://download.pytorch.org/whl/cu126", conflict = { package = "lightning-hydra-template", extra = "cu126" } },
     { name = "torch", marker = "extra == 'cu128'", specifier = ">=2.10,<2.11", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "lightning-hydra-template", extra = "cu128" } },
     { name = "torch", marker = "extra == 'cu130'", specifier = ">=2.10,<2.11", index = "https://download.pytorch.org/whl/cu130", conflict = { package = "lightning-hydra-template", extra = "cu130" } },
-    { name = "torchmetrics", specifier = ">=1.8,<1.9" },
+    { name = "torchmetrics", specifier = ">=1.9,<1.10" },
     { name = "torchvision", marker = "extra == 'cpu'", specifier = ">=0.25,<0.26", index = "https://download.pytorch.org/whl/cpu", conflict = { package = "lightning-hydra-template", extra = "cpu" } },
     { name = "torchvision", marker = "extra == 'cu126'", specifier = ">=0.25,<0.26", index = "https://download.pytorch.org/whl/cu126", conflict = { package = "lightning-hydra-template", extra = "cu126" } },
     { name = "torchvision", marker = "extra == 'cu128'", specifier = ">=0.25,<0.26", index = "https://download.pytorch.org/whl/cu128", conflict = { package = "lightning-hydra-template", extra = "cu128" } },
@@ -758,16 +758,15 @@ test = [
 
 [[package]]
 name = "lightning-utilities"
-version = "0.11.9"
+version = "0.15.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
-    { name = "setuptools" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8c/4d/54d38e237ab437f25f191602373d99b89d1d047ad2a3bb5ad0d84ea5daa6/lightning_utilities-0.11.9.tar.gz", hash = "sha256:f5052b81344cc2684aa9afd74b7ce8819a8f49a858184ec04548a5a109dfd053", size = 29362, upload-time = "2024-11-19T17:20:01.723Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f1/45/7fa8f56b17dc0f0a41ec70dd307ecd6787254483549843bef4c30ab5adce/lightning_utilities-0.15.3.tar.gz", hash = "sha256:792ae0204c79f6859721ac7f386c237a33b0ed06ba775009cb894e010a842033", size = 33553, upload-time = "2026-02-22T14:48:53.348Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/85/f3/1305321a12c984405e26fc64b5d521569e9872fb811f4aace8e168099160/lightning_utilities-0.11.9-py3-none-any.whl", hash = "sha256:ac6d4e9e28faf3ff4be997876750fee10dc604753dbc429bf3848a95c5d7e0d2", size = 28356, upload-time = "2024-11-19T17:20:00.746Z" },
+    { url = "https://files.pythonhosted.org/packages/25/f4/ead6e0e37209b07c9baa3e984ccdb0348ca370b77cea3aaea8ddbb097e00/lightning_utilities-0.15.3-py3-none-any.whl", hash = "sha256:6c55f1bee70084a1cbeaa41ada96e4b3a0fea5909e844dd335bd80f5a73c5f91", size = 31906, upload-time = "2026-02-22T14:48:52.488Z" },
 ]
 
 [[package]]
@@ -2580,7 +2579,7 @@ wheels = [
 
 [[package]]
 name = "torchmetrics"
-version = "1.8.0"
+version = "1.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lightning-utilities" },
@@ -2594,9 +2593,9 @@ dependencies = [
     { name = "torch", version = "2.10.0+cu128", source = { registry = "https://download.pytorch.org/whl/cu128" }, marker = "extra == 'extra-24-lightning-hydra-template-cu128' or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra == 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu130') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu128' and extra == 'extra-24-lightning-hydra-template-cu130')" },
     { name = "torch", version = "2.10.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "(extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu126') or (extra == 'extra-24-lightning-hydra-template-cpu' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra == 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu128') or (extra != 'extra-24-lightning-hydra-template-cu128' and extra == 'extra-24-lightning-hydra-template-cu130') or (extra != 'extra-24-lightning-hydra-template-cpu' and extra != 'extra-24-lightning-hydra-template-cu126' and extra == 'extra-24-lightning-hydra-template-cu130')" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b0/1d/01fdf2595ac344dcfb2d837e7596c71cd8659e99f0b1fd72a93c76ea2c05/torchmetrics-1.8.0.tar.gz", hash = "sha256:8b4d011963a602109fb8255018c2386391e8c4c7f48a09669fbf7bb7889fda8c", size = 578941, upload-time = "2025-07-23T17:39:11.719Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/81/34/39b8b749333db56c0585d7a11fa62a283c087bb1dfc897d69fb8cedbefb1/torchmetrics-1.9.0.tar.gz", hash = "sha256:a488609948600df52d3db4fcdab02e62aab2a85ef34da67037dc3e65b8512faa", size = 581765, upload-time = "2026-03-09T17:41:22.443Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/cc/f41157b446d555bf1446915960f92928dc5e8393fc09b6de6189aef2d9dd/torchmetrics-1.8.0-py3-none-any.whl", hash = "sha256:009832f0df5be9aca72f51a1e6c6a555a131ba53c1ce46a38348a202250c22df", size = 981886, upload-time = "2025-07-23T17:39:09.246Z" },
+    { url = "https://files.pythonhosted.org/packages/c3/a2/c7f6ebf546f8f644edf0f999aa98ece106986a77a7b922316bf6414ff825/torchmetrics-1.9.0-py3-none-any.whl", hash = "sha256:bfdcbff3dd1d96b3374bb2496eb39f23c4b28b8a845b6a18c313688e0d2d9ca1", size = 983384, upload-time = "2026-03-09T17:41:19.756Z" },
 ]
 
 [[package]]
