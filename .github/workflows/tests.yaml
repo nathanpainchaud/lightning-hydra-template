@@ -54,6 +54,6 @@ jobs:
         run: uv run --no-sync pytest --cov --cov-report=xml --cov-config=pyproject.toml
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
