@@ -10,7 +10,7 @@ dependencies = [
     "hydra-core>=1.3.2,<2",
     "hydra-optuna-sweeper>=1.2.0,<2",
     "lightning>=2.6,<2.7",
-    "rich>=14,<15",
+    "rich>=15,<16",
     "rootutils>=1.0.7,<2",
     "torchmetrics>=1.9,<1.10",
 ]
