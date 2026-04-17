@@ -49,5 +49,18 @@
       ],
       enabled: false,
     },
+    {
+      // Ignore minor version and patch bumps for GitHub Actions that only publish immutable tags
+      // (to reduce noise from frequent minor/patch updates)
+      description: 'Disable minor and patch bumps for regularly updated GitHub Actions that only publish immutable tags.',
+      matchPackageNames: [
+        'astral-sh/setup-uv',
+      ],
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      enabled: false,
+    },
   ],
 }
