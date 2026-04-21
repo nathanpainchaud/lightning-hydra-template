@@ -106,7 +106,7 @@ class MNISTDataModule(LightningDataModule):
         MNIST(self.hparams.data_dir, train=False, download=True)
 
     def setup(self, stage: str | None = None) -> None:
-        """Load data. Set variables: `self.data_train`, `self.data_val`, `self.data_test`.
+        """Load data and set variables: `self.data_train`, `self.data_val`, `self.data_test`.
 
         This method is called by Lightning before `trainer.fit()`, `trainer.validate()`, `trainer.test()`, and
         `trainer.predict()`, so be careful not to execute things like random split twice! Also, it is called after
@@ -186,7 +186,7 @@ class MNISTDataModule(LightningDataModule):
         """
 
     def state_dict(self) -> dict[Any, Any]:
-        """Called when saving a checkpoint. Implement to generate and save the datamodule state.
+        """Generate and save the datamodule state when called to save a checkpoint.
 
         Returns:
             A dictionary containing the datamodule state that you want to save.
@@ -194,7 +194,7 @@ class MNISTDataModule(LightningDataModule):
         return {}
 
     def load_state_dict(self, state_dict: dict[str, Any]) -> None:
-        """Called when loading a checkpoint. Implement to reload datamodule state given datamodule `state_dict()`.
+        """Reload datamodule state given datamodule `state_dict()` when called to load a checkpoint.
 
         Args:
             state_dict: The datamodule state returned by `self.state_dict()`.
