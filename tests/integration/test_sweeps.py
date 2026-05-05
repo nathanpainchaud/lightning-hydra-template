@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from ..helpers.path import project_src_dir  # noqa: TID252
+from ..helpers.path import collect_config_group_options, project_src_dir  # noqa: TID252
 from ..helpers.run import RunIf, run_sh_command  # noqa: TID252
 
 
@@ -30,17 +30,20 @@ def testing_overrides(tmp_path: Path) -> list[str]:
 
 @RunIf(sh=True)
 @pytest.mark.slow
-def test_experiments(script_path: Path, testing_overrides: list[str]) -> None:
-    """Test running all available experiment configs with `fast_dev_run=True`.
+# The configs to run could be specified using a glob expression directly in the Hydra command (the syntax supports it),
+# but we prefer to parametrize the test to get more granular pass/fail reporting.
+@pytest.mark.parametrize("experiment_cfg", collect_config_group_options("experiment"))
+def test_experiments(script_path: Path, experiment_cfg: str, testing_overrides: list[str]) -> None:
+    """Test running all available experiment configs.
 
     Args:
         script_path: The path of the script to invoke.
+        experiment_cfg: The experiment config to use.
         testing_overrides: The generic overrides to suitably configure tests.
     """
     command = [
         str(script_path),
-        "-m",
-        "experiment=glob(*)",
+        f"experiment={experiment_cfg}",
         *testing_overrides,
     ]
     run_sh_command(command)

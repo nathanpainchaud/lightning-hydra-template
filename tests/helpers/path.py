@@ -18,6 +18,24 @@ def project_src_dir() -> Path:
     return project_root / "src" / project_dirname
 
 
+def collect_config_group_options(group: str, glob_expr: str = "[!_]*.yaml") -> list[str]:
+    """Dynamically collect options for a config group.
+
+    Args:
+        group: The config group to collect options for, separated by slashes if nested (e.g., "data/dataset").
+        glob_expr: The glob expression to use to select config options. The default expression matches options under
+            config group (non-recursively) that do not start with an underscore (i.e., convention for abstract configs).
+
+    Returns:
+        A list of options collected for the config group.
+    """
+    return [
+        option_path.stem
+        # Sort matches, to ensure consistent and predictable ordering across config groups
+        for option_path in sorted((project_src_dir() / "configs" / group).glob(glob_expr))
+    ]
+
+
 def _snake_case(string: str) -> str:
     """Converts a string to snake case."""
     string = re.sub(r"[\-\.\s]", "_", string)
