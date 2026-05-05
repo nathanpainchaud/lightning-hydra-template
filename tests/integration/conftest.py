@@ -10,6 +10,8 @@ from omegaconf import DictConfig, open_dict
 
 from lightning_hydra_template.utils import pre_hydra_routine
 
+from ..helpers.path import project_src_dir  # noqa: TID252
+
 
 @pytest.fixture(scope="package", autouse=True)
 def setup_pre_hydra_routine() -> None:
@@ -19,14 +21,10 @@ def setup_pre_hydra_routine() -> None:
 
 @pytest.fixture(scope="package")
 def cfg_path() -> Path:
-    """A pytest fixture for the directory containing the Hydra configuration files.
-
-    Returns:
-        The path to the directory containing the Hydra configuration files, relative to the test directory.
-    """
-    test_dir = Path(__file__).parent
-    cfg_dir = Path(os.environ["PROJECT_ROOT"], "src/lightning_hydra_template/configs")
-    return cfg_dir.relative_to(test_dir, walk_up=True)
+    """Path to the directory containing the Hydra configuration files, relative to the parent directory."""
+    parent_dir = Path(__file__).parent
+    cfg_dir = project_src_dir() / "configs"
+    return cfg_dir.relative_to(parent_dir, walk_up=True)
 
 
 @pytest.fixture(scope="package")
