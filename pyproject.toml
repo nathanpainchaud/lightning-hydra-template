@@ -33,10 +33,6 @@ cu126 = [
   "torch>=2.12,<2.13",
   "torchvision>=0.27,<0.28",
 ]
-cu128 = [
-  "torch>=2.12,<2.13",
-  "torchvision>=0.27,<0.28",
-]
 cu130 = [
   "torch>=2.12,<2.13",
   "torchvision>=0.27,<0.28",
@@ -74,7 +70,6 @@ conflicts = [
   [
     { extra = "cpu" },
     { extra = "cu126" },
-    { extra = "cu128" },
     { extra = "cu130" },
   ],
 ]
@@ -85,13 +80,11 @@ conflicts = [
 torch = [
   { index = "pytorch-cpu", extra = "cpu" },
   { index = "pytorch-cu126", extra = "cu126" },
-  { index = "pytorch-cu128", extra = "cu128" },
   { index = "pytorch-cu130", extra = "cu130" },
 ]
 torchvision = [
   { index = "pytorch-cpu", extra = "cpu" },
   { index = "pytorch-cu126", extra = "cu126" },
-  { index = "pytorch-cu128", extra = "cu128" },
   { index = "pytorch-cu130", extra = "cu130" },
 ]
 
@@ -105,11 +98,6 @@ explicit = true
 [[tool.uv.index]]
 name = "pytorch-cu126"
 url = "https://download.pytorch.org/whl/cu126"
-explicit = true
-
-[[tool.uv.index]]
-name = "pytorch-cu128"
-url = "https://download.pytorch.org/whl/cu128"
 explicit = true
 
 [[tool.uv.index]]
