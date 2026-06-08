@@ -37,6 +37,10 @@ cu130 = [
   "torch>=2.12,<2.13",
   "torchvision>=0.27,<0.28",
 ]
+cu132 = [
+  "torch>=2.12,<2.13",
+  "torchvision>=0.27,<0.28",
+]
 
 [dependency-groups]
 dev = [
@@ -71,6 +75,7 @@ conflicts = [
     { extra = "cpu" },
     { extra = "cu126" },
     { extra = "cu130" },
+    { extra = "cu132" },
   ],
 ]
 
@@ -81,11 +86,13 @@ torch = [
   { index = "pytorch-cpu", extra = "cpu" },
   { index = "pytorch-cu126", extra = "cu126" },
   { index = "pytorch-cu130", extra = "cu130" },
+  { index = "pytorch-cu132", extra = "cu132" },
 ]
 torchvision = [
   { index = "pytorch-cpu", extra = "cpu" },
   { index = "pytorch-cu126", extra = "cu126" },
   { index = "pytorch-cu130", extra = "cu130" },
+  { index = "pytorch-cu132", extra = "cu132" },
 ]
 
 [[tool.uv.index]]
@@ -103,6 +110,11 @@ explicit = true
 [[tool.uv.index]]
 name = "pytorch-cu130"
 url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
 explicit = true
 
 [tool.pytest]
