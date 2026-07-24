@@ -153,7 +153,10 @@ exclude_lines = [
 line-length = 120
 
 [tool.ruff.lint]
-select = [
+extend-select = [
+    # Even if rules from many of the groups listed below are already enabled by Ruff by default
+    # (see https://docs.astral.sh/ruff/default-rules/), not all rules from each group are enabled by default.
+    # So we explicitly list below the groups for which we want to enable all rules.
     "A",    # see: https://pypi.org/project/flake8-builtins
     "ANN",  # see: https://pypi.org/project/flake8-annotations
     "B",    # see: https://pypi.org/project/flake8-bugbear

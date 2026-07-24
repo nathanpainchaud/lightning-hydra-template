@@ -108,14 +108,14 @@ def task_wrapper(task_func: Callable) -> Callable:
             metric_dict, object_dict = task_func(cfg=cfg)
 
         # things to do if exception occurs
-        except Exception as ex:
+        except Exception:
             # save exception to `.log` file
             log.exception("")
 
             # some hyperparameter combinations might be invalid or cause out-of-memory errors
             # so when using hparam search plugins like Optuna, you might want to disable
-            # raising the below exception to avoid multirun failure
-            raise ex
+            # re-raising the exception below to avoid multirun failure
+            raise
 
         # things to always do after either success or exception
         finally:
@@ -265,7 +265,7 @@ def get_metric_value(metric_dict: dict[str, Any], metric_name: str | None) -> fl
         return None
 
     if metric_name not in metric_dict:
-        raise Exception(
+        raise KeyError(
             f"Metric value not found! <metric_name={metric_name}>\n"
             "Make sure metric name logged in LightningModule is correct!\n"
             "Make sure `optimized_metric` name in `hparams_search` config is correct!"
