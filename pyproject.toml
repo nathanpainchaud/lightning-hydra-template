@@ -26,19 +26,15 @@ wandb = [
 # Each extra corresponds to a different platform, so it is up to project maintainers to decide which platforms
 # they want to list here, i.e. support
 cpu = [
-  "torch>=2.14,<2.15",
-  "torchvision>=0.29,<0.30",
-]
-cu126 = [
-  "torch>=2.14,<2.15",
-  "torchvision>=0.29,<0.30",
-]
-cu130 = [
-  "torch>=2.14,<2.15",
+  "torch>=2.15,<2.16",
   "torchvision>=0.29,<0.30",
 ]
 cu132 = [
-  "torch>=2.14,<2.15",
+  "torch>=2.15,<2.16",
+  "torchvision>=0.29,<0.30",
+]
+cu134 = [
+  "torch>=2.15,<2.16",
   "torchvision>=0.29,<0.30",
 ]
 
@@ -73,9 +69,8 @@ required-version = ">=0.13,<0.14"
 conflicts = [
   [
     { extra = "cpu" },
-    { extra = "cu126" },
-    { extra = "cu130" },
     { extra = "cu132" },
+    { extra = "cu134" },
   ],
 ]
 
@@ -84,15 +79,13 @@ conflicts = [
 # especially the link to uv's documentation, to understand this configuration
 torch = [
   { index = "pytorch-cpu", extra = "cpu" },
-  { index = "pytorch-cu126", extra = "cu126" },
-  { index = "pytorch-cu130", extra = "cu130" },
   { index = "pytorch-cu132", extra = "cu132" },
+  { index = "pytorch-cu134", extra = "cu134" },
 ]
 torchvision = [
   { index = "pytorch-cpu", extra = "cpu" },
-  { index = "pytorch-cu126", extra = "cu126" },
-  { index = "pytorch-cu130", extra = "cu130" },
   { index = "pytorch-cu132", extra = "cu132" },
+  { index = "pytorch-cu134", extra = "cu134" },
 ]
 
 [[tool.uv.index]]
@@ -103,18 +96,13 @@ url = "https://download.pytorch.org/whl/cpu"
 explicit = true
 
 [[tool.uv.index]]
-name = "pytorch-cu126"
-url = "https://download.pytorch.org/whl/cu126"
-explicit = true
-
-[[tool.uv.index]]
-name = "pytorch-cu130"
-url = "https://download.pytorch.org/whl/cu130"
-explicit = true
-
-[[tool.uv.index]]
 name = "pytorch-cu132"
 url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu134"
+url = "https://download.pytorch.org/whl/cu134"
 explicit = true
 
 [tool.pytest]
