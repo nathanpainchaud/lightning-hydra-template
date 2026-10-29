@@ -37,6 +37,45 @@ cu134 = [
   "torch>=2.15,<2.16",
   "torchvision>=0.29,<0.30",
 ]
+"rocm10.0" = [
+  "torch>=2.15,<2.16",
+  "torchvision>=0.29,<0.30",
+  # Unlike CUDA-enabled builds, ROCm-enabled builds introduce transitive dependencies to other
+  # packages only hosted on PyTorch's indexes (cf. uv issue: https://github.com/astral-sh/uv/issues/10712).
+  # Therefore, we have to explicitly list them here if we want to keep the indexes explicit.
+  # An alternative would be to set `tool.uv.index-strategy` to 'unsafe-best-match', but that would mean
+  # PyPi dependencies (e.g. networkx, numpy, etc.) that are also found on PyTorch's ROCm index would be
+  # pulled from the latter.
+  "triton-rocm ; sys_platform == 'linux'",
+  "rocm ; sys_platform == 'linux'",
+  "rocm-sdk-core ; sys_platform == 'linux'",
+  "rocm-sdk-libraries ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1010 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1011 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1012 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1030 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1031 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1032 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1033 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1034 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1035 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1036 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1100 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1101 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1102 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1103 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1150 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1151 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1152 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1153 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1200 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1201 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx1250 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx908 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx90a ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx942 ; sys_platform == 'linux'",
+  "rocm-sdk-device-gfx950 ; sys_platform == 'linux'",
+]
 
 [dependency-groups]
 dev = [
@@ -71,6 +110,7 @@ conflicts = [
     { extra = "cpu" },
     { extra = "cu132" },
     { extra = "cu134" },
+    { extra = "rocm10.0" },
   ],
 ]
 
@@ -81,11 +121,101 @@ torch = [
   { index = "pytorch-cpu", extra = "cpu" },
   { index = "pytorch-cu132", extra = "cu132" },
   { index = "pytorch-cu134", extra = "cu134" },
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
 ]
 torchvision = [
   { index = "pytorch-cpu", extra = "cpu" },
   { index = "pytorch-cu132", extra = "cu132" },
   { index = "pytorch-cu134", extra = "cu134" },
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+# Explicitly bound transitive dependencies from ROCm-enabled builds to PyTorch's ROCm index
+triton-rocm = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-core = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-libraries = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1010 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1011 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1012 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1030 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1031 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1032 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1033 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1034 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1035 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1036 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1100 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1101 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1102 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1103 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1150 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1151 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1152 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1153 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1200 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1201 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx1250 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx908 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx90a = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx942 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
+]
+rocm-sdk-device-gfx950 = [
+  { index = "pytorch-rocm10.0", extra = "rocm10.0", marker = "sys_platform == 'linux'" },
 ]
 
 [[tool.uv.index]]
@@ -103,6 +233,11 @@ explicit = true
 [[tool.uv.index]]
 name = "pytorch-cu134"
 url = "https://download.pytorch.org/whl/cu134"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-rocm10.0"
+url = "https://download.pytorch.org/whl/rocm10.0"
 explicit = true
 
 [tool.pytest]
